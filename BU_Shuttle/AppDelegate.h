@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "BackEndWrapper.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) BackEndWrapper *wrapper;
+@property (strong, nonatomic) MKMapView *mapView;
+@property (strong, nonatomic) MKPolyline *routeLine;
+@property (strong, nonatomic) MKPolylineView *routeLineView;
+
+
+
 
 @end

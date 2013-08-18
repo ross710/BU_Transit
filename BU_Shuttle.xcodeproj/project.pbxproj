@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F75E17AC743100FB7C9D /* ListViewController.m */; };
+		9103F76217AC77B600FB7C9D /* BackEndWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F76117AC77B600FB7C9D /* BackEndWrapper.m */; };
+		9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9103F76517AC7FB700FB7C9D /* Stops.plist */; };
+		91650A3417BF153400C620D8 /* icon_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91650A3317BF153400C620D8 /* icon_bus.png */; };
 		91719C08176CCDB200A25620 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C07176CCDB200A25620 /* Foundation.framework */; };
 		91719C0A176CCDB200A25620 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C09176CCDB200A25620 /* CoreGraphics.framework */; };
 		91719C0C176CCDB200A25620 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C0B176CCDB200A25620 /* UIKit.framework */; };
@@ -21,6 +25,37 @@
 		91719C29176CCDB200A25620 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C0B176CCDB200A25620 /* UIKit.framework */; };
 		91719C31176CCDB200A25620 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91719C2F176CCDB200A25620 /* InfoPlist.strings */; };
 		91719C33176CCDB200A25620 /* BU_ShuttleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C32176CCDB200A25620 /* BU_ShuttleTests.m */; };
+		91719C59176CCE0000A25620 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C41176CCE0000A25620 /* SBJsonParser.m */; };
+		91719C5A176CCE0000A25620 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C43176CCE0000A25620 /* SBJsonStreamParser.m */; };
+		91719C5B176CCE0000A25620 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C45176CCE0000A25620 /* SBJsonStreamParserAccumulator.m */; };
+		91719C5C176CCE0000A25620 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C47176CCE0000A25620 /* SBJsonStreamParserAdapter.m */; };
+		91719C5D176CCE0000A25620 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C49176CCE0000A25620 /* SBJsonStreamParserState.m */; };
+		91719C5E176CCE0000A25620 /* SBJsonStreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C4B176CCE0000A25620 /* SBJsonStreamTokeniser.m */; };
+		91719C5F176CCE0000A25620 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C4D176CCE0000A25620 /* SBJsonStreamWriter.m */; };
+		91719C60176CCE0000A25620 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C4F176CCE0000A25620 /* SBJsonStreamWriterAccumulator.m */; };
+		91719C61176CCE0000A25620 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C51176CCE0000A25620 /* SBJsonStreamWriterState.m */; };
+		91719C62176CCE0000A25620 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C53176CCE0000A25620 /* SBJsonWriter.m */; };
+		91719C63176CCE0000A25620 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91719C55176CCE0000A25620 /* AppledocSettings.plist */; };
+		91719C64176CCE0000A25620 /* RegenerateApiDocumentation in Resources */ = {isa = PBXBuildFile; fileRef = 91719C57176CCE0000A25620 /* RegenerateApiDocumentation */; };
+		91719C65176CCE0000A25620 /* RegenerateCredits in Resources */ = {isa = PBXBuildFile; fileRef = 91719C58176CCE0000A25620 /* RegenerateCredits */; };
+		91719C6B176CCE5000A25620 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C68176CCE5000A25620 /* Location.m */; };
+		91719C6C176CCE5000A25620 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C6A176CCE5000A25620 /* Stop.m */; };
+		91719C72176CDB8D00A25620 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C71176CDB8D00A25620 /* CoreLocation.framework */; };
+		91719C75176CEA9700A25620 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C74176CEA9700A25620 /* Vehicle.m */; };
+		917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917C537117BFD5F0009A5F73 /* Cell.xib */; };
+		917C537417BFD69D009A5F73 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537317BFD69D009A5F73 /* Cell.m */; };
+		917C537E17BFE986009A5F73 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537D17BFE986009A5F73 /* RootViewController.m */; };
+		917C538117BFEC84009A5F73 /* PageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C538017BFEC84009A5F73 /* PageDataSource.m */; };
+		918DAA1F17C0474700411463 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA1E17C0474700411463 /* app_icon.png */; };
+		918DAA2217C04F7C00411463 /* ArrivalEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 918DAA2117C04F7C00411463 /* ArrivalEstimate.m */; };
+		918DAA2617C0771800411463 /* icon_bus copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2517C0771800411463 /* icon_bus copy.png */; };
+		918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2917C0798100411463 /* icon_bus MedCampus.png */; };
+		918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */; };
+		91E5DC1D177F526A00F5399F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E5DC1C177F526A00F5399F /* MapKit.framework */; };
+		91E5DC22177F5BFC00F5399F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E5DC21177F5BFC00F5399F /* bus.png */; };
+		91E5DC25177F609A00F5399F /* AWIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */; };
+		91E5DC28177F60B900F5399F /* Vehicle_pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC27177F60B900F5399F /* Vehicle_pin.m */; };
+		91F50384178889CC00A2BDCA /* route.csv in Resources */ = {isa = PBXBuildFile; fileRef = 91F50386178889CC00A2BDCA /* route.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +69,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		91719C04176CCDB200A25620 /* BU_Shuttle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BU_Shuttle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9103F75D17AC743100FB7C9D /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		9103F75E17AC743100FB7C9D /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		9103F76017AC77B600FB7C9D /* BackEndWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndWrapper.h; sourceTree = "<group>"; };
+		9103F76117AC77B600FB7C9D /* BackEndWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackEndWrapper.m; sourceTree = "<group>"; };
+		9103F76417AC7FB700FB7C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Stops.plist; sourceTree = "<group>"; };
+		91650A3317BF153400C620D8 /* icon_bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus.png; sourceTree = "<group>"; };
+		91719C04176CCDB200A25620 /* BU Transit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BU Transit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91719C07176CCDB200A25620 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91719C09176CCDB200A25620 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		91719C0B176CCDB200A25620 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -53,6 +94,57 @@
 		91719C2E176CCDB200A25620 /* BU_ShuttleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BU_ShuttleTests-Info.plist"; sourceTree = "<group>"; };
 		91719C30176CCDB200A25620 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		91719C32176CCDB200A25620 /* BU_ShuttleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BU_ShuttleTests.m; sourceTree = "<group>"; };
+		91719C3F176CCE0000A25620 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		91719C40176CCE0000A25620 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		91719C41176CCE0000A25620 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		91719C42176CCE0000A25620 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		91719C43176CCE0000A25620 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		91719C44176CCE0000A25620 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		91719C45176CCE0000A25620 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		91719C46176CCE0000A25620 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		91719C47176CCE0000A25620 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		91719C48176CCE0000A25620 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		91719C49176CCE0000A25620 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		91719C4A176CCE0000A25620 /* SBJsonStreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamTokeniser.h; sourceTree = "<group>"; };
+		91719C4B176CCE0000A25620 /* SBJsonStreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamTokeniser.m; sourceTree = "<group>"; };
+		91719C4C176CCE0000A25620 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		91719C4D176CCE0000A25620 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		91719C4E176CCE0000A25620 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		91719C4F176CCE0000A25620 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		91719C50176CCE0000A25620 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		91719C51176CCE0000A25620 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		91719C52176CCE0000A25620 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		91719C53176CCE0000A25620 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		91719C55176CCE0000A25620 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		91719C57176CCE0000A25620 /* RegenerateApiDocumentation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RegenerateApiDocumentation; sourceTree = "<group>"; };
+		91719C58176CCE0000A25620 /* RegenerateCredits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RegenerateCredits; sourceTree = "<group>"; };
+		91719C67176CCE5000A25620 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		91719C68176CCE5000A25620 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		91719C69176CCE5000A25620 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
+		91719C6A176CCE5000A25620 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+		91719C71176CDB8D00A25620 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		91719C73176CEA9700A25620 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
+		91719C74176CEA9700A25620 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
+		917C537017BFD5F0009A5F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Cell.xib; sourceTree = "<group>"; };
+		917C537217BFD69D009A5F73 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		917C537317BFD69D009A5F73 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		917C537C17BFE986009A5F73 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		917C537D17BFE986009A5F73 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		917C537F17BFEC84009A5F73 /* PageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageDataSource.h; sourceTree = "<group>"; };
+		917C538017BFEC84009A5F73 /* PageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageDataSource.m; sourceTree = "<group>"; };
+		918DAA1E17C0474700411463 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		918DAA2017C04F7C00411463 /* ArrivalEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalEstimate.h; sourceTree = "<group>"; };
+		918DAA2117C04F7C00411463 /* ArrivalEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalEstimate.m; sourceTree = "<group>"; };
+		918DAA2517C0771800411463 /* icon_bus copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bus copy.png"; sourceTree = "<group>"; };
+		918DAA2917C0798100411463 /* icon_bus MedCampus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bus MedCampus.png"; sourceTree = "<group>"; };
+		918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bus MedCampus_shadow.png"; sourceTree = "<group>"; };
+		91E5DC1C177F526A00F5399F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		91E5DC21177F5BFC00F5399F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		91E5DC23177F609A00F5399F /* AWIconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWIconAnnotationView.h; sourceTree = "<group>"; };
+		91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWIconAnnotationView.m; sourceTree = "<group>"; };
+		91E5DC26177F60B900F5399F /* Vehicle_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle_pin.h; sourceTree = "<group>"; };
+		91E5DC27177F60B900F5399F /* Vehicle_pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle_pin.m; sourceTree = "<group>"; };
+		91F50385178889CC00A2BDCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/route.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E5DC1D177F526A00F5399F /* MapKit.framework in Frameworks */,
+				91719C72176CDB8D00A25620 /* CoreLocation.framework in Frameworks */,
 				91719C0A176CCDB200A25620 /* CoreGraphics.framework in Frameworks */,
 				91719C0C176CCDB200A25620 /* UIKit.framework in Frameworks */,
 				91719C08176CCDB200A25620 /* Foundation.framework in Frameworks */,
@@ -92,7 +186,7 @@
 		91719C05176CCDB200A25620 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91719C04176CCDB200A25620 /* BU_Shuttle.app */,
+				91719C04176CCDB200A25620 /* BU Transit.app */,
 				91719C25176CCDB200A25620 /* BU_ShuttleTests.xctest */,
 			);
 			name = Products;
@@ -101,6 +195,8 @@
 		91719C06176CCDB200A25620 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91E5DC1C177F526A00F5399F /* MapKit.framework */,
+				91719C71176CDB8D00A25620 /* CoreLocation.framework */,
 				91719C07176CCDB200A25620 /* Foundation.framework */,
 				91719C09176CCDB200A25620 /* CoreGraphics.framework */,
 				91719C0B176CCDB200A25620 /* UIKit.framework */,
@@ -112,9 +208,24 @@
 		91719C0D176CCDB200A25620 /* BU_Shuttle */ = {
 			isa = PBXGroup;
 			children = (
+				918DAA1D17C046E500411463 /* Images */,
+				91F50386178889CC00A2BDCA /* route.csv */,
+				91E5DC21177F5BFC00F5399F /* bus.png */,
+				918DAA2517C0771800411463 /* icon_bus copy.png */,
+				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
+				918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */,
+				91650A3317BF153400C620D8 /* icon_bus.png */,
+				9103F76517AC7FB700FB7C9D /* Stops.plist */,
+				91719C3C176CCDF100A25620 /* JSON */,
 				91719C16176CCDB200A25620 /* AppDelegate.h */,
 				91719C17176CCDB200A25620 /* AppDelegate.m */,
+				917C537F17BFEC84009A5F73 /* PageDataSource.h */,
+				917C538017BFEC84009A5F73 /* PageDataSource.m */,
+				91719C66176CCE4100A25620 /* Classes */,
 				91719C19176CCDB200A25620 /* Main.storyboard */,
+				917C537C17BFE986009A5F73 /* RootViewController.h */,
+				917C537D17BFE986009A5F73 /* RootViewController.m */,
+				917C537817BFE7C5009A5F73 /* List View */,
 				91719C1C176CCDB200A25620 /* ViewController.h */,
 				91719C1D176CCDB200A25620 /* ViewController.m */,
 				91719C1F176CCDB200A25620 /* Images.xcassets */,
@@ -152,6 +263,110 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		91719C3C176CCDF100A25620 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				91719C3D176CCE0000A25620 /* main */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		91719C3D176CCE0000A25620 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				91719C3E176CCE0000A25620 /* objc */,
+				91719C54176CCE0000A25620 /* resources */,
+				91719C56176CCE0000A25620 /* scripts */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		91719C3E176CCE0000A25620 /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				91719C3F176CCE0000A25620 /* SBJson.h */,
+				91719C40176CCE0000A25620 /* SBJsonParser.h */,
+				91719C41176CCE0000A25620 /* SBJsonParser.m */,
+				91719C42176CCE0000A25620 /* SBJsonStreamParser.h */,
+				91719C43176CCE0000A25620 /* SBJsonStreamParser.m */,
+				91719C44176CCE0000A25620 /* SBJsonStreamParserAccumulator.h */,
+				91719C45176CCE0000A25620 /* SBJsonStreamParserAccumulator.m */,
+				91719C46176CCE0000A25620 /* SBJsonStreamParserAdapter.h */,
+				91719C47176CCE0000A25620 /* SBJsonStreamParserAdapter.m */,
+				91719C48176CCE0000A25620 /* SBJsonStreamParserState.h */,
+				91719C49176CCE0000A25620 /* SBJsonStreamParserState.m */,
+				91719C4A176CCE0000A25620 /* SBJsonStreamTokeniser.h */,
+				91719C4B176CCE0000A25620 /* SBJsonStreamTokeniser.m */,
+				91719C4C176CCE0000A25620 /* SBJsonStreamWriter.h */,
+				91719C4D176CCE0000A25620 /* SBJsonStreamWriter.m */,
+				91719C4E176CCE0000A25620 /* SBJsonStreamWriterAccumulator.h */,
+				91719C4F176CCE0000A25620 /* SBJsonStreamWriterAccumulator.m */,
+				91719C50176CCE0000A25620 /* SBJsonStreamWriterState.h */,
+				91719C51176CCE0000A25620 /* SBJsonStreamWriterState.m */,
+				91719C52176CCE0000A25620 /* SBJsonWriter.h */,
+				91719C53176CCE0000A25620 /* SBJsonWriter.m */,
+			);
+			path = objc;
+			sourceTree = "<group>";
+		};
+		91719C54176CCE0000A25620 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				91719C55176CCE0000A25620 /* AppledocSettings.plist */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		91719C56176CCE0000A25620 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				91719C57176CCE0000A25620 /* RegenerateApiDocumentation */,
+				91719C58176CCE0000A25620 /* RegenerateCredits */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		91719C66176CCE4100A25620 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9103F76017AC77B600FB7C9D /* BackEndWrapper.h */,
+				9103F76117AC77B600FB7C9D /* BackEndWrapper.m */,
+				91E5DC26177F60B900F5399F /* Vehicle_pin.h */,
+				91E5DC27177F60B900F5399F /* Vehicle_pin.m */,
+				91E5DC23177F609A00F5399F /* AWIconAnnotationView.h */,
+				91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */,
+				91719C67176CCE5000A25620 /* Location.h */,
+				918DAA2017C04F7C00411463 /* ArrivalEstimate.h */,
+				918DAA2117C04F7C00411463 /* ArrivalEstimate.m */,
+				91719C68176CCE5000A25620 /* Location.m */,
+				91719C69176CCE5000A25620 /* Stop.h */,
+				91719C6A176CCE5000A25620 /* Stop.m */,
+				91719C73176CEA9700A25620 /* Vehicle.h */,
+				91719C74176CEA9700A25620 /* Vehicle.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		917C537817BFE7C5009A5F73 /* List View */ = {
+			isa = PBXGroup;
+			children = (
+				9103F75D17AC743100FB7C9D /* ListViewController.h */,
+				9103F75E17AC743100FB7C9D /* ListViewController.m */,
+				917C537117BFD5F0009A5F73 /* Cell.xib */,
+				917C537217BFD69D009A5F73 /* Cell.h */,
+				917C537317BFD69D009A5F73 /* Cell.m */,
+			);
+			name = "List View";
+			sourceTree = "<group>";
+		};
+		918DAA1D17C046E500411463 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				918DAA1E17C0474700411463 /* app_icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,7 +384,7 @@
 			);
 			name = BU_Shuttle;
 			productName = BU_Shuttle;
-			productReference = 91719C04176CCDB200A25620 /* BU_Shuttle.app */;
+			productReference = 91719C04176CCDB200A25620 /* BU Transit.app */;
 			productType = "com.apple.product-type.application";
 		};
 		91719C24176CCDB200A25620 /* BU_ShuttleTests */ = {
@@ -229,8 +444,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				91719C20176CCDB200A25620 /* Images.xcassets in Resources */,
+				918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */,
+				918DAA1F17C0474700411463 /* app_icon.png in Resources */,
+				917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */,
+				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
+				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
+				91719C65176CCE0000A25620 /* RegenerateCredits in Resources */,
+				91719C63176CCE0000A25620 /* AppledocSettings.plist in Resources */,
 				91719C12176CCDB200A25620 /* InfoPlist.strings in Resources */,
+				91E5DC22177F5BFC00F5399F /* bus.png in Resources */,
+				91F50384178889CC00A2BDCA /* route.csv in Resources */,
+				918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */,
 				91719C1B176CCDB200A25620 /* Main.storyboard in Resources */,
+				91650A3417BF153400C620D8 /* icon_bus.png in Resources */,
+				91719C64176CCE0000A25620 /* RegenerateApiDocumentation in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +477,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				91719C1E176CCDB200A25620 /* ViewController.m in Sources */,
+				91E5DC25177F609A00F5399F /* AWIconAnnotationView.m in Sources */,
+				91719C62176CCE0000A25620 /* SBJsonWriter.m in Sources */,
+				9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */,
+				91719C5C176CCE0000A25620 /* SBJsonStreamParserAdapter.m in Sources */,
+				91719C59176CCE0000A25620 /* SBJsonParser.m in Sources */,
+				917C538117BFEC84009A5F73 /* PageDataSource.m in Sources */,
+				91719C5F176CCE0000A25620 /* SBJsonStreamWriter.m in Sources */,
+				91719C6C176CCE5000A25620 /* Stop.m in Sources */,
+				91719C5E176CCE0000A25620 /* SBJsonStreamTokeniser.m in Sources */,
+				91719C5B176CCE0000A25620 /* SBJsonStreamParserAccumulator.m in Sources */,
+				91719C75176CEA9700A25620 /* Vehicle.m in Sources */,
 				91719C18176CCDB200A25620 /* AppDelegate.m in Sources */,
+				91719C6B176CCE5000A25620 /* Location.m in Sources */,
+				91719C5D176CCE0000A25620 /* SBJsonStreamParserState.m in Sources */,
+				91719C60176CCE0000A25620 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				9103F76217AC77B600FB7C9D /* BackEndWrapper.m in Sources */,
+				918DAA2217C04F7C00411463 /* ArrivalEstimate.m in Sources */,
+				91E5DC28177F60B900F5399F /* Vehicle_pin.m in Sources */,
+				91719C61176CCE0000A25620 /* SBJsonStreamWriterState.m in Sources */,
+				917C537E17BFE986009A5F73 /* RootViewController.m in Sources */,
 				91719C14176CCDB200A25620 /* main.m in Sources */,
+				91719C5A176CCE0000A25620 /* SBJsonStreamParser.m in Sources */,
+				917C537417BFD69D009A5F73 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +522,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9103F76517AC7FB700FB7C9D /* Stops.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9103F76417AC7FB700FB7C9D /* Base */,
+			);
+			name = Stops.plist;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		91719C10176CCDB200A25620 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,6 +553,22 @@
 				91719C30176CCDB200A25620 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		917C537117BFD5F0009A5F73 /* Cell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				917C537017BFD5F0009A5F73 /* Base */,
+			);
+			name = Cell.xib;
+			sourceTree = "<group>";
+		};
+		91F50386178889CC00A2BDCA /* route.csv */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F50385178889CC00A2BDCA /* en */,
+			);
+			name = route.csv;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -372,12 +645,12 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "BU Transit";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -385,12 +658,12 @@
 		91719C38176CCDB200A25620 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "BU Transit";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -454,6 +727,7 @@
 				91719C38176CCDB200A25620 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		91719C39176CCDB200A25620 /* Build configuration list for PBXNativeTarget "BU_ShuttleTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +736,7 @@
 				91719C3B176CCDB200A25620 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
