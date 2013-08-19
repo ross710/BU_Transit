@@ -9,11 +9,8 @@
 #import <MapKit/MapKit.h>
 #import "Vehicle_pin.h"
 
-/**
- * A custom pin annotation view using pin icons from
- * http://mapicons.nicolasmollet.com/
- */
-@interface AWIconAnnotationView : MKPinAnnotationView {
+
+@interface BusAnnotationView : MKPinAnnotationView {
     UIImage *icon;
     UIImageView *iconView;
 }

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91719C03176CCDB200A25620"
-               BuildableName = "BU_Shuttle.app"
+               BuildableName = "BU Transit.app"
                BlueprintName = "BU_Shuttle"
                ReferencedContainer = "container:BU_Shuttle.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91719C03176CCDB200A25620"
-            BuildableName = "BU_Shuttle.app"
+            BuildableName = "BU Transit.app"
             BlueprintName = "BU_Shuttle"
             ReferencedContainer = "container:BU_Shuttle.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91719C03176CCDB200A25620"
-            BuildableName = "BU_Shuttle.app"
+            BuildableName = "BU Transit.app"
             BlueprintName = "BU_Shuttle"
             ReferencedContainer = "container:BU_Shuttle.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91719C03176CCDB200A25620"
-            BuildableName = "BU_Shuttle.app"
+            BuildableName = "BU Transit.app"
             BlueprintName = "BU_Shuttle"
             ReferencedContainer = "container:BU_Shuttle.xcodeproj">
          </BuildableReference>

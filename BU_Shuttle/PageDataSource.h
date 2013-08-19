@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ListViewController.h"
-#import "ViewController.h"
+#import "MapViewController.h"
 
 @interface PageDataSource : NSObject <UIPageViewControllerDataSource>
 

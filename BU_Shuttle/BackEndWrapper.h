@@ -14,22 +14,23 @@
 
 @interface BackEndWrapper : NSObject
 @property (nonatomic, strong) NSMutableDictionary *stops;
-@property (nonatomic) NSMutableDictionary *vehicles;
+//@property (nonatomic) NSMutableDictionary *vehicles;
 @property (nonatomic) NSMutableDictionary *arrival_estimates;
 
 
 
 
 
--(void) loadArrivalEstimates;
+-(NSMutableDictionary *) loadArrivalEstimates;
 -(id) init;
 -(void) getPath;
 -(void) saveStops;
 -(void) loadStops;
 -(void) loadStopsFromJSON: (NSString *) jsonString;
+-(NSMutableDictionary *) getVehicles;
 -(NSString *) getJsonStringStops;
 -(NSString *) getJsonStringVehicles;
 -(NSString *) getJsonStringArrivalEstimates;
--(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString;
--(void) loadVehiclesIntoObjects: (NSString *) jsonString;
+-(NSMutableDictionary *) loadArrivalEstimatesIntoObjects: (NSString *) jsonString;
+-(NSMutableDictionary *) loadVehiclesIntoObjects: (NSString *) jsonString;
 @end

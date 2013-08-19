@@ -31,10 +31,10 @@
             </objects>
             <point key="canvasLocation" x="-349" y="-817"/>
         </scene>
-        <!--View Controller - Map-->
+        <!--Map View Controller - Map-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="mapView" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapView" id="vXZ-lx-hvc" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UfX-c9-box"/>
                         <viewControllerLayoutGuide type="bottom" id="BOj-XS-ndl"/>
@@ -52,9 +52,9 @@
                                 <action selector="gotoListView:" destination="vXZ-lx-hvc" id="RHr-hM-SWF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="3ud-HU-3Fp">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="3ud-HU-3Fp">
                             <connections>
-                                <action selector="refreshPressed:" destination="vXZ-lx-hvc" id="MfC-UY-RXe"/>
+                                <action selector="resetPressed:" destination="vXZ-lx-hvc" id="nSv-hc-ipj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

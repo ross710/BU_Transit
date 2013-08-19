@@ -14,11 +14,16 @@
 @property (nonatomic) NSDictionary *stops;
 @property (nonatomic) NSDictionary *arrival_estimates;
 @property (nonatomic) NSArray *closestStops;
+@property (nonatomic) NSTimer *locationTimer;
+@property (nonatomic) NSTimer *arrivalEstimatesTimer;
+
 @end
 
 @implementation ListViewController
 
 @synthesize stops, closestStops, stopsArray, arrival_estimates;
+@synthesize locationTimer, arrivalEstimatesTimer;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -33,26 +38,18 @@
     
     
     [super viewDidLoad];
-    
     [self initLocation];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    BackEndWrapper *wrapper = appDelegate.wrapper;
-    
+    BackEndWrapper *wrapper = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).wrapper;
+
     stops = wrapper.stops;
     stopsArray = [wrapper.stops allValues];
     [self updateLocation];
-    
-    
-    
-    [self updateTable];
-    
-    [wrapper loadArrivalEstimates];
-    arrival_estimates = wrapper.arrival_estimates;
+
     
     UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map >" style:UIBarButtonItemStylePlain target:self action:@selector(gotoMapView:)];
     self.navigationItem.rightBarButtonItem = mapButton;
     
-//    NSTimer* myTimer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(updateTable) userInfo: nil repeats: YES];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,15 +58,33 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
+    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
+    [self updateLocation];
+    [self updateArrivalEstimates];
+}
 
+-(void) viewDidDisappear:(BOOL)animated {
+    [locationTimer invalidate];
+    locationTimer = nil;
+    [arrivalEstimatesTimer invalidate];
+    arrivalEstimatesTimer = nil;
+}
 - (void)gotoMapView:(id)sender {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"gotoMapView"
-     object:self];
+     object:nil];
 }
 
--(void) updateTable {
+
+-(void) updateArrivalEstimates {
+//    NSLog(@"UPDATING ARRIVAL ESTIMATES");
+
+    BackEndWrapper *wrapper = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).wrapper;
     
+    arrival_estimates = [wrapper loadArrivalEstimates];
+//    NSLog(@"NUM EST %@", ((ArrivalEstimate *)[arrival_estimates objectForKey:[NSNumber numberWithInt: 4117698]]).stop_id);
     [self.tableView reloadData];
 }
 
@@ -91,10 +106,8 @@
 }
 
 - (void)updateLocation {
-//    NSLog(@"%@", [self deviceLocation]);
-
+//    NSLog(@"UPDATING LOCATION");
     myLocation = locationManager.location;
-    
     
     
     [geocoder reverseGeocodeLocation:myLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -106,7 +119,7 @@
                                      placemark.thoroughfare,
                                      placemark.locality,
                                      placemark.administrativeArea];
-            NSLog(@"%d", [checkLength length]);
+//            NSLog(@"%d", [checkLength length]);
             if ([checkLength length] <= 17) {
                 [self setTitle:checkLength];
             } else if (placemark.subThoroughfare == NULL){
@@ -126,6 +139,8 @@
     
     //calculate two closest stops
     closestStops = [self closestStops];
+    
+    [self.tableView reloadData];
 
 }
 
@@ -236,26 +251,26 @@
     
     if (cell == nil) {
         cell =  [[Cell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        if ([closestStops count] > 0) {
-            NSLog(@"HERE");
-            Stop *stop = [closestStops objectAtIndex:indexPath.row];
-            [cell.stopName setText:stop.name];
-            
-            ArrivalEstimate *est = [arrival_estimates objectForKey:stop.stop_id];
-            if (est) {
-                [cell.timeAway setText:[self minutesBetweenTwoDates:[NSDate date] :est.arrival_at]];
-            } else {
-                [cell.timeAway setText:@"--"];
 
-            }
-            
-            if ([stop.isInboundToStuVii isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-                [cell.inOrOutBound setText:@"(to West Campus)"];
-                [cell.inOrOutBound setTextColor:[UIColor redColor]];
-                [cell.stopName setTextColor:[UIColor redColor]];
-            } else {
-                [cell.inOrOutBound setText:@"(to Medical Campus)"];
-            }
+    }
+    if ([closestStops count] > 0) {
+        Stop *stop = [closestStops objectAtIndex:indexPath.row];
+        [cell.stopName setText:stop.name];
+        
+        ArrivalEstimate *est = [arrival_estimates objectForKey:stop.stop_id];
+        if (est) {
+            [cell.timeAway setText:[self minutesBetweenTwoDates:[NSDate date] :est.arrival_at]];
+        } else {
+            [cell.timeAway setText:@"--"];
+        }
+        if ([stop.isInboundToStuVii isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            [cell.inOrOutBound setText:@"(to West Campus)"];
+            [cell.inOrOutBound setTextColor:[UIColor redColor]];
+            [cell.stopName setTextColor:[UIColor redColor]];
+        } else {
+            [cell.inOrOutBound setText:@"(to Medical Campus)"];
+            [cell.inOrOutBound setTextColor:[UIColor blackColor]];
+            [cell.stopName setTextColor:[UIColor blackColor]];
         }
     }
     return cell;
@@ -276,6 +291,19 @@
 //    }
     return [NSString stringWithFormat:@"%d", [conversionInfo minute]];
 }
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   Stop *stop = [closestStops objectAtIndex:indexPath.row];
+   NSDictionary *stopDict = [NSDictionary dictionaryWithObject:stop.stop_id forKey:@"stop_id"];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoMapView"
+                                  object:nil
+                                userInfo:stopDict];
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

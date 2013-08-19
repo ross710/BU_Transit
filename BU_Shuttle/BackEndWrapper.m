@@ -25,12 +25,12 @@
 
 @implementation BackEndWrapper
 @synthesize path, dataObject, archiver, unarchiver;
-@synthesize stops,vehicles,arrival_estimates;
+@synthesize stops,arrival_estimates;
 
 
--(void) loadArrivalEstimates {
+-(NSMutableDictionary *) loadArrivalEstimates {
     NSString *json = [self getJsonStringArrivalEstimates];
-    [self loadArrivalEstimatesIntoObjects:json];
+    return [self loadArrivalEstimatesIntoObjects:json];
 }
 
 
@@ -39,17 +39,7 @@
         [self getPath];
         
         [self loadStops];
-        //if did not load from plist
-        if (!stops) {
-            //load from json
-            NSString * stopsJSON = [self getJsonStringStops];
-            [self loadStopsFromJSON:stopsJSON];
-            NSLog(@"Stops loaded from JSON");
-            
-        } else {
-            NSLog(@"Stops loaded from plist");
-        }
-//        [self loadArrivalEstimates];
+        //        [self loadArrivalEstimates];
     }
     return self;
 }
@@ -70,8 +60,25 @@
     }
 }
 
+-(NSMutableDictionary *) getVehicles {
+    return [self loadVehiclesIntoObjects:[self getJsonStringVehicles]];
+}
 
+-(void) loadStops {
+    [self loadStopsFromDisk];
+    //if did not load from plist
+    if (!stops) {
+        //load from json
+        NSString * stopsJSON = [self getJsonStringStops];
+        [self loadStopsFromJSON:stopsJSON];
+        NSLog(@"Stops loaded from JSON");
+        
+    } else {
+        NSLog(@"Stops loaded from plist");
+    }
 
+    [self removeUnusedStops:NO];
+}
 
 
 -(void) saveStops {
@@ -86,7 +93,7 @@
     [data writeToFile: path atomically:YES];
 }
 
--(void) loadStops {
+-(void) loadStopsFromDisk {
     NSMutableDictionary *savedData = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
     unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:(NSData *) [savedData objectForKey:@"stops"]];
     stops = [unarchiver decodeObjectForKey:@"stops"];
@@ -110,7 +117,7 @@
 
         NSInteger stop_id = [stop.stop_id integerValue];
         
-        NSLog(@"STOP ID %d", stop_id);
+//        NSLog(@"STOP ID %d", stop_id);
         switch (stop_id) {
             case 4068466: //ST. Mary's
                 stop.isInboundToStuVii = NO;
@@ -122,7 +129,7 @@
                 stop.isInboundToStuVii = NO;
                 break;
             case 4068482: //710 Albany
-                stop.isInboundToStuVii = NO;
+                stop.isInboundToStuVii = [[NSNumber alloc] initWithBool:YES];
                 break;
             case 4068502: //Myles Standish
                 stop.isInboundToStuVii = [[NSNumber alloc] initWithBool:YES];
@@ -155,7 +162,7 @@
                 stop.isInboundToStuVii = [[NSNumber alloc] initWithBool:YES];
                 break;
             case 4117694: //815 Albany
-                stop.isInboundToStuVii = [[NSNumber alloc] initWithBool:YES];
+                stop.isInboundToStuVii = [[NSNumber alloc] initWithBool:NO];
                 break;
             case 4117698: //Amory St
                 stop.isInboundToStuVii = NO;
@@ -178,6 +185,22 @@
     [self saveStops];
 }
 
+-(void) removeUnusedStops :(BOOL) isNightTime {
+    NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:stops];
+    if (isNightTime) {
+        
+    } else {
+        [temp removeObjectForKey:[NSNumber numberWithInt:4108734]]; //South Campus
+        [temp removeObjectForKey:[NSNumber numberWithInt:4108738]]; //Granby St
+        [temp removeObjectForKey:[NSNumber numberWithInt:4108742]]; //GSU
+        [temp removeObjectForKey:[NSNumber numberWithInt:4114006]]; //Agganis Way
+        [temp removeObjectForKey:[NSNumber numberWithInt:4117706]]; //Stuvi (10 Buick St)
+        
+    }
+
+    stops = [NSMutableDictionary dictionaryWithDictionary:temp];
+}
+
 -(NSString *) getJsonStringStops {
     NSError* error = nil;
     return [NSString stringWithContentsOfURL:URL_STOPS encoding:NSASCIIStringEncoding error:&error];
@@ -198,7 +221,7 @@
 
 
 
--(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString {
+-(NSMutableDictionary *) loadArrivalEstimatesIntoObjects: (NSString *) jsonString {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *bigDict = [parser objectWithString:jsonString];
 
@@ -214,11 +237,10 @@
 //    NSArray *allTheArrivalEstimates = [NSArray arrayWithObject:dict];
     for (id object in allTheArrivalEstimates) {
         NSDictionary *dict = (NSDictionary *) object;
-        NSLog(@"ARRIVAL ESTIMATES %@", dict);
+//        NSLog(@"ARRIVAL ESTIMATES %@", dict);
 
         ArrivalEstimate *est = [[ArrivalEstimate alloc]init];
         est.stop_id = [NSNumber numberWithInteger:[[dict objectForKey:@"stop_id"] integerValue]];
-        NSLog(@"ARRIVAL ESTIMATES");
 
         NSArray *arrivals = [dict objectForKey:@"arrivals"];
         
@@ -233,12 +255,12 @@
         }
         
         [arrival_estimates setObject:est forKey:est.stop_id];
-        NSLog(@"ARRIVAL ESTIMATES");
 
     }
+    return arrival_estimates;
 }
 
--(void) loadVehiclesIntoObjects: (NSString *) jsonString {
+-(NSMutableDictionary *) loadVehiclesIntoObjects: (NSString *) jsonString {
     
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *full = [parser objectWithString:jsonString];
@@ -248,8 +270,7 @@
     
     NSArray *oneThirtyTwo = [allTheVehicles objectForKey:@"132"];
     
-    vehicles = nil;
-    vehicles = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *vehicles = [[NSMutableDictionary alloc] init];
     for (id object in oneThirtyTwo) {
         NSDictionary *vehicleDict = (NSDictionary *) object;
         //if ([[vehicleDict objectForKey:@"tracking_status"] isEqualToString:@"up"]) {
@@ -336,6 +357,7 @@
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
+    return vehicles;
 }
 
 @end

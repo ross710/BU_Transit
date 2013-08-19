@@ -11,7 +11,7 @@
 
 #import "BackEndWrapper.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, MKMapViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, MKMapViewDelegate, MKAnnotation,  MKOverlay>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) BackEndWrapper *wrapper;
@@ -20,6 +20,6 @@
 @property (strong, nonatomic) MKPolylineView *routeLineView;
 
 
-
+- (void)plotVehicles;
 
 @end

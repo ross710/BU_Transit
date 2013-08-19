@@ -10,6 +10,10 @@
 		9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F75E17AC743100FB7C9D /* ListViewController.m */; };
 		9103F76217AC77B600FB7C9D /* BackEndWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F76117AC77B600FB7C9D /* BackEndWrapper.m */; };
 		9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9103F76517AC7FB700FB7C9D /* Stops.plist */; };
+		914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E017C119C0001A6078 /* icon_stop_dull.png */; };
+		914B40E317C119C0001A6078 /* icon_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E117C119C0001A6078 /* icon_stop.png */; };
+		914B40E617C12232001A6078 /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 914B40E517C12232001A6078 /* StopAnnotationView.m */; };
+		915D538917C178630049C974 /* Stop_pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 915D538817C178630049C974 /* Stop_pin.m */; };
 		91650A3417BF153400C620D8 /* icon_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91650A3317BF153400C620D8 /* icon_bus.png */; };
 		91719C08176CCDB200A25620 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C07176CCDB200A25620 /* Foundation.framework */; };
 		91719C0A176CCDB200A25620 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C09176CCDB200A25620 /* CoreGraphics.framework */; };
@@ -18,7 +22,7 @@
 		91719C14176CCDB200A25620 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C13176CCDB200A25620 /* main.m */; };
 		91719C18176CCDB200A25620 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C17176CCDB200A25620 /* AppDelegate.m */; };
 		91719C1B176CCDB200A25620 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91719C19176CCDB200A25620 /* Main.storyboard */; };
-		91719C1E176CCDB200A25620 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C1D176CCDB200A25620 /* ViewController.m */; };
+		91719C1E176CCDB200A25620 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C1D176CCDB200A25620 /* MapViewController.m */; };
 		91719C20176CCDB200A25620 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91719C1F176CCDB200A25620 /* Images.xcassets */; };
 		91719C27176CCDB200A25620 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C26176CCDB200A25620 /* XCTest.framework */; };
 		91719C28176CCDB200A25620 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C07176CCDB200A25620 /* Foundation.framework */; };
@@ -52,8 +56,7 @@
 		918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2917C0798100411463 /* icon_bus MedCampus.png */; };
 		918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */; };
 		91E5DC1D177F526A00F5399F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E5DC1C177F526A00F5399F /* MapKit.framework */; };
-		91E5DC22177F5BFC00F5399F /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E5DC21177F5BFC00F5399F /* bus.png */; };
-		91E5DC25177F609A00F5399F /* AWIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */; };
+		91E5DC25177F609A00F5399F /* BusAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC24177F609A00F5399F /* BusAnnotationView.m */; };
 		91E5DC28177F60B900F5399F /* Vehicle_pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC27177F60B900F5399F /* Vehicle_pin.m */; };
 		91F50384178889CC00A2BDCA /* route.csv in Resources */ = {isa = PBXBuildFile; fileRef = 91F50386178889CC00A2BDCA /* route.csv */; };
 /* End PBXBuildFile section */
@@ -74,6 +77,12 @@
 		9103F76017AC77B600FB7C9D /* BackEndWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndWrapper.h; sourceTree = "<group>"; };
 		9103F76117AC77B600FB7C9D /* BackEndWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackEndWrapper.m; sourceTree = "<group>"; };
 		9103F76417AC7FB700FB7C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Stops.plist; sourceTree = "<group>"; };
+		914B40E017C119C0001A6078 /* icon_stop_dull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_dull.png; sourceTree = "<group>"; };
+		914B40E117C119C0001A6078 /* icon_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop.png; sourceTree = "<group>"; };
+		914B40E417C12232001A6078 /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
+		914B40E517C12232001A6078 /* StopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotationView.m; sourceTree = "<group>"; };
+		915D538717C178630049C974 /* Stop_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop_pin.h; sourceTree = "<group>"; };
+		915D538817C178630049C974 /* Stop_pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop_pin.m; sourceTree = "<group>"; };
 		91650A3317BF153400C620D8 /* icon_bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus.png; sourceTree = "<group>"; };
 		91719C04176CCDB200A25620 /* BU Transit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BU Transit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91719C07176CCDB200A25620 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,8 +95,8 @@
 		91719C16176CCDB200A25620 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		91719C17176CCDB200A25620 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		91719C1A176CCDB200A25620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		91719C1C176CCDB200A25620 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		91719C1D176CCDB200A25620 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		91719C1C176CCDB200A25620 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		91719C1D176CCDB200A25620 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		91719C1F176CCDB200A25620 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		91719C25176CCDB200A25620 /* BU_ShuttleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BU_ShuttleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91719C26176CCDB200A25620 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -139,9 +148,8 @@
 		918DAA2917C0798100411463 /* icon_bus MedCampus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bus MedCampus.png"; sourceTree = "<group>"; };
 		918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bus MedCampus_shadow.png"; sourceTree = "<group>"; };
 		91E5DC1C177F526A00F5399F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		91E5DC21177F5BFC00F5399F /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
-		91E5DC23177F609A00F5399F /* AWIconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWIconAnnotationView.h; sourceTree = "<group>"; };
-		91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWIconAnnotationView.m; sourceTree = "<group>"; };
+		91E5DC23177F609A00F5399F /* BusAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusAnnotationView.h; sourceTree = "<group>"; };
+		91E5DC24177F609A00F5399F /* BusAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusAnnotationView.m; sourceTree = "<group>"; };
 		91E5DC26177F60B900F5399F /* Vehicle_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle_pin.h; sourceTree = "<group>"; };
 		91E5DC27177F60B900F5399F /* Vehicle_pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle_pin.m; sourceTree = "<group>"; };
 		91F50385178889CC00A2BDCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/route.csv; sourceTree = "<group>"; };
@@ -210,7 +218,8 @@
 			children = (
 				918DAA1D17C046E500411463 /* Images */,
 				91F50386178889CC00A2BDCA /* route.csv */,
-				91E5DC21177F5BFC00F5399F /* bus.png */,
+				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
+				914B40E117C119C0001A6078 /* icon_stop.png */,
 				918DAA2517C0771800411463 /* icon_bus copy.png */,
 				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
 				918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */,
@@ -226,8 +235,8 @@
 				917C537C17BFE986009A5F73 /* RootViewController.h */,
 				917C537D17BFE986009A5F73 /* RootViewController.m */,
 				917C537817BFE7C5009A5F73 /* List View */,
-				91719C1C176CCDB200A25620 /* ViewController.h */,
-				91719C1D176CCDB200A25620 /* ViewController.m */,
+				91719C1C176CCDB200A25620 /* MapViewController.h */,
+				91719C1D176CCDB200A25620 /* MapViewController.m */,
 				91719C1F176CCDB200A25620 /* Images.xcassets */,
 				91719C0E176CCDB200A25620 /* Supporting Files */,
 			);
@@ -331,13 +340,17 @@
 			children = (
 				9103F76017AC77B600FB7C9D /* BackEndWrapper.h */,
 				9103F76117AC77B600FB7C9D /* BackEndWrapper.m */,
+				915D538717C178630049C974 /* Stop_pin.h */,
+				915D538817C178630049C974 /* Stop_pin.m */,
 				91E5DC26177F60B900F5399F /* Vehicle_pin.h */,
 				91E5DC27177F60B900F5399F /* Vehicle_pin.m */,
-				91E5DC23177F609A00F5399F /* AWIconAnnotationView.h */,
-				91E5DC24177F609A00F5399F /* AWIconAnnotationView.m */,
-				91719C67176CCE5000A25620 /* Location.h */,
+				914B40E417C12232001A6078 /* StopAnnotationView.h */,
+				914B40E517C12232001A6078 /* StopAnnotationView.m */,
+				91E5DC23177F609A00F5399F /* BusAnnotationView.h */,
+				91E5DC24177F609A00F5399F /* BusAnnotationView.m */,
 				918DAA2017C04F7C00411463 /* ArrivalEstimate.h */,
 				918DAA2117C04F7C00411463 /* ArrivalEstimate.m */,
+				91719C67176CCE5000A25620 /* Location.h */,
 				91719C68176CCE5000A25620 /* Location.m */,
 				91719C69176CCE5000A25620 /* Stop.h */,
 				91719C6A176CCE5000A25620 /* Stop.m */,
@@ -446,13 +459,14 @@
 				91719C20176CCDB200A25620 /* Images.xcassets in Resources */,
 				918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */,
 				918DAA1F17C0474700411463 /* app_icon.png in Resources */,
+				914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */,
 				917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */,
+				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
 				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
 				91719C65176CCE0000A25620 /* RegenerateCredits in Resources */,
 				91719C63176CCE0000A25620 /* AppledocSettings.plist in Resources */,
 				91719C12176CCDB200A25620 /* InfoPlist.strings in Resources */,
-				91E5DC22177F5BFC00F5399F /* bus.png in Resources */,
 				91F50384178889CC00A2BDCA /* route.csv in Resources */,
 				918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */,
 				91719C1B176CCDB200A25620 /* Main.storyboard in Resources */,
@@ -476,8 +490,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91719C1E176CCDB200A25620 /* ViewController.m in Sources */,
-				91E5DC25177F609A00F5399F /* AWIconAnnotationView.m in Sources */,
+				914B40E617C12232001A6078 /* StopAnnotationView.m in Sources */,
+				91719C1E176CCDB200A25620 /* MapViewController.m in Sources */,
+				91E5DC25177F609A00F5399F /* BusAnnotationView.m in Sources */,
 				91719C62176CCE0000A25620 /* SBJsonWriter.m in Sources */,
 				9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */,
 				91719C5C176CCE0000A25620 /* SBJsonStreamParserAdapter.m in Sources */,
@@ -488,6 +503,7 @@
 				91719C5E176CCE0000A25620 /* SBJsonStreamTokeniser.m in Sources */,
 				91719C5B176CCE0000A25620 /* SBJsonStreamParserAccumulator.m in Sources */,
 				91719C75176CEA9700A25620 /* Vehicle.m in Sources */,
+				915D538917C178630049C974 /* Stop_pin.m in Sources */,
 				91719C18176CCDB200A25620 /* AppDelegate.m in Sources */,
 				91719C6B176CCE5000A25620 /* Location.m in Sources */,
 				91719C5D176CCE0000A25620 /* SBJsonStreamParserState.m in Sources */,

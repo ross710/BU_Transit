@@ -7,33 +7,50 @@
 //
 
 #import "AppDelegate.h"
+#import "Vehicle_pin.h"
+#import "Stop_pin.h"
+#import "BusAnnotationView.h"
+#import "StopAnnotationView.h"
+
+
 #define METERS_PER_MILE 1609.344
 
+@interface AppDelegate ()
+@property (nonatomic, retain) NSMutableDictionary *vehicles;
+
+@end
 @implementation AppDelegate
 @synthesize wrapper, mapView, routeLine, routeLineView;
+@synthesize vehicles;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //init backendwrapper
     wrapper = [[BackEndWrapper alloc] init];
-
-//    mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude =
-    42.34091;
-    zoomLocation.longitude= -71.09682;
     
-    // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.2*METERS_PER_MILE, 3.2*METERS_PER_MILE);
-    [mapView setRegion:viewRegion animated:NO];
+    //init mapview and plot the stops
+    mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     mapView.delegate = self;
     mapView.showsUserLocation = YES;
+    [self plotStops];
+
+    //draw route lines
     [self loadRoute];
     [mapView addOverlay:routeLine];
-    // Override point for customization after application launch.
     
+    //zoom to default location
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.latitude = 42.34091;
+    zoomLocation.longitude= -71.09682;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.2*METERS_PER_MILE, 3.2*METERS_PER_MILE);
+    [mapView setRegion:viewRegion animated:NO];
+    
+    
+    [self plotVehicles];
     return YES;
 }
+
+
 
 //Taken from http://spitzkoff.com/craig/?p=136
 -(void) loadRoute
@@ -64,10 +81,6 @@
         
         MKMapPoint point = MKMapPointForCoordinate(coordinate);
         
-        //
-        // adjust the bounding box
-        //
-        
         // if it is the first point, just use them, since we have nothing to compare to yet.
         if (idx == 0) {
             northEastPoint = point;
@@ -92,11 +105,119 @@
     // create the polyline based on the array of points.
     self.routeLine = [MKPolyline polylineWithPoints:pointArr count:pointStrings.count];
     
-//    _routeRect = MKMapRectMake(southWestPoint.x, southWestPoint.y, northEastPoint.x - southWestPoint.x, northEastPoint.y - southWestPoint.y);
-    
     // clear the memory allocated earlier for the points
     free(pointArr);
+}
+
+-(void) plotStops {
+    NSMutableDictionary *stops = [wrapper stops];
+        for (id key in stops) {
+            Stop *stop = [stops objectForKey:key];
+            Stop_pin *annotation = [[Stop_pin alloc] initWithLong:[stop.location.lng doubleValue] :[stop.location.lat doubleValue] : [stop name] : [stop stop_id]];
+            [mapView addAnnotation:annotation];
+        }
+}
+
+- (void)plotVehicles {
+    vehicles = [wrapper getVehicles];
+    BOOL alreadyInit = NO;
+    for (Vehicle_pin<MKAnnotation> *annotation in mapView.annotations) {
+        if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Vehicle_pin class]]) {
+            alreadyInit = YES;
+            
+            Vehicle *vehicle = [vehicles objectForKey:annotation.vehicle_id];
+            if (vehicle) {
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+                CLLocationCoordinate2D coord =  CLLocationCoordinate2DMake([vehicle.location.lat doubleValue],[vehicle.location.lng doubleValue]);
+                [annotation setCoordinate:coord];
+                [UIView commitAnimations];
+            }
+        }
+    }
     
+    if (!alreadyInit) {
+        for (id key in vehicles) {
+            Vehicle *vehicle = [vehicles objectForKey:key];
+            //            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.vehicle_id heading:vehicle.heading type:vehicle.type];
+            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.call_name heading:vehicle.heading type:vehicle.type];
+            if ([vehicle.arrival_estimates count] > 0) {
+                NSDictionary *dict = [vehicle.arrival_estimates objectAtIndex:0];
+                annotation.isInboundToStuvii = [NSNumber numberWithBool:[self isInboundToStuvii:[dict objectForKey:@"stop_id"]]];
+            }
+            [mapView addAnnotation:annotation];
+        }
+    }
+    
+    
+}
+
+
+-(BOOL) isInboundToStuvii : (NSNumber *) stopId{
+    NSInteger stop_id = [stopId integerValue];
+    switch (stop_id) {
+        case 4068466: //ST. Mary's
+            return NO;
+            break;
+        case 4068470: //Blanford
+            return NO;
+            break;
+        case 4068478: //Huntington EastBound
+            return NO;
+            break;
+        case 4068482: //710 Albany
+            return YES;
+            break;
+        case 4068502: //Myles Standish
+            return YES;
+            break;
+        case 4068514: //Marsh Plaza
+            return YES;
+            break;
+        case 4108734: //518 Park Dr (South Campus)
+            return NO;
+            break;
+        case 4108738: //Granby St
+            return NO;
+            break;
+        case 4108742: //GSU
+            return YES;
+            break;
+        case 4110206: //Kenmore
+            return NO;
+            break;
+        case 4110214: //CFA
+            return YES;
+            break;
+        case 4114006: //Agganis Way
+            return YES;
+            break;
+        case 4114010: //Danielsen Hall
+            return YES;
+            break;
+        case 4114014: //Silber Way
+            return YES;
+            break;
+        case 4117694: //815 Albany
+            return NO;
+            break;
+        case 4117698: //Amory St
+            return NO;
+            break;
+        case 4117702: //Huntington Westbound
+            return YES;
+            break;
+        case 4117706: //StuVii (10 Buick St)
+            return NO;
+            break;
+        case 4117710: //StuVii2
+            return NO;
+            break;
+        default:
+            return NO;
+            break;
+    }
 }
 
 
@@ -122,6 +243,94 @@
     return overlayView;
     
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)aMapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    if (annotation == aMapView.userLocation) {
+        return nil; // Let map view handle user location annotation
+    }
+    
+    if ([annotation isKindOfClass:[Vehicle_pin class]]) {
+        // Identifyer for reusing annotationviews
+        static NSString *annotationIdentifier = @"icon_vehicle";
+        // Check in queue if there is an annotation view we already can use, else create a new one
+        BusAnnotationView *annotationView = (BusAnnotationView *)[aMapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+        if (!annotationView) {
+            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+        }
+        return annotationView;
+    } else if ([annotation isKindOfClass:[Stop_pin class]]) {
+        // Identifyer for reusing annotationviews
+        static NSString *annotationIdentifier = @"icon_stop";
+        // Check in queue if there is an annotation view we already can use, else create a new one
+        StopAnnotationView *annotationView = (StopAnnotationView *)[aMapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+        if (!annotationView) {
+            annotationView = [[StopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+        }
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    MKAnnotationView *aV;
+    
+    for (aV in views) {
+        
+        // Don't pin drop if annotation is user location
+        if ([aV.annotation isKindOfClass:[MKUserLocation class]]) {
+            continue;
+        }
+        
+        // Check if current annotation is inside visible map rect
+        MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
+        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
+            continue;
+        }
+        
+        CGRect endFrame = aV.frame;
+        
+        // Move annotation out of view
+        aV.frame = CGRectMake(aV.frame.origin.x,
+                              aV.frame.origin.y - self.mapView.frame.size.height,
+                              aV.frame.size.width,
+                              aV.frame.size.height);
+        
+        if ([aV isKindOfClass:[Vehicle_pin class]]) {
+            // Animate drop
+            [UIView animateWithDuration:0.5
+                                  delay:0.04*[views indexOfObject:aV]
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 
+                                 aV.frame = endFrame;
+                                 
+                                 // Animate squash
+                             }completion:^(BOOL finished){
+                                 if (finished) {
+                                     [UIView animateWithDuration:0.05 animations:^{
+                                         aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
+                                         
+                                     }completion:^(BOOL finished){
+                                         if (finished) {
+                                             [UIView animateWithDuration:0.1 animations:^{
+                                                 aV.transform = CGAffineTransformIdentity;
+                                             }];
+                                         }
+                                     }];
+                                 }
+                             }];
+        } else {
+            aV.frame = endFrame;
+        }
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

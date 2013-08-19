@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "PageDataSource.h"
+#import "Stop_pin.h"
 
 @interface RootViewController ()
 @property (nonatomic) NSArray *vcArray;
@@ -36,13 +37,26 @@
 }
 
 
--(void) gotoMapView {
+-(void) gotoMapView: (NSNotification *) notification {
 //    self.view = [self.dataSource pageViewController:self viewControllerAfterViewController:[self.viewControllers objectAtIndex:0]];
 
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
 //                                                             bundle: nil];
 //    UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
     [self setViewControllers:@[[vcArray objectAtIndex:1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    
+    
+    NSDictionary *dict = [notification userInfo];
+    NSNumber *stop_id = [dict objectForKey:@"stop_id"];
+    if (stop_id) {
+        MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
+        for (Stop_pin<MKAnnotation> *currentAnnotation in mapView.annotations) {
+            if ([currentAnnotation isKindOfClass:[Stop_pin class]] && [currentAnnotation.stop_id isEqualToNumber:stop_id]) {
+                [mapView selectAnnotation:currentAnnotation animated:FALSE];
+            }
+        }
+    }
+
 }
 
 - (void)viewDidLoad
@@ -71,7 +85,7 @@
                                                  name:@"gotoListView"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(gotoMapView)
+                                             selector:@selector(gotoMapView:)
                                                  name:@"gotoMapView"
                                                object:nil];
 
@@ -92,7 +106,7 @@
 {
     
     UIViewController *ctrl = ((UINavigationController*) viewController).visibleViewController;
-    if([ctrl isKindOfClass:[ViewController class]]){
+    if([ctrl isKindOfClass:[MapViewController class]]){
         return [vcArray objectAtIndex:1];
     } else {
         return nil;

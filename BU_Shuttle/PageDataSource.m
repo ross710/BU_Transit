@@ -36,7 +36,7 @@
 //    }
     
     UIViewController *ctrl = ((UINavigationController*) viewController).visibleViewController;
-    if([ctrl isKindOfClass:[ViewController class]]){
+    if([ctrl isKindOfClass:[MapViewController class]]){
         UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
         return controller;
     }
