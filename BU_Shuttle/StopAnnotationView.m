@@ -17,7 +17,7 @@
     if (self) {
         
         // Compensate frame a bit so everything's aligned
-//        [self setCenterOffset:CGPointMake(0, -3)];
+        [self setCenterOffset:CGPointMake(0, 44)];
         [self setCalloutOffset:CGPointMake(-4.1, 20)];
         //
         //        // Add the pin icon
@@ -39,6 +39,7 @@
     icon = [UIImage imageNamed:@"icon_bus_yellow.png"];
     [iconView setImage:icon];
 }
+
 
 /** Override to make sure shadow image is always set
  */
