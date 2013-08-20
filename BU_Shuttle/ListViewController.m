@@ -53,6 +53,9 @@
     
 
 
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -60,21 +63,44 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)handleRefresh:(id)sender
+{
+    [self updateLocation];
+    [self updateArrivalEstimates];
+}
 -(void) viewDidUnload {
     wrapper.delegate = nil;
 }
 -(void) viewDidAppear:(BOOL)animated {
-    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
-    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
     [self updateLocation];
     [self updateArrivalEstimates];
+    [self resumeTimer];
+    
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
+    [self pauseTimer];
+}
+
+-(void) pauseTimer {
     [locationTimer invalidate];
     locationTimer = nil;
     [arrivalEstimatesTimer invalidate];
     arrivalEstimatesTimer = nil;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self pauseTimer];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self resumeTimer];
+}
+-(void) resumeTimer {
+//    [self updateLocation];
+//    [self updateArrivalEstimates];
+    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
+    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
 }
 - (void)gotoMapView:(id)sender {
     [[NSNotificationCenter defaultCenter]
@@ -85,6 +111,7 @@
 
 -(void) updateArrivalEstimates {
 //    NSLog(@"UPDATING ARRIVAL ESTIMATES");
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [wrapper queueArrivalEstimates];
 //    arrival_estimates = [wrapper loadArrivalEstimates];
@@ -95,6 +122,8 @@
 -(void) recieveArrivalEstimates : (NSMutableDictionary *) object{
     arrival_estimates = object;
     [self.tableView reloadData];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [self.refreshControl endRefreshing];
 }
 
 
@@ -147,7 +176,7 @@
     } ];
     
     //calculate two closest stops
-    closestStops = [self closestStops];
+    closestStops = [NSMutableArray arrayWithArray:[self closestStops]];
     
     [self.tableView reloadData];
 
@@ -270,10 +299,12 @@
         ArrivalEstimate *est = [arrival_estimates objectForKey:stop.stop_id];
         if (est) {
             [cell.timeAway setText:[self minutesBetweenTwoDates:[NSDate date] :est.arrival_at]];
-            if ([self isBigBus:est.vehicle_id]) {
+            if ([[self isBigBus:est.vehicle_id] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
                 [cell.busType setText:@"Big Bus"];
-            } else {
+            } else if ([[self isBigBus:est.vehicle_id] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
                 [cell.busType setText:@"Small Bus"];
+            } else {
+                [cell.busType setText:@""];
             }
         } else {
 //            if ([cell.timeAway.text isEqualToString:@"--"]) {
@@ -294,42 +325,42 @@
     return cell;
 }
 
--(BOOL) isBigBus : (NSNumber *) vehicle_id {
+-(NSNumber *) isBigBus : (NSNumber *) vehicle_id {
     NSInteger vehId = [vehicle_id integerValue];
     switch (vehId) {
         case 4007492:
         {
-            return NO;
+            return [NSNumber numberWithBool:NO];
             break;
         }
         case 4007496:
         {
-            return NO;
+            return [NSNumber numberWithBool:NO];
             break;
         }
         case 4007500:
         {
-            return NO;
+            return [NSNumber numberWithBool:NO];
             break;
         }
         case 4007504:
         {
-            return NO;
+            return [NSNumber numberWithBool:NO];
             break;
         }
         case 4007508:
         {
-            return NO;
+            return [NSNumber numberWithBool:NO];
             break;
         }
         case 4007512:
         {
-            return YES;
+            return [NSNumber numberWithBool:YES];
             break;
         }
         default:
         {
-            return NO;
+            return nil;
             break;
         }
     }

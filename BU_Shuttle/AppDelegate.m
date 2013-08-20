@@ -48,6 +48,8 @@
     
     
     [self plotVehicles];
+    
+
     return YES;
 }
 
@@ -161,9 +163,19 @@
             [mapView addAnnotation:annotation];
         }
     }
+    [self performSelector:@selector(hideNetworkActivity) withObject:nil afterDelay:0.5];
+
+
+
 
 }
+
+-(void) hideNetworkActivity {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
 - (void)plotVehicles {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     [wrapper queueVehicles];
     
     
@@ -300,7 +312,7 @@
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     if ([[view annotation] isKindOfClass:[MKUserLocation class]])
     {
-        view.layer.zPosition = 2048;
+        view.layer.zPosition = 2049;
     } else if ([[view annotation] isKindOfClass:[Vehicle_pin class]])
     {
         view.layer.zPosition = 2047;
@@ -311,6 +323,14 @@
     }
 
 }
+
+-(void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"map_active" object:nil];
+}
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"map_inactive" object:nil];
+}
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV;
     
@@ -320,7 +340,7 @@
         if ([[aV annotation] isKindOfClass:[MKUserLocation class]])
         {
 //            [[aV superview] bringSubviewToFront:aV];
-            aV.layer.zPosition = 2048;
+            aV.layer.zPosition = 2049;
             continue;
         } else if ([[aV annotation] isKindOfClass:[Vehicle_pin class]])
         {

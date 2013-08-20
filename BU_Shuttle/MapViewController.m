@@ -25,8 +25,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self refreshVehicles];
-    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
-    
+
+    [self resumeTimer];
     NSArray *selAn = [self.mapView selectedAnnotations];
     if ([selAn count] > 0) {
         id<MKAnnotation> annotation = [selAn objectAtIndex:0];
@@ -36,18 +36,32 @@
     }
 }
 
+
 -(void) viewDidDisappear:(BOOL)animated {
+    [self pauseTimer];
+}
+
+-(void) resumeTimer {
+    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
+}
+-(void) pauseTimer {
     [timer invalidate];
     timer = nil;
 }
-
+-(void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     [self initEverything];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
     
+    
+
 }
 - (IBAction)gotoListView:(id)sender {
     [[NSNotificationCenter defaultCenter]
@@ -83,10 +97,13 @@
     
     // 3
     [mapView setRegion:viewRegion animated:YES];
+    
+    [self refreshVehicles];
 }
 
 
 -(void) refreshVehicles {
+
 //    NSLog(@"REFRESHING");
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) plotVehicles];
 }

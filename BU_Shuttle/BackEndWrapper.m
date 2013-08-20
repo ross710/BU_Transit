@@ -224,7 +224,7 @@
 }
 
 -(NSString *) getJsonStringVehicles {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     NSError* error = nil;
 //    return [NSString stringWithContentsOfURL:URL_VEHICLES encoding:NSASCIIStringEncoding error:&error];
@@ -383,7 +383,7 @@
 
         }
     }
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     [self.delegate recieveVehicles:vehicles];
     return vehicles;
