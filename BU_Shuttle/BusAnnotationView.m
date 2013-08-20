@@ -8,6 +8,7 @@
 
 #import "BusAnnotationView.h"
 
+
 @implementation BusAnnotationView
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
@@ -24,7 +25,7 @@
 //        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 0, 32, 37)];
         
         
-        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32 , 32)];
+        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(-8 , 0, 32 , 32)];
 
         
         [self addSubview:iconView];
@@ -43,6 +44,16 @@
     } else {
         icon = [UIImage imageNamed:@"icon_bus MedCampus.png"];
 
+    }
+    [iconView setImage:icon];
+}
+
+-(void) tryToUpdateIcon : (BOOL) isInboundToStuvii {
+    if (isInboundToStuvii) {
+        icon = [UIImage imageNamed:@"icon_bus copy.png"];//[NSString stringWithFormat:@"pin_%d.png", [place.icon intValue]]];
+    } else {
+        icon = [UIImage imageNamed:@"icon_bus MedCampus.png"];
+        
     }
     [iconView setImage:icon];
 }

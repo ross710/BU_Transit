@@ -15,7 +15,7 @@
 
 
 
-@interface ListViewController : UITableViewController {
+@interface ListViewController : UITableViewController <BackEndWrapperDelegate> {
     CLLocationManager *locationManager;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;

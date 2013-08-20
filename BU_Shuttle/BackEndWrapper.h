@@ -12,17 +12,27 @@
 #import "Vehicle.h"
 #import "ArrivalEstimate.h"
 
+@protocol BackEndWrapperDelegate <NSObject>
+@optional
+-(void) recieveArrivalEstimates: (NSMutableDictionary *) object;
+-(void) recieveVehicles: (NSMutableDictionary *) object;
+@end
+
 @interface BackEndWrapper : NSObject
 @property (nonatomic, strong) NSMutableDictionary *stops;
-//@property (nonatomic) NSMutableDictionary *vehicles;
-@property (nonatomic) NSMutableDictionary *arrival_estimates;
+@property (nonatomic, strong) NSMutableDictionary *vehicles;
+//@property (nonatomic) NSMutableDictionary *arrival_estimates;
 
+@property (nonatomic, weak) id <BackEndWrapperDelegate> delegate;
 
 
 
 
 -(NSMutableDictionary *) loadArrivalEstimates;
 -(id) init;
+
+-(void) queueArrivalEstimates;
+-(void) queueVehicles;
 -(void) getPath;
 -(void) saveStops;
 -(void) loadStops;

@@ -16,12 +16,13 @@
 @property (nonatomic) NSArray *closestStops;
 @property (nonatomic) NSTimer *locationTimer;
 @property (nonatomic) NSTimer *arrivalEstimatesTimer;
-
+@property (nonatomic) BackEndWrapper *wrapper;
 @end
 
 @implementation ListViewController
 
 @synthesize stops, closestStops, stopsArray, arrival_estimates;
+@synthesize wrapper;
 @synthesize locationTimer, arrivalEstimatesTimer;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -39,8 +40,9 @@
     
     [super viewDidLoad];
     [self initLocation];
-    BackEndWrapper *wrapper = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).wrapper;
+    wrapper = [[BackEndWrapper alloc] init];
 
+    wrapper.delegate = self;
     stops = wrapper.stops;
     stopsArray = [wrapper.stops allValues];
     [self updateLocation];
@@ -58,6 +60,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void) viewDidUnload {
+    wrapper.delegate = nil;
+}
 -(void) viewDidAppear:(BOOL)animated {
     locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
     arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
@@ -81,10 +86,14 @@
 -(void) updateArrivalEstimates {
 //    NSLog(@"UPDATING ARRIVAL ESTIMATES");
 
-    BackEndWrapper *wrapper = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).wrapper;
-    
-    arrival_estimates = [wrapper loadArrivalEstimates];
+    [wrapper queueArrivalEstimates];
+//    arrival_estimates = [wrapper loadArrivalEstimates];
 //    NSLog(@"NUM EST %@", ((ArrivalEstimate *)[arrival_estimates objectForKey:[NSNumber numberWithInt: 4117698]]).stop_id);
+//    [self.tableView reloadData];
+}
+
+-(void) recieveArrivalEstimates : (NSMutableDictionary *) object{
+    arrival_estimates = object;
     [self.tableView reloadData];
 }
 
@@ -106,7 +115,7 @@
 }
 
 - (void)updateLocation {
-//    NSLog(@"UPDATING LOCATION");
+    NSLog(@"UPDATING LOCATION");
     myLocation = locationManager.location;
     
     
@@ -216,7 +225,8 @@
     fourthIndex = [self closestStop:mut];
     stop4 = [mut objectAtIndex:fourthIndex];
     
-    
+//    NSLog(@"NEW CLOSEST STOPS LOCATION");
+
     return [NSArray arrayWithObjects: stop1, stop2, stop3, stop4, nil];
 }
 
@@ -260,8 +270,16 @@
         ArrivalEstimate *est = [arrival_estimates objectForKey:stop.stop_id];
         if (est) {
             [cell.timeAway setText:[self minutesBetweenTwoDates:[NSDate date] :est.arrival_at]];
+            if ([self isBigBus:est.vehicle_id]) {
+                [cell.busType setText:@"Big Bus"];
+            } else {
+                [cell.busType setText:@"Small Bus"];
+            }
         } else {
-            [cell.timeAway setText:@"--"];
+//            if ([cell.timeAway.text isEqualToString:@"--"]) {
+                [cell.timeAway setText:@"--"];
+//            }
+            [cell.busType setText:@""];
         }
         if ([stop.isInboundToStuVii isEqualToNumber:[NSNumber numberWithBool:YES]]) {
             [cell.inOrOutBound setText:@"(to West Campus)"];
@@ -276,6 +294,46 @@
     return cell;
 }
 
+-(BOOL) isBigBus : (NSNumber *) vehicle_id {
+    NSInteger vehId = [vehicle_id integerValue];
+    switch (vehId) {
+        case 4007492:
+        {
+            return NO;
+            break;
+        }
+        case 4007496:
+        {
+            return NO;
+            break;
+        }
+        case 4007500:
+        {
+            return NO;
+            break;
+        }
+        case 4007504:
+        {
+            return NO;
+            break;
+        }
+        case 4007508:
+        {
+            return NO;
+            break;
+        }
+        case 4007512:
+        {
+            return YES;
+            break;
+        }
+        default:
+        {
+            return NO;
+            break;
+        }
+    }
+}
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 145.0;
 }

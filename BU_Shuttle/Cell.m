@@ -13,6 +13,7 @@
 @end
 @implementation Cell
 @synthesize stopName,timeAway, inOrOutBound;
+@synthesize busType;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -39,11 +40,18 @@
         inOrOutBound = [[UILabel alloc] initWithFrame:CGRectMake(32, 48, 160, 21)];
         inOrOutBound.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
         inOrOutBound.textAlignment = NSTextAlignmentLeft;
+        
+        
+        busType = [[UILabel alloc] initWithFrame:CGRectMake(32, 76, 160, 31)];
+        busType.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
+        busType.textAlignment = NSTextAlignmentLeft;
+        
 //        inOrOutBound.text = @"0.1";
         
         [self addSubview:stopName];
         [self addSubview:timeAway];
         [self addSubview:inOrOutBound];
+        [self addSubview:busType];
         [self addSubview:nextBusLabel];
         [self addSubview:minutesAwayLabel];
 

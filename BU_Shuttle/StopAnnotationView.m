@@ -17,14 +17,14 @@
     if (self) {
         
         // Compensate frame a bit so everything's aligned
-        //        [self setCenterOffset:CGPointMake(-9, -3)];
-        //        [self setCalloutOffset:CGPointMake(-2, 3)];
+//        [self setCenterOffset:CGPointMake(0, -3)];
+        [self setCalloutOffset:CGPointMake(-4.1, 20)];
         //
         //        // Add the pin icon
         //        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 0, 32, 37)];
         
         
-        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 8, 24 , 24)];
+        iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 24 , 24)];
         
         
         [self addSubview:iconView];
@@ -36,7 +36,7 @@
 - (void)setAnnotation:(id<MKAnnotation>)annotation {
     [super setAnnotation:annotation];
 
-    icon = [UIImage imageNamed:@"icon_stop.png"];
+    icon = [UIImage imageNamed:@"icon_bus_yellow.png"];
     [iconView setImage:icon];
 }
 

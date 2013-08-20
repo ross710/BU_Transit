@@ -11,7 +11,7 @@
 
 #import "BackEndWrapper.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, MKMapViewDelegate, MKAnnotation,  MKOverlay>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, MKMapViewDelegate, MKAnnotation,  MKOverlay, BackEndWrapperDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) BackEndWrapper *wrapper;

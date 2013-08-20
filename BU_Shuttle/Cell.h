@@ -12,5 +12,6 @@
 @property (nonatomic) UILabel *stopName;
 @property (nonatomic) UILabel *timeAway;
 @property (nonatomic) UILabel *inOrOutBound;
+@property (nonatomic) UILabel *busType;
 
 @end

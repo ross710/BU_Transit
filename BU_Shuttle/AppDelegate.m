@@ -27,6 +27,7 @@
 {
     //init backendwrapper
     wrapper = [[BackEndWrapper alloc] init];
+    wrapper.delegate = self;
     
     //init mapview and plot the stops
     mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -118,21 +119,32 @@
         }
 }
 
-- (void)plotVehicles {
-    vehicles = [wrapper getVehicles];
+-(void) recieveVehicles:(NSMutableDictionary *)object {
+    vehicles = object;
     BOOL alreadyInit = NO;
     for (Vehicle_pin<MKAnnotation> *annotation in mapView.annotations) {
         if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Vehicle_pin class]]) {
             alreadyInit = YES;
             
             Vehicle *vehicle = [vehicles objectForKey:annotation.vehicle_id];
+            
             if (vehicle) {
                 [UIView beginAnimations:nil context:NULL];
                 [UIView setAnimationDuration:0.5];
                 [UIView setAnimationCurve:UIViewAnimationCurveLinear];
                 CLLocationCoordinate2D coord =  CLLocationCoordinate2DMake([vehicle.location.lat doubleValue],[vehicle.location.lng doubleValue]);
+ 
                 [annotation setCoordinate:coord];
                 [UIView commitAnimations];
+                
+                
+
+                
+                if ([vehicle.arrival_estimates count] > 0) {
+                    NSDictionary *dict = [vehicle.arrival_estimates objectAtIndex:0];
+                    BusAnnotationView *busView = (BusAnnotationView *)[mapView viewForAnnotation:annotation];
+                    [busView tryToUpdateIcon:[self isInboundToStuvii:[dict objectForKey:@"stop_id"]]];
+                }
             }
         }
     }
@@ -141,7 +153,7 @@
         for (id key in vehicles) {
             Vehicle *vehicle = [vehicles objectForKey:key];
             //            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.vehicle_id heading:vehicle.heading type:vehicle.type];
-            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.call_name heading:vehicle.heading type:vehicle.type];
+            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.vehicle_id heading:vehicle.heading type:vehicle.type];
             if ([vehicle.arrival_estimates count] > 0) {
                 NSDictionary *dict = [vehicle.arrival_estimates objectAtIndex:0];
                 annotation.isInboundToStuvii = [NSNumber numberWithBool:[self isInboundToStuvii:[dict objectForKey:@"stop_id"]]];
@@ -149,6 +161,10 @@
             [mapView addAnnotation:annotation];
         }
     }
+
+}
+- (void)plotVehicles {
+    [wrapper queueVehicles];
     
     
 }
@@ -231,8 +247,9 @@
         if(nil == self.routeLineView)
         {
             self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-            self.routeLineView.fillColor = [UIColor redColor];
-            self.routeLineView.strokeColor = [UIColor blackColor];
+//            self.routeLineView.fillColor = [UIColor redColor];
+            self.routeLineView.strokeColor = [UIColor blueColor];
+            self.routeLineView.alpha = 0.8;
             self.routeLineView.lineWidth = 3;
         }
         
@@ -277,15 +294,46 @@
     return nil;
 }
 
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    view.layer.zPosition = 2049;
+}
+-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    if ([[view annotation] isKindOfClass:[MKUserLocation class]])
+    {
+        view.layer.zPosition = 2048;
+    } else if ([[view annotation] isKindOfClass:[Vehicle_pin class]])
+    {
+        view.layer.zPosition = 2047;
+    }
+    else
+    {
+        view.layer.zPosition = 2048;
+    }
+
+}
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV;
     
     for (aV in views) {
         
-        // Don't pin drop if annotation is user location
-        if ([aV.annotation isKindOfClass:[MKUserLocation class]]) {
+        
+        if ([[aV annotation] isKindOfClass:[MKUserLocation class]])
+        {
+//            [[aV superview] bringSubviewToFront:aV];
+            aV.layer.zPosition = 2048;
             continue;
+        } else if ([[aV annotation] isKindOfClass:[Vehicle_pin class]])
+        {
+//            [[aV superview] bringSubviewToFront:aV];
+            aV.layer.zPosition = 2047;
         }
+        else
+        {
+//            [[aV superview] sendSubviewToBack:aV];
+            aV.layer.zPosition = 2048;
+
+        }
+        
         
         // Check if current annotation is inside visible map rect
         MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
@@ -301,33 +349,39 @@
                               aV.frame.size.width,
                               aV.frame.size.height);
         
-        if ([aV isKindOfClass:[Vehicle_pin class]]) {
-            // Animate drop
-            [UIView animateWithDuration:0.5
-                                  delay:0.04*[views indexOfObject:aV]
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 
-                                 aV.frame = endFrame;
-                                 
-                                 // Animate squash
-                             }completion:^(BOOL finished){
-                                 if (finished) {
-                                     [UIView animateWithDuration:0.05 animations:^{
-                                         aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
-                                         
-                                     }completion:^(BOOL finished){
-                                         if (finished) {
-                                             [UIView animateWithDuration:0.1 animations:^{
-                                                 aV.transform = CGAffineTransformIdentity;
-                                             }];
-                                         }
-                                     }];
-                                 }
-                             }];
-        } else {
-            aV.frame = endFrame;
-        }
+        
+        aV.frame = endFrame;
+
+//        if ([aV isKindOfClass:[Vehicle_pin class]]) {
+////            aV.layer.zPosition = 2000;
+//
+//            // Animate drop
+//            [UIView animateWithDuration:0.5
+//                                  delay:0.04*[views indexOfObject:aV]
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                                 
+//                                 aV.frame = endFrame;
+//                                 
+//                                 // Animate squash
+//                             }completion:^(BOOL finished){
+//                                 if (finished) {
+//                                     [UIView animateWithDuration:0.05 animations:^{
+//                                         aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
+//                                         
+//                                     }completion:^(BOOL finished){
+//                                         if (finished) {
+//                                             [UIView animateWithDuration:0.1 animations:^{
+//                                                 aV.transform = CGAffineTransformIdentity;
+//                                             }];
+//                                         }
+//                                     }];
+//                                 }
+//                             }];
+//        } else {
+//            aV.frame = endFrame;
+//
+//        }
     }
 }
 

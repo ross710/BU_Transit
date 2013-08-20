@@ -14,4 +14,6 @@
     UIImage *icon;
     UIImageView *iconView;
 }
+
+-(void) tryToUpdateIcon : (BOOL) isInboundToStuvii;
 @end
