@@ -45,7 +45,7 @@
     wrapper.delegate = self;
     stops = wrapper.stops;
     stopsArray = [wrapper.stops allValues];
-    [self updateLocation];
+//    [self updateLocation];
 
     
     UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map >" style:UIBarButtonItemStylePlain target:self action:@selector(gotoMapView:)];
@@ -133,9 +133,19 @@
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
-    
+
+//    [locationManager startMonitoringSignificantLocationChanges];
+    locationManager.delegate = self;
     geocoder = [[CLGeocoder alloc] init];
 
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [locationManager stopUpdatingLocation];
+
+    NSLog(@"Locations : %@",[locations lastObject]);
+    myLocation = [locations lastObject];
+    [self saveLocationData];
 }
 
 - (NSString *)deviceLocation {
@@ -143,9 +153,9 @@
     return theLocation;
 }
 
-- (void)updateLocation {
+-(void) saveLocationData {
     NSLog(@"UPDATING LOCATION");
-    myLocation = locationManager.location;
+//    myLocation = locationManager.location;
     
     
     [geocoder reverseGeocodeLocation:myLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -157,12 +167,12 @@
                                      placemark.thoroughfare,
                                      placemark.locality,
                                      placemark.administrativeArea];
-//            NSLog(@"%d", [checkLength length]);
+            //            NSLog(@"%d", [checkLength length]);
             if ([checkLength length] <= 17) {
                 [self setTitle:checkLength];
             } else if (placemark.subThoroughfare == NULL){
                 [self setTitle:[NSString stringWithFormat:@"%@",
-                                     placemark.thoroughfare]];
+                                placemark.thoroughfare]];
             } else {
                 [self setTitle:[NSString stringWithFormat:@"%@ %@",
                                 placemark.subThoroughfare,
@@ -179,7 +189,9 @@
     closestStops = [NSMutableArray arrayWithArray:[self closestStops]];
     
     [self.tableView reloadData];
-
+}
+- (void)updateLocation {
+    [locationManager startUpdatingLocation];
 }
 
 

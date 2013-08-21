@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [GMSServices provideAPIKey:@"AIzaSyBeiruW8tn-9bwuHNqp65nkF7LKc7dCfmE"];
     //init backendwrapper
     wrapper = [[BackEndWrapper alloc] init];
     wrapper.delegate = self;
@@ -298,7 +299,7 @@
         if (!annotationView) {
             annotationView = [[StopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
             annotationView.canShowCallout = YES;
-            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoLight];
         }
         return annotationView;
     }
@@ -405,7 +406,15 @@
     }
 }
 
+-(void) streetViewHandler {
+    
+}
 
+-(void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    Stop_pin *pin = (Stop_pin*)[view annotation];
+//    CLLocation *location = [[CLLocation alloc] initWithLatitude:pin.coordinate.latitude longitude:pin.coordinate.longitude];
+    [self.delegate showStreetView:pin];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

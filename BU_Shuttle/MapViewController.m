@@ -6,36 +6,56 @@
 //  Copyright (c) 2013 Ross Tang Him. All rights reserved.
 //
 
+
 #import "MapViewController.h"
 #import "BackEndWrapper.h"
 #import "BusAnnotationView.h"
 #import "AppDelegate.h"
 #import "Stop_pin.h"
+#import "StreetViewController.h"
 
 #define ZOOM_CONSTANT 5150.0
 
 @interface MapViewController ()
 @property (nonatomic, weak) MKMapView *mapView;
 @property (nonatomic) NSTimer *timer;
+@property (nonatomic, weak) AppDelegate *appDelegate;
+
 @end
 
 @implementation MapViewController
 @synthesize mapView;
 @synthesize timer;
+@synthesize appDelegate;
+@synthesize shouldResetView;
 
 - (void)viewDidAppear:(BOOL)animated {
     [self refreshVehicles];
 
     [self resumeTimer];
-    NSArray *selAn = [self.mapView selectedAnnotations];
-    if ([selAn count] > 0) {
-        id<MKAnnotation> annotation = [selAn objectAtIndex:0];
-        if ([annotation isKindOfClass:[Stop_pin class]]) {
-            [self resetPressed:nil];
+    if (shouldResetView) {
+        NSArray *selAn = [self.mapView selectedAnnotations];
+        if ([selAn count] > 0) {
+            id<MKAnnotation> annotation = [selAn objectAtIndex:0];
+            if ([annotation isKindOfClass:[Stop_pin class]]) {
+                [self resetPressed:nil];
+            }
         }
+        shouldResetView = NO;
+
     }
+//    [self showStreetView];
 }
 
+-(void) showStreetView : (Stop_pin *) pin {
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                  bundle:nil];
+    StreetViewController *vc = [sb instantiateViewControllerWithIdentifier:@"streetViewController"];
+    vc.location = [[CLLocation alloc] initWithLatitude:pin.coordinate.latitude longitude:pin.coordinate.longitude];
+    vc.name = pin.stop_name;
+    UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:navView animated:YES completion:nil];
+}
 
 -(void) viewDidDisappear:(BOOL)animated {
     [self pauseTimer];
@@ -45,11 +65,13 @@
     timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
 }
 -(void) pauseTimer {
+    NSLog(@"TIMER PAUSED");
     [timer invalidate];
     timer = nil;
 }
 -(void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    appDelegate.delegate = nil;
 }
 - (void)viewDidLoad
 {
@@ -60,9 +82,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
     
-    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.delegate = self;
 
 }
+
+
 - (IBAction)gotoListView:(id)sender {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"gotoListView"
@@ -81,7 +106,9 @@
     mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
     [self.view addSubview:mapView];
 
+    
 }
+
 
 
 - (IBAction)resetPressed:(id)sender {

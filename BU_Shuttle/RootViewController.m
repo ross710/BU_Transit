@@ -43,7 +43,10 @@
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
 //                                                             bundle: nil];
 //    UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
-    [self setViewControllers:@[[vcArray objectAtIndex:1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    UINavigationController *navC = [vcArray objectAtIndex:1];
+    MapViewController *mapV = [navC.viewControllers objectAtIndex:0];
+    mapV.shouldResetView = YES;
+    [self setViewControllers:@[navC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
     
     
     NSDictionary *dict = [notification userInfo];

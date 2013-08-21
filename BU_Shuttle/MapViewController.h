@@ -11,14 +11,11 @@
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
 
-
+#import "AppDelegate.h"
 #import "Vehicle_pin.h"
 #import "BusAnnotationView.h"
 
+@interface MapViewController : UIViewController<StreetViewSegueDelegate>
 
-
-@interface MapViewController : UIViewController
-    
-
-
+@property (nonatomic) BOOL shouldResetView;
 @end
