@@ -14,6 +14,8 @@
 
 
 #define METERS_PER_MILE 1609.344
+#define ZOOM_CONSTANT_IOS7 5150.0
+#define ZOOM_CONSTANT 4500
 
 @interface AppDelegate ()
 @property (nonatomic, retain) NSMutableDictionary *vehicles;
@@ -44,7 +46,12 @@
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 42.34091;
     zoomLocation.longitude= -71.09682;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 3.2*METERS_PER_MILE, 3.2*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, ZOOM_CONSTANT_IOS7, ZOOM_CONSTANT_IOS7);
+    } else {
+        viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, ZOOM_CONSTANT, ZOOM_CONSTANT);
+    }
     [mapView setRegion:viewRegion animated:NO];
     
     
@@ -164,7 +171,7 @@
             [mapView addAnnotation:annotation];
         }
     }
-    [self performSelector:@selector(hideNetworkActivity) withObject:nil afterDelay:0.5];
+//    [self performSelector:@selector(hideNetworkActivity) withObject:nil afterDelay:0.5];
 
 
 
@@ -172,10 +179,10 @@
 }
 
 -(void) hideNetworkActivity {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 - (void)plotVehicles {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [wrapper queueVehicles];
     

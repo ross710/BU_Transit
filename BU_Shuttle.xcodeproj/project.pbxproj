@@ -10,6 +10,15 @@
 		9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F75E17AC743100FB7C9D /* ListViewController.m */; };
 		9103F76217AC77B600FB7C9D /* BackEndWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F76117AC77B600FB7C9D /* BackEndWrapper.m */; };
 		9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9103F76517AC7FB700FB7C9D /* Stops.plist */; };
+		9108AFE417CA7C390094F607 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9108AFE317CA7C390094F607 /* HelpViewController.m */; };
+		9108AFEA17CA84020094F607 /* Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 9108AFE917CA84020094F607 /* Help.png */; };
+		912764AE17CA90D7005106D9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764AD17CA90D7005106D9 /* Default.png */; };
+		912764B017CA9260005106D9 /* Default_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764AF17CA9260005106D9 /* Default_4.png */; };
+		912764B217CA9268005106D9 /* App_store.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764B117CA9268005106D9 /* App_store.png */; };
+		912764F517CA961A005106D9 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F417CA961A005106D9 /* Default~iphone.png */; };
+		912764F717CA96B6005106D9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F617CA96B6005106D9 /* Default-568h@2x.png */; };
+		912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F817CA97E2005106D9 /* app_icon_ios6.png */; };
+		9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */; };
 		914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E017C119C0001A6078 /* icon_stop_dull.png */; };
 		914B40E317C119C0001A6078 /* icon_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E117C119C0001A6078 /* icon_stop.png */; };
 		914B40E617C12232001A6078 /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 914B40E517C12232001A6078 /* StopAnnotationView.m */; };
@@ -93,6 +102,16 @@
 		9103F76017AC77B600FB7C9D /* BackEndWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndWrapper.h; sourceTree = "<group>"; };
 		9103F76117AC77B600FB7C9D /* BackEndWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackEndWrapper.m; sourceTree = "<group>"; };
 		9103F76417AC7FB700FB7C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Stops.plist; sourceTree = "<group>"; };
+		9108AFE217CA7C390094F607 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		9108AFE317CA7C390094F607 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		9108AFE917CA84020094F607 /* Help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Help.png; sourceTree = "<group>"; };
+		912764AD17CA90D7005106D9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		912764AF17CA9260005106D9 /* Default_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_4.png; sourceTree = "<group>"; };
+		912764B117CA9268005106D9 /* App_store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_store.png; sourceTree = "<group>"; };
+		912764F417CA961A005106D9 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		912764F617CA96B6005106D9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		912764F817CA97E2005106D9 /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_ios6.png; sourceTree = "<group>"; };
+		9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow_small.png; sourceTree = "<group>"; };
 		914B40E017C119C0001A6078 /* icon_stop_dull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_dull.png; sourceTree = "<group>"; };
 		914B40E117C119C0001A6078 /* icon_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop.png; sourceTree = "<group>"; };
 		914B40E417C12232001A6078 /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
@@ -280,16 +299,20 @@
 				91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */,
 				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
 				914B40E117C119C0001A6078 /* icon_stop.png */,
+				9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */,
 				918DAA2517C0771800411463 /* icon_bus copy.png */,
 				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
 				918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */,
 				91650A3317BF153400C620D8 /* icon_bus.png */,
+				9108AFE917CA84020094F607 /* Help.png */,
 				9103F76517AC7FB700FB7C9D /* Stops.plist */,
 				91719C3C176CCDF100A25620 /* JSON */,
 				91719C16176CCDB200A25620 /* AppDelegate.h */,
 				91719C17176CCDB200A25620 /* AppDelegate.m */,
 				917C537F17BFEC84009A5F73 /* PageDataSource.h */,
 				917C538017BFEC84009A5F73 /* PageDataSource.m */,
+				9108AFE217CA7C390094F607 /* HelpViewController.h */,
+				9108AFE317CA7C390094F607 /* HelpViewController.m */,
 				91719C66176CCE4100A25620 /* Classes */,
 				91719C19176CCDB200A25620 /* Main.storyboard */,
 				917C537C17BFE986009A5F73 /* RootViewController.h */,
@@ -437,6 +460,12 @@
 		918DAA1D17C046E500411463 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				912764F817CA97E2005106D9 /* app_icon_ios6.png */,
+				912764F617CA96B6005106D9 /* Default-568h@2x.png */,
+				912764F417CA961A005106D9 /* Default~iphone.png */,
+				912764AD17CA90D7005106D9 /* Default.png */,
+				912764AF17CA9260005106D9 /* Default_4.png */,
+				912764B117CA9268005106D9 /* App_store.png */,
 				918DAA1E17C0474700411463 /* app_icon.png */,
 			);
 			name = Images;
@@ -518,23 +547,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912764AE17CA90D7005106D9 /* Default.png in Resources */,
+				912764F517CA961A005106D9 /* Default~iphone.png in Resources */,
 				91719C20176CCDB200A25620 /* Images.xcassets in Resources */,
 				918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */,
 				918DAA1F17C0474700411463 /* app_icon.png in Resources */,
+				9108AFEA17CA84020094F607 /* Help.png in Resources */,
 				9194D92917C3B0AA0073F961 /* GoogleMaps.bundle in Resources */,
 				914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */,
 				917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */,
 				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
 				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
+				912764B017CA9260005106D9 /* Default_4.png in Resources */,
 				91719C65176CCE0000A25620 /* RegenerateCredits in Resources */,
 				91719C63176CCE0000A25620 /* AppledocSettings.plist in Resources */,
 				91719C12176CCDB200A25620 /* InfoPlist.strings in Resources */,
 				91B1A5B117C2E5900098BDB4 /* icon_bus_yellow.png in Resources */,
+				912764F717CA96B6005106D9 /* Default-568h@2x.png in Resources */,
+				9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */,
 				91B1A5B017C2E5900098BDB4 /* icon_bus_white.png in Resources */,
 				91F50384178889CC00A2BDCA /* route.csv in Resources */,
+				912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */,
 				918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */,
 				91719C1B176CCDB200A25620 /* Main.storyboard in Resources */,
+				912764B217CA9268005106D9 /* App_store.png in Resources */,
 				91650A3417BF153400C620D8 /* icon_bus.png in Resources */,
 				91719C64176CCE0000A25620 /* RegenerateApiDocumentation in Resources */,
 			);
@@ -566,6 +603,7 @@
 				91719C5F176CCE0000A25620 /* SBJsonStreamWriter.m in Sources */,
 				91719C6C176CCE5000A25620 /* Stop.m in Sources */,
 				91719C5E176CCE0000A25620 /* SBJsonStreamTokeniser.m in Sources */,
+				9108AFE417CA7C390094F607 /* HelpViewController.m in Sources */,
 				91719C5B176CCE0000A25620 /* SBJsonStreamParserAccumulator.m in Sources */,
 				91719C75176CEA9700A25620 /* Vehicle.m in Sources */,
 				915D538917C178630049C974 /* Stop_pin.m in Sources */,
@@ -727,7 +765,6 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -735,7 +772,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
 				VALID_ARCHS = armv7;
@@ -746,7 +783,6 @@
 		91719C38176CCDB200A25620 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -754,7 +790,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
 				VALID_ARCHS = armv7;

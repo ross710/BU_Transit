@@ -7,6 +7,7 @@
 //
 
 #import "ListViewController.h"
+#import "HelpViewController.h"
 #define URL_ARRIVAL_ESTIMATES [NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"]
 
 @interface ListViewController ()
@@ -53,14 +54,28 @@
     
 
 
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStylePlain target:self action:@selector(showHelpView)];
+    [[self navigationItem] setLeftBarButtonItem:button];
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
+    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void) showHelpView {
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                  bundle:nil];
+    HelpViewController *vc = [sb instantiateViewControllerWithIdentifier:@"HelpViewController"];
+    UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:navView animated:YES completion:nil];
 }
 
 - (void)handleRefresh:(id)sender
@@ -72,48 +87,58 @@
     wrapper.delegate = nil;
 }
 -(void) viewDidAppear:(BOOL)animated {
-    [self updateLocation];
-    [self updateArrivalEstimates];
-    [self resumeTimer];
+//    dispatch_async(dispatch_get_global_queue(0, 0),
+//                   ^ {
+//                       [self updateLocation];
+//                       [self updateArrivalEstimates];
+////                       [self resumeTimer];
+//                   });
+//    [self updateLocation];
+//    [self updateArrivalEstimates];
+//    [self resumeTimer];
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
-    [self pauseTimer];
+//    [self pauseTimer];
 }
 
 -(void) pauseTimer {
-    [locationTimer invalidate];
-    locationTimer = nil;
-    [arrivalEstimatesTimer invalidate];
-    arrivalEstimatesTimer = nil;
+//    [locationTimer invalidate];
+//    locationTimer = nil;
+//    [arrivalEstimatesTimer invalidate];
+//    arrivalEstimatesTimer = nil;
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self pauseTimer];
+//    [self pauseTimer];
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self resumeTimer];
+//    [self resumeTimer];
 }
 -(void) resumeTimer {
 //    [self updateLocation];
 //    [self updateArrivalEstimates];
-    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
-    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
+//    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
+//    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
 }
 - (void)gotoMapView:(id)sender {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"gotoMapView"
      object:nil];
+//    [self.delegate gotoMapView];
 }
 
 
 -(void) updateArrivalEstimates {
 //    NSLog(@"UPDATING ARRIVAL ESTIMATES");
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    dispatch_async(dispatch_get_global_queue(0, 0),
+                   ^ {
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [wrapper queueArrivalEstimates];
+                   });
 //    arrival_estimates = [wrapper loadArrivalEstimates];
 //    NSLog(@"NUM EST %@", ((ArrivalEstimate *)[arrival_estimates objectForKey:[NSNumber numberWithInt: 4117698]]).stop_id);
 //    [self.tableView reloadData];
@@ -122,7 +147,7 @@
 -(void) recieveArrivalEstimates : (NSMutableDictionary *) object{
     arrival_estimates = object;
     [self.tableView reloadData];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.refreshControl endRefreshing];
 }
 
@@ -143,7 +168,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [locationManager stopUpdatingLocation];
 
-    NSLog(@"Locations : %@",[locations lastObject]);
+//    NSLog(@"Locations : %@",[locations lastObject]);
     myLocation = [locations lastObject];
     [self saveLocationData];
 }
@@ -154,7 +179,7 @@
 }
 
 -(void) saveLocationData {
-    NSLog(@"UPDATING LOCATION");
+//    NSLog(@"UPDATING LOCATION");
 //    myLocation = locationManager.location;
     
     

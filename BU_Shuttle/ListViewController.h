@@ -13,6 +13,12 @@
 #import "AppDelegate.h"
 #import "Cell.h"
 
+//@protocol ListViewDelegate <NSObject>
+//
+//@required
+//-(void) gotoMapView;
+//
+//@end
 
 
 @interface ListViewController : UITableViewController <BackEndWrapperDelegate, CLLocationManagerDelegate> {
@@ -22,5 +28,6 @@
     CLLocation *myLocation;
 
 }
+//@property (weak, nonatomic) id<ListViewDelegate> delegate;
 
 @end

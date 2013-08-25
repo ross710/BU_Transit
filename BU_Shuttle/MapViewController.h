@@ -15,7 +15,14 @@
 #import "Vehicle_pin.h"
 #import "BusAnnotationView.h"
 
+@protocol MapViewDelegate <NSObject>
+
+@required
+-(void) gotoListView;
+
+@end
 @interface MapViewController : UIViewController<StreetViewSegueDelegate>
 
 @property (nonatomic) BOOL shouldResetView;
+@property (nonatomic, weak) id<MapViewDelegate> delegate;
 @end

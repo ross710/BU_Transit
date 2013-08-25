@@ -14,7 +14,11 @@
 #import "Stop_pin.h"
 #import "StreetViewController.h"
 
-#define ZOOM_CONSTANT 5150.0
+
+
+#define ZOOM_CONSTANT_IOS7 5150.0
+#define ZOOM_CONSTANT 4500
+
 
 @interface MapViewController ()
 @property (nonatomic, weak) MKMapView *mapView;
@@ -30,20 +34,25 @@
 @synthesize shouldResetView;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self refreshVehicles];
+//    dispatch_async(dispatch_get_global_queue(0, 0),
+//                   ^ {
+//                       [self refreshVehicles];
+    
+//                       [self resumeTimer];
+                       if (shouldResetView) {
+                           NSArray *selAn = [self.mapView selectedAnnotations];
+                           if ([selAn count] > 0) {
+                               id<MKAnnotation> annotation = [selAn objectAtIndex:0];
+                               if ([annotation isKindOfClass:[Stop_pin class]]) {
+                                   [self resetPressed:nil];
+                               }
+                           }
+                           shouldResetView = NO;
+                           
+                       }
+//                   });
 
-    [self resumeTimer];
-    if (shouldResetView) {
-        NSArray *selAn = [self.mapView selectedAnnotations];
-        if ([selAn count] > 0) {
-            id<MKAnnotation> annotation = [selAn objectAtIndex:0];
-            if ([annotation isKindOfClass:[Stop_pin class]]) {
-                [self resetPressed:nil];
-            }
-        }
-        shouldResetView = NO;
 
-    }
 //    [self showStreetView];
 }
 
@@ -58,16 +67,16 @@
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
-    [self pauseTimer];
+//    [self pauseTimer];
 }
 
 -(void) resumeTimer {
-    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
+//    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
 }
 -(void) pauseTimer {
-    NSLog(@"TIMER PAUSED");
-    [timer invalidate];
-    timer = nil;
+//    NSLog(@"TIMER PAUSED");
+//    [timer invalidate];
+//    timer = nil;
 }
 -(void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -79,8 +88,8 @@
 	// Do any additional setup after loading the view.
     
     [self initEverything];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.delegate = self;
@@ -89,9 +98,10 @@
 
 
 - (IBAction)gotoListView:(id)sender {
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"gotoListView"
-     object:self];
+//    [[NSNotificationCenter defaultCenter]
+//     postNotificationName:@"gotoListView"
+//     object:self];
+    [self.delegate gotoListView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +115,8 @@
 -(void) initEverything {
     mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
     [self.view addSubview:mapView];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
 
     
 }
@@ -118,7 +130,12 @@
     zoomLocation.longitude= -71.09682;
     
     // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, ZOOM_CONSTANT, ZOOM_CONSTANT);
+    MKCoordinateRegion viewRegion;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, ZOOM_CONSTANT_IOS7, ZOOM_CONSTANT_IOS7);
+    } else {
+        viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, ZOOM_CONSTANT, ZOOM_CONSTANT);
+    }
     //3.2
     //20
     
@@ -130,8 +147,10 @@
 
 
 -(void) refreshVehicles {
-
+    dispatch_async(dispatch_get_global_queue(0, 0),
+                   ^ {
 //    NSLog(@"REFRESHING");
-    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) plotVehicles];
+                    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) plotVehicles];
+                   });
 }
 @end

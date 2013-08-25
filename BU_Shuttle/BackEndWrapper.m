@@ -232,6 +232,7 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:URL_VEHICLES cachePolicy:0 timeoutInterval:5];
     NSURLResponse* response=nil;
     NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSLog(@"VEHICLES REFRESHING");
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
@@ -242,6 +243,8 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:URL_ARRIVAL_ESTIMATES cachePolicy:0 timeoutInterval:5];
     NSURLResponse* response=nil;
     NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSLog(@"ARRIVAL ESTIMATES REFRESHING");
+
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
@@ -276,9 +279,11 @@
             est.vehicle_id = [NSNumber numberWithInteger:[[arrivalDict objectForKey:@"vehicle_id"] integerValue]];
             
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+            [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
             
+//            NSLog(@"DATE %@", [arrivalDict objectForKey:@"arrival_at"]);
             est.arrival_at = [dateFormat dateFromString:[arrivalDict objectForKey:@"arrival_at"]];
+//            NSLog(@"ARRIVAL %@", est.arrival_at);
         }
         
         [arrival_estimates setObject:est forKey:est.stop_id];

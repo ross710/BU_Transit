@@ -72,8 +72,11 @@
     
     //    ListViewController *controller = (ListViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listView"];
     UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listNav"];
-    UINavigationController *controller2 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
 
+    UINavigationController *controller2 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
+    MapViewController *mapView = [mainStoryboard instantiateViewControllerWithIdentifier:@"mapView"];
+    mapView.delegate = self;
+    [controller2 setViewControllers:@[mapView]];
     
     vcArray = [NSArray arrayWithObjects:controller, controller2, nil];
     
@@ -83,10 +86,10 @@
     
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(gotoListView)
-                                                 name:@"gotoListView"
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(gotoListView)
+//                                                 name:@"gotoListView"
+//                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gotoMapView:)
                                                  name:@"gotoMapView"
@@ -101,6 +104,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+//-(void) fixBlackScreen {
+//    if ([self.viewControllers objectAtIndex:0] == nil) {
+//        [self gotoListView];
+//    }
+//}
 #pragma mark - UIPageViewControllerDataSource Methods
 
 // Returns the view controller before the given view controller. (required)
@@ -112,6 +120,7 @@
     if([ctrl isKindOfClass:[MapViewController class]]){
         return [vcArray objectAtIndex:1];
     } else {
+//        [self performSelector:@selector(fixBlackScreen) withObject:nil afterDelay:3.0];
         return nil;
     }
 }
@@ -124,6 +133,7 @@
     if([ctrl isKindOfClass:[ListViewController class]]){
         return [vcArray objectAtIndex:1];
     } else {
+//        [self performSelector:@selector(fixBlackScreen) withObject:nil afterDelay:3.0];
         return nil;
     }
 }
