@@ -15,8 +15,6 @@
 		912764AE17CA90D7005106D9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764AD17CA90D7005106D9 /* Default.png */; };
 		912764B017CA9260005106D9 /* Default_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764AF17CA9260005106D9 /* Default_4.png */; };
 		912764B217CA9268005106D9 /* App_store.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764B117CA9268005106D9 /* App_store.png */; };
-		912764F517CA961A005106D9 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F417CA961A005106D9 /* Default~iphone.png */; };
-		912764F717CA96B6005106D9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F617CA96B6005106D9 /* Default-568h@2x.png */; };
 		912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F817CA97E2005106D9 /* app_icon_ios6.png */; };
 		9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */; };
 		914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E017C119C0001A6078 /* icon_stop_dull.png */; };
@@ -83,6 +81,13 @@
 		91E5DC1D177F526A00F5399F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E5DC1C177F526A00F5399F /* MapKit.framework */; };
 		91E5DC25177F609A00F5399F /* BusAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC24177F609A00F5399F /* BusAnnotationView.m */; };
 		91E5DC28177F60B900F5399F /* Vehicle_pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC27177F60B900F5399F /* Vehicle_pin.m */; };
+		91E85F3817CB00DB004927EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3517CB00DB004927EE /* Default-568h@2x.png */; };
+		91E85F3917CB00DB004927EE /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3617CB00DB004927EE /* Default~iphone.png */; };
+		91E85F3C17CB01B2004927EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3B17CB01B2004927EE /* Default@2x.png */; };
+		91E85F3E17CB022F004927EE /* app_icon_3g.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3D17CB022F004927EE /* app_icon_3g.png */; };
+		91E85F4117CB02C1004927EE /* app_icon_4_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */; };
+		91E85F4217CB02C1004927EE /* app_icon_3g_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */; };
+		91E85F4417CB02FF004927EE /* app_icon_5_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */; };
 		91F50384178889CC00A2BDCA /* route.csv in Resources */ = {isa = PBXBuildFile; fileRef = 91F50386178889CC00A2BDCA /* route.csv */; };
 /* End PBXBuildFile section */
 
@@ -108,8 +113,6 @@
 		912764AD17CA90D7005106D9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		912764AF17CA9260005106D9 /* Default_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_4.png; sourceTree = "<group>"; };
 		912764B117CA9268005106D9 /* App_store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_store.png; sourceTree = "<group>"; };
-		912764F417CA961A005106D9 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
-		912764F617CA96B6005106D9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		912764F817CA97E2005106D9 /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_ios6.png; sourceTree = "<group>"; };
 		9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow_small.png; sourceTree = "<group>"; };
 		914B40E017C119C0001A6078 /* icon_stop_dull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_dull.png; sourceTree = "<group>"; };
@@ -204,6 +207,13 @@
 		91E5DC24177F609A00F5399F /* BusAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusAnnotationView.m; sourceTree = "<group>"; };
 		91E5DC26177F60B900F5399F /* Vehicle_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle_pin.h; sourceTree = "<group>"; };
 		91E5DC27177F60B900F5399F /* Vehicle_pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle_pin.m; sourceTree = "<group>"; };
+		91E85F3517CB00DB004927EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		91E85F3617CB00DB004927EE /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		91E85F3B17CB01B2004927EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		91E85F3D17CB022F004927EE /* app_icon_3g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g.png; sourceTree = "<group>"; };
+		91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_4_spotlight.png; sourceTree = "<group>"; };
+		91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g_spotlight.png; sourceTree = "<group>"; };
+		91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_5_spotlight.png; sourceTree = "<group>"; };
 		91F50385178889CC00A2BDCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/route.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,18 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				918DAA1D17C046E500411463 /* Images */,
-				91F50386178889CC00A2BDCA /* route.csv */,
-				91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */,
-				91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */,
-				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
-				914B40E117C119C0001A6078 /* icon_stop.png */,
-				9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */,
-				918DAA2517C0771800411463 /* icon_bus copy.png */,
-				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
-				918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */,
-				91650A3317BF153400C620D8 /* icon_bus.png */,
-				9108AFE917CA84020094F607 /* Help.png */,
-				9103F76517AC7FB700FB7C9D /* Stops.plist */,
+				91E85F4517CB0486004927EE /* Map Stuff */,
 				91719C3C176CCDF100A25620 /* JSON */,
 				91719C16176CCDB200A25620 /* AppDelegate.h */,
 				91719C17176CCDB200A25620 /* AppDelegate.m */,
@@ -460,15 +459,39 @@
 		918DAA1D17C046E500411463 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */,
+				91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */,
+				91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */,
+				91E85F3D17CB022F004927EE /* app_icon_3g.png */,
+				91E85F3517CB00DB004927EE /* Default-568h@2x.png */,
+				91E85F3B17CB01B2004927EE /* Default@2x.png */,
+				91E85F3617CB00DB004927EE /* Default~iphone.png */,
 				912764F817CA97E2005106D9 /* app_icon_ios6.png */,
-				912764F617CA96B6005106D9 /* Default-568h@2x.png */,
-				912764F417CA961A005106D9 /* Default~iphone.png */,
 				912764AD17CA90D7005106D9 /* Default.png */,
 				912764AF17CA9260005106D9 /* Default_4.png */,
 				912764B117CA9268005106D9 /* App_store.png */,
 				918DAA1E17C0474700411463 /* app_icon.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		91E85F4517CB0486004927EE /* Map Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				91F50386178889CC00A2BDCA /* route.csv */,
+				91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */,
+				91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */,
+				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
+				914B40E117C119C0001A6078 /* icon_stop.png */,
+				9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */,
+				918DAA2517C0771800411463 /* icon_bus copy.png */,
+				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
+				918DAA2F17C0842300411463 /* icon_bus MedCampus_shadow.png */,
+				91650A3317BF153400C620D8 /* icon_bus.png */,
+				9108AFE917CA84020094F607 /* Help.png */,
+				9103F76517AC7FB700FB7C9D /* Stops.plist */,
+			);
+			name = "Map Stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,6 +541,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Ross Tang Him";
 				TargetAttributes = {
+					91719C03176CCDB200A25620 = {
+						DevelopmentTeam = 95867XNCMF;
+					};
 					91719C24176CCDB200A25620 = {
 						TestTargetID = 91719C03176CCDB200A25620;
 					};
@@ -548,13 +574,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				912764AE17CA90D7005106D9 /* Default.png in Resources */,
-				912764F517CA961A005106D9 /* Default~iphone.png in Resources */,
 				91719C20176CCDB200A25620 /* Images.xcassets in Resources */,
 				918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */,
+				91E85F3917CB00DB004927EE /* Default~iphone.png in Resources */,
 				918DAA1F17C0474700411463 /* app_icon.png in Resources */,
+				91E85F4417CB02FF004927EE /* app_icon_5_spotlight.png in Resources */,
 				9108AFEA17CA84020094F607 /* Help.png in Resources */,
 				9194D92917C3B0AA0073F961 /* GoogleMaps.bundle in Resources */,
+				91E85F3817CB00DB004927EE /* Default-568h@2x.png in Resources */,
 				914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */,
+				91E85F3E17CB022F004927EE /* app_icon_3g.png in Resources */,
 				917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */,
 				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
@@ -564,14 +593,16 @@
 				91719C63176CCE0000A25620 /* AppledocSettings.plist in Resources */,
 				91719C12176CCDB200A25620 /* InfoPlist.strings in Resources */,
 				91B1A5B117C2E5900098BDB4 /* icon_bus_yellow.png in Resources */,
-				912764F717CA96B6005106D9 /* Default-568h@2x.png in Resources */,
 				9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */,
 				91B1A5B017C2E5900098BDB4 /* icon_bus_white.png in Resources */,
 				91F50384178889CC00A2BDCA /* route.csv in Resources */,
+				91E85F4117CB02C1004927EE /* app_icon_4_spotlight.png in Resources */,
 				912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */,
 				918DAA2A17C0798100411463 /* icon_bus MedCampus.png in Resources */,
 				91719C1B176CCDB200A25620 /* Main.storyboard in Resources */,
 				912764B217CA9268005106D9 /* App_store.png in Resources */,
+				91E85F3C17CB01B2004927EE /* Default@2x.png in Resources */,
+				91E85F4217CB02C1004927EE /* app_icon_3g_spotlight.png in Resources */,
 				91650A3417BF153400C620D8 /* icon_bus.png in Resources */,
 				91719C64176CCE0000A25620 /* RegenerateApiDocumentation in Resources */,
 			);
@@ -765,6 +796,7 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -772,9 +804,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -783,6 +816,7 @@
 		91719C38176CCDB200A25620 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -790,9 +824,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

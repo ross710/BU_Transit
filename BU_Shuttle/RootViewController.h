@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
-@interface RootViewController : UIPageViewController <UIPageViewControllerDataSource, MapViewDelegate>
+#import "ListViewController.h"
+@interface RootViewController : UIPageViewController <UIPageViewControllerDataSource, MapViewDelegate, ListViewDelegate, UIPageViewControllerDelegate>
 
 @end

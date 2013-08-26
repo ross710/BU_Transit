@@ -124,10 +124,10 @@
 //    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
 }
 - (void)gotoMapView:(id)sender {
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"gotoMapView"
-     object:nil];
-//    [self.delegate gotoMapView];
+//    [[NSNotificationCenter defaultCenter]
+//     postNotificationName:@"gotoMapView"
+//     object:nil];
+    [self.delegate gotoMapView: nil];
 }
 
 
@@ -178,6 +178,11 @@
     return theLocation;
 }
 
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    closestStops = [NSMutableArray arrayWithArray:stopsArray];
+    
+    [self.tableView reloadData];
+}
 -(void) saveLocationData {
 //    NSLog(@"UPDATING LOCATION");
 //    myLocation = locationManager.location;
@@ -422,11 +427,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    Stop *stop = [closestStops objectAtIndex:indexPath.row];
-   NSDictionary *stopDict = [NSDictionary dictionaryWithObject:stop.stop_id forKey:@"stop_id"];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoMapView"
-                                  object:nil
-                                userInfo:stopDict];
+    [self.delegate gotoMapView:stop.stop_id];
+//   NSDictionary *stopDict = [NSDictionary dictionaryWithObject:stop.stop_id forKey:@"stop_id"];
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoMapView"
+//                                  object:nil
+//                                userInfo:stopDict];
 }
 
 

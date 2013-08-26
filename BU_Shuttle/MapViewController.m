@@ -101,6 +101,7 @@
 //    [[NSNotificationCenter defaultCenter]
 //     postNotificationName:@"gotoListView"
 //     object:self];
+    NSLog(@"TRYING TO GO TO LIST VIEW");
     [self.delegate gotoListView];
 }
 

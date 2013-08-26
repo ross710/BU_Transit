@@ -14,6 +14,10 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>app_icon_5_spotlight</string>
+				<string>app_icon_4_spotlight</string>
+				<string>app_icon_3g_spotlight</string>
+				<string>app_icon_3g</string>
 				<string>app_icon_ios6</string>
 				<string>Untitled-1</string>
 				<string>app_icon</string>
@@ -40,6 +44,26 @@
 	<string>Default</string>
 	<key>UILaunchImages</key>
 	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Portrait</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 480}</string>
+		</dict>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default~ip</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Portrait</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 480}</string>
+		</dict>
 		<dict>
 			<key>UILaunchImageMinimumOSVersion</key>
 			<string>7.0</string>
