@@ -796,7 +796,7 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -804,7 +804,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -816,7 +816,7 @@
 		91719C38176CCDB200A25620 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -824,7 +824,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_Shuttle/BU_Shuttle-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
 				TARGETED_DEVICE_FAMILY = 1;

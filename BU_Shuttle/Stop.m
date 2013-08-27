@@ -16,6 +16,7 @@
         location = [[Location alloc]init];
         name = [[NSString alloc]init];
         route = [[NSString alloc]init];
+        routes = [[NSArray alloc] init];
         stop_id = [[NSNumber alloc] init];
         isInboundToStuVii = [[NSNumber alloc] initWithBool:NO];
     }
@@ -28,6 +29,7 @@
     [coder encodeObject:location forKey:@"location"];
     [coder encodeObject:name forKey:@"name"];
     [coder encodeObject:route forKey:@"route"];
+     [coder encodeObject:routes forKey:@"routes"];
     [coder encodeObject:stop_id forKey:@"stop_id"];
     [coder encodeObject:isInboundToStuVii forKey:@"isInboundToStuVii"];
 
@@ -38,7 +40,9 @@
     if (self = [super init]) {
         location = [decoder decodeObjectForKey:@"location"];
         name = [decoder decodeObjectForKey:@"name"];
+        routes = [decoder decodeObjectForKey:@"routes"];
         route = [decoder decodeObjectForKey:@"route"];
+
         stop_id = [decoder decodeObjectForKey:@"stop_id"];
         isInboundToStuVii = [decoder decodeObjectForKey:@"isInboundToStuVii"];
 

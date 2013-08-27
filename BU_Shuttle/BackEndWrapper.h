@@ -41,6 +41,6 @@
 -(NSString *) getJsonStringStops;
 -(NSString *) getJsonStringVehicles;
 -(NSString *) getJsonStringArrivalEstimates;
--(NSMutableDictionary *) loadArrivalEstimatesIntoObjects: (NSString *) jsonString;
--(NSMutableDictionary *) loadVehiclesIntoObjects: (NSString *) jsonString;
+-(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString;
+-(void) loadVehiclesIntoObjects: (NSString *) jsonString;
 @end

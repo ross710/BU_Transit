@@ -29,19 +29,83 @@
 @synthesize delegate;
 
 
--(NSMutableDictionary *) loadArrivalEstimates {
-    NSString *json = [self getJsonStringArrivalEstimates];
-    return [self loadArrivalEstimatesIntoObjects:json];
-}
+//-(NSMutableDictionary *) loadArrivalEstimates {
+//    NSString *json = [self getJsonStringArrivalEstimates];
+//    return [self loadArrivalEstimatesIntoObjects:json];
+//}
 
 -(void) queueArrivalEstimates {
-    NSString *json = [self getJsonStringArrivalEstimates];
-    [self loadArrivalEstimatesIntoObjects:json];
+//    dispatch_async(dispatch_get_global_queue(0, 0),
+//                   ^ {
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL_ARRIVAL_ESTIMATES cachePolicy:0 timeoutInterval:5];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[[NSOperationQueue alloc] init]
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error)
+     {
+         
+         if ([data length] >0 && error == nil)
+         {
+             
+             // DO YOUR WORK HERE
+             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+             [self performSelectorOnMainThread:@selector(loadArrivalEstimatesIntoObjects:) withObject:json waitUntilDone:YES];
+//             [self loadArrivalEstimatesIntoObjects:json];
+             
+         }
+         else if ([data length] == 0 && error == nil)
+         {
+             NSLog(@"Nothing was downloaded.");
+         }
+         else if (error != nil){
+             NSLog(@"Error = %@", error);
+         }
+         
+     }];
+//    NSString *json = [self getJsonStringArrivalEstimates];
+//    [self loadArrivalEstimatesIntoObjects:json];
+//                   });
+    
 }
 
 -(void) queueVehicles {
-    NSString *json = [self getJsonStringVehicles];
-    [self loadVehiclesIntoObjects:json];
+//    dispatch_async(dispatch_get_global_queue(0, 0),
+//                   ^ {
+    
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL_VEHICLES cachePolicy:0 timeoutInterval:5];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[[NSOperationQueue alloc] init]
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error)
+     {
+         
+         if ([data length] >0 && error == nil)
+         {
+             
+             // DO YOUR WORK HERE
+             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+             [self performSelectorOnMainThread:@selector(loadVehiclesIntoObjects:) withObject:json waitUntilDone:YES];
+
+//             [self loadVehiclesIntoObjects:json];
+             
+         }
+         else if ([data length] == 0 && error == nil)
+         {
+             NSLog(@"Nothing was downloaded.");
+         }
+         else if (error != nil){
+             NSLog(@"Error = %@", error);
+         }
+         
+     }];
+//    NSString *json = [self getJsonStringVehicles];
+//                   });
 }
 
 
@@ -71,9 +135,9 @@
     }
 }
 
--(NSMutableDictionary *) getVehicles {
-    return [self loadVehiclesIntoObjects:[self getJsonStringVehicles]];
-}
+//-(NSMutableDictionary *) getVehicles {
+//    return [self loadVehiclesIntoObjects:[self getJsonStringVehicles]];
+//}
 
 -(void) loadStops {
     [self loadStopsFromDisk];
@@ -119,13 +183,15 @@
     NSArray *allTheStops = [stopsDict objectForKey:@"data"];
     for (id object in allTheStops) {
         NSDictionary *stopDict = (NSDictionary *) object;
+//        NSLog(@"STROP DICT %@", stopDict);
         Stop *stop = [[Stop alloc]init];
         stop.name = [stopDict objectForKey:@"name"];
         
         NSDictionary *loc = [stopDict objectForKey:@"location"];
         stop.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
         stop.stop_id = [NSNumber numberWithInt:[[stopDict objectForKey:@"stop_id"] integerValue]];
-
+//        NSLog(@"ROUTES %@", [stopDict objectForKey:@"routes"]);
+        stop.routes = [NSArray arrayWithArray:[stopDict objectForKey:@"routes"]];
         NSInteger stop_id = [stop.stop_id integerValue];
         
 //        NSLog(@"STOP ID %d", stop_id);
@@ -197,15 +263,48 @@
 }
 
 -(void) removeUnusedStops :(BOOL) isNightTime {
+    [self loadStopsFromDisk];
     NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:stops];
     if (isNightTime) {
-        
+        for (id key in stops) {
+            Stop *stop = [stops objectForKey:key];
+            NSArray *routes = stop.routes;
+            BOOL isPartOfRoute = NO;
+//            for (NSNumber *route in routes) {
+//                if ([route isEqualToNumber:[NSNumber numberWithInt:4000946]]) {
+//                    isPartOfRoute = YES;
+//                }
+//            }
+            for (NSString *route in routes) {
+                if ([route isEqualToString:@"4000946"]) {
+                    isPartOfRoute = YES;
+                }
+            }
+            if (!isPartOfRoute) {
+                [temp removeObjectForKey:stop.stop_id];
+            }
+        }
+
     } else {
-        [temp removeObjectForKey:[NSNumber numberWithInt:4108734]]; //South Campus
-        [temp removeObjectForKey:[NSNumber numberWithInt:4108738]]; //Granby St
-        [temp removeObjectForKey:[NSNumber numberWithInt:4108742]]; //GSU
-        [temp removeObjectForKey:[NSNumber numberWithInt:4114006]]; //Agganis Way
-        [temp removeObjectForKey:[NSNumber numberWithInt:4117706]]; //Stuvi (10 Buick St)
+        for (id key in stops) {
+            Stop *stop = [stops objectForKey:key];
+            NSArray *routes = stop.routes;
+            BOOL isPartOfRoute = NO;
+            for (NSString *route in routes) {
+                if ([route isEqualToString:@"4002858"]) {
+                    isPartOfRoute = YES;
+                }
+            }
+            if (!isPartOfRoute) {
+                [temp removeObjectForKey:stop.stop_id];
+            }
+        }
+
+//        [temp removeObjectForKey:[NSNumber numberWithInt:4108734]]; //South Campus
+//        [temp removeObjectForKey:[NSNumber numberWithInt:4108738]]; //Granby St
+//        [temp removeObjectForKey:[NSNumber numberWithInt:4108742]]; //GSU
+//        [temp removeObjectForKey:[NSNumber numberWithInt:4114006]]; //Agganis Way
+//        [temp removeObjectForKey:[NSNumber numberWithInt:4117706]]; //Stuvi (10 Buick St)
         
     }
 
@@ -226,6 +325,7 @@
 -(NSString *) getJsonStringVehicles {
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
+    
     NSError* error = nil;
 //    return [NSString stringWithContentsOfURL:URL_VEHICLES encoding:NSASCIIStringEncoding error:&error];
     
@@ -251,7 +351,7 @@
 
 
 
--(NSMutableDictionary *) loadArrivalEstimatesIntoObjects: (NSString *) jsonString {
+-(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *bigDict = [parser objectWithString:jsonString];
 
@@ -289,11 +389,12 @@
         [arrival_estimates setObject:est forKey:est.stop_id];
 
     }
+    
     [self.delegate recieveArrivalEstimates:arrival_estimates];
-    return arrival_estimates;
+//    return arrival_estimates;
 }
 
--(NSMutableDictionary *) loadVehiclesIntoObjects: (NSString *) jsonString {
+-(void) loadVehiclesIntoObjects: (NSString *) jsonString {
     
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *full = [parser objectWithString:jsonString];
@@ -377,6 +478,16 @@
                     vehicle.type = @"Big bus";
                     break;
                 }
+                case 4008320:
+                {
+                    vehicle.type = @"Big bus";
+                    break;
+                }
+                case 4009127:
+                {
+                    vehicle.type = @"Big bus";
+                    break;
+                }
                 default:
                 {
                     vehicle.type = @"Unknown size of bus";
@@ -391,7 +502,7 @@
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     [self.delegate recieveVehicles:vehicles];
-    return vehicles;
+//    return vehicles;
 }
 
 //-(NSMutableDictionary *) loadVehiclesIntoObjects: (NSString *) jsonString {

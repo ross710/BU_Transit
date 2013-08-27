@@ -133,12 +133,12 @@
 
 -(void) updateArrivalEstimates {
 //    NSLog(@"UPDATING ARRIVAL ESTIMATES");
-    dispatch_async(dispatch_get_global_queue(0, 0),
-                   ^ {
+//    dispatch_async(dispatch_get_global_queue(0, 0),
+//                   ^ {
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [wrapper queueArrivalEstimates];
-                   });
+//                   });
 //    arrival_estimates = [wrapper loadArrivalEstimates];
 //    NSLog(@"NUM EST %@", ((ArrivalEstimate *)[arrival_estimates objectForKey:[NSNumber numberWithInt: 4117698]]).stop_id);
 //    [self.tableView reloadData];
