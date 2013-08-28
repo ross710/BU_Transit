@@ -142,7 +142,7 @@
 -(void) loadStops {
     [self loadStopsFromDisk];
     //if did not load from plist
-    if (!stops) {
+    if (!stops || [[stops allKeys] count] == 0) {
         //load from json
         NSString * stopsJSON = [self getJsonStringStops];
         [self loadStopsFromJSON:stopsJSON];

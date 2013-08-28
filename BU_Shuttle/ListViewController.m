@@ -44,30 +44,54 @@
     wrapper = [[BackEndWrapper alloc] init];
 
     wrapper.delegate = self;
-    stops = wrapper.stops;
-    stopsArray = [wrapper.stops allValues];
-//    [self updateLocation];
-
     
-    UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map >" style:UIBarButtonItemStylePlain target:self action:@selector(gotoMapView:)];
-    self.navigationItem.rightBarButtonItem = mapButton;
     
-
-
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStylePlain target:self action:@selector(showHelpView)];
     [[self navigationItem] setLeftBarButtonItem:button];
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
+    if (wrapper.stops &&[[wrapper.stops allKeys] count] > 0) {
+        [self performSelector:@selector(continueInit) withObject:nil afterDelay:0];
+    } else {
+
+        [self performSelector:@selector(continueInit) withObject:nil afterDelay:0.5];
+
+    }
     
-    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
-    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void) continueInit{
+    
+
+    if (wrapper.stops && [[wrapper.stops allKeys] count] > 0) {
+        stops = wrapper.stops;
+        stopsArray = [wrapper.stops allValues];
+        //    [self updateLocation];
+        
+        
+        UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map >" style:UIBarButtonItemStylePlain target:self action:@selector(gotoMapView:)];
+        self.navigationItem.rightBarButtonItem = mapButton;
+        
+        
+
+        
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+        [self.tableView addSubview:self.refreshControl];
+        
+        [self updateLocation];
+        [self updateArrivalEstimates];
+        locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
+        arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
+    } else {
+
+        [self performSelector:@selector(continueInit) withObject:nil afterDelay:0.5];
+    }
 }
 
 -(void) showHelpView {
@@ -227,7 +251,7 @@
 
 -(NSUInteger) closestStop: (NSMutableArray *) stops_ {
     NSDecimalNumber *smallestDistance = [[NSDecimalNumber alloc] initWithDouble:0];
-    NSUInteger closest;
+    NSUInteger closest = 0;
     
     NSUInteger count = 0;
     for (id object in stops_) {
@@ -278,10 +302,14 @@
     NSMutableArray *mut = [stopsArray mutableCopy];
     
     
-    NSUInteger firstIndex, secondIndex, thirdIndex, fourthIndex;
+    NSInteger firstIndex, secondIndex, thirdIndex, fourthIndex;
+//    firstIndex = 0;
+//    secondIndex = 0;
+//    thirdIndex = 0;
+//    fourthIndex = 0;
     firstIndex = [self closestStop:mut];
     stop1 = [stopsArray objectAtIndex:firstIndex];
-    
+
     
     [mut removeObjectAtIndex:firstIndex];
     secondIndex = [self closestStop:mut];
@@ -396,6 +424,16 @@
             break;
         }
         case 4007512:
+        {
+            return [NSNumber numberWithBool:YES];
+            break;
+        }
+        case 4008320:
+        {
+            return [NSNumber numberWithBool:YES];
+            break;
+        }
+        case 4009127:
         {
             return [NSNumber numberWithBool:YES];
             break;

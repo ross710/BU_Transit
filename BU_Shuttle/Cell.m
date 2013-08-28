@@ -42,7 +42,7 @@
         inOrOutBound.textAlignment = NSTextAlignmentLeft;
         
         
-        busType = [[UILabel alloc] initWithFrame:CGRectMake(32, 76, 160, 31)];
+        busType = [[UILabel alloc] initWithFrame:CGRectMake(32, 73, 160, 37)];
         busType.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
         busType.textAlignment = NSTextAlignmentLeft;
         

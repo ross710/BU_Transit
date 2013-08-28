@@ -46,6 +46,8 @@
 
     }
     [iconView setImage:icon];
+//    [iconView setAlpha:0.8];
+
 }
 
 -(void) tryToUpdateIcon : (BOOL) isInboundToStuvii {
@@ -56,6 +58,8 @@
         
     }
     [iconView setImage:icon];
+//    [iconView setAlpha:0.8];
+
 }
 
 /** Override to make sure shadow image is always set

@@ -37,9 +37,9 @@
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
 //                                                             bundle: nil];
 //    UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listNav"];
-    if (canTransition) {
+//    if (canTransition) {
         [self setViewControllers:@[[vcArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:NULL];
-    }
+//    }
 }
 
 
@@ -70,7 +70,7 @@
 
 
 -(void) gotoMapView:(NSNumber *)stop_id {
-    if (canTransition) {
+//    if (canTransition) {
         UINavigationController *navC = [vcArray objectAtIndex:1];
         MapViewController *mapV = [navC.viewControllers objectAtIndex:0];
         mapV.shouldResetView = YES;
@@ -85,13 +85,14 @@
                 }
             }
         }
-    }
+//    }
     
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    
     self.dataSource = self;
     self.delegate = self;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
@@ -114,6 +115,9 @@
     
 
     canTransition = YES;
+    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
+        gR.delegate = self;
+    }
     //    [mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
     
     
@@ -137,13 +141,20 @@
 }
 
 -(void) pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
-    canTransition = NO;
+//    canTransition = NO;
+//    [[[[[vcArray objectAtIndex:0] viewControllers] objectAtIndex:0] navigationItem] rightBarButtonItem].enabled = NO;
+//
+//    [[[[[vcArray objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem] leftBarButtonItem].enabled = NO;
+
 }
 
 -(void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-    if (completed) {
-        canTransition = YES;
-    }
+//    [[[[[vcArray objectAtIndex:0] viewControllers] objectAtIndex:0] navigationItem] rightBarButtonItem].enabled = YES;
+//    
+//    [[[[[vcArray objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem] leftBarButtonItem].enabled = YES;
+//    if (completed) {
+//        canTransition = YES;
+//    }
 }
 
 //-(void) fixBlackScreen {
@@ -165,10 +176,12 @@
     }  else if (ctrl == nil) {
         return [vcArray objectAtIndex:1];
     } else {
-//        [self performSelector:@selector(fixBlackScreen) withObject:nil afterDelay:3.0];
         return nil;
     }
 }
+
+
+
 // Returns the view controller after the given view controller. (required)
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController
@@ -179,7 +192,6 @@
     } else if (ctrl == nil) {
         return [vcArray objectAtIndex:1];
     } else {
-//        [self performSelector:@selector(fixBlackScreen) withObject:nil afterDelay:3.0];
         return nil;
     }
 }

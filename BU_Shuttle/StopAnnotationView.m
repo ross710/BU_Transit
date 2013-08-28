@@ -46,7 +46,9 @@
     [super setAnnotation:annotation];
 
     icon = [UIImage imageNamed:@"icon_bus_yellow_small.png"];
+    
     [iconView setImage:icon];
+    [iconView setAlpha:0.8];
 }
 
 

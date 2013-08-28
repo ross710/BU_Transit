@@ -53,7 +53,6 @@
 		91719C6C176CCE5000A25620 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C6A176CCE5000A25620 /* Stop.m */; };
 		91719C72176CDB8D00A25620 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91719C71176CDB8D00A25620 /* CoreLocation.framework */; };
 		91719C75176CEA9700A25620 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C74176CEA9700A25620 /* Vehicle.m */; };
-		917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917C537117BFD5F0009A5F73 /* Cell.xib */; };
 		917C537417BFD69D009A5F73 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537317BFD69D009A5F73 /* Cell.m */; };
 		917C537E17BFE986009A5F73 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537D17BFE986009A5F73 /* RootViewController.m */; };
 		917C538117BFEC84009A5F73 /* PageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C538017BFEC84009A5F73 /* PageDataSource.m */; };
@@ -88,6 +87,9 @@
 		91E85F4117CB02C1004927EE /* app_icon_4_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */; };
 		91E85F4217CB02C1004927EE /* app_icon_3g_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */; };
 		91E85F4417CB02FF004927EE /* app_icon_5_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */; };
+		91F0C68317CD6F7E001E96DE /* app_icon_ios6.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */; };
+		91F0C68517CD6FBE001E96DE /* app_icon_3g.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0C68417CD6FBE001E96DE /* app_icon_3g.png */; };
+		91F0C68717CD6FF0001E96DE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0C68617CD6FF0001E96DE /* Default.png */; };
 		91F50384178889CC00A2BDCA /* route.csv in Resources */ = {isa = PBXBuildFile; fileRef = 91F50386178889CC00A2BDCA /* route.csv */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +174,6 @@
 		91719C71176CDB8D00A25620 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		91719C73176CEA9700A25620 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
 		91719C74176CEA9700A25620 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
-		917C537017BFD5F0009A5F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Cell.xib; sourceTree = "<group>"; };
 		917C537217BFD69D009A5F73 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		917C537317BFD69D009A5F73 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		917C537C17BFE986009A5F73 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -214,6 +215,9 @@
 		91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_4_spotlight.png; sourceTree = "<group>"; };
 		91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g_spotlight.png; sourceTree = "<group>"; };
 		91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_5_spotlight.png; sourceTree = "<group>"; };
+		91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_ios6.png; sourceTree = "<group>"; };
+		91F0C68417CD6FBE001E96DE /* app_icon_3g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g.png; sourceTree = "<group>"; };
+		91F0C68617CD6FF0001E96DE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		91F50385178889CC00A2BDCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/route.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,6 +262,9 @@
 		91719BFB176CCDB200A25620 = {
 			isa = PBXGroup;
 			children = (
+				91F0C68617CD6FF0001E96DE /* Default.png */,
+				91F0C68417CD6FBE001E96DE /* app_icon_3g.png */,
+				91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */,
 				91719C0D176CCDB200A25620 /* BU_Shuttle */,
 				91719C2C176CCDB200A25620 /* BU_ShuttleTests */,
 				91719C06176CCDB200A25620 /* Frameworks */,
@@ -449,7 +456,6 @@
 			children = (
 				9103F75D17AC743100FB7C9D /* ListViewController.h */,
 				9103F75E17AC743100FB7C9D /* ListViewController.m */,
-				917C537117BFD5F0009A5F73 /* Cell.xib */,
 				917C537217BFD69D009A5F73 /* Cell.h */,
 				917C537317BFD69D009A5F73 /* Cell.m */,
 			);
@@ -584,7 +590,6 @@
 				91E85F3817CB00DB004927EE /* Default-568h@2x.png in Resources */,
 				914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */,
 				91E85F3E17CB022F004927EE /* app_icon_3g.png in Resources */,
-				917C536F17BFD5F0009A5F73 /* Cell.xib in Resources */,
 				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
 				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
@@ -605,6 +610,9 @@
 				91E85F4217CB02C1004927EE /* app_icon_3g_spotlight.png in Resources */,
 				91650A3417BF153400C620D8 /* icon_bus.png in Resources */,
 				91719C64176CCE0000A25620 /* RegenerateApiDocumentation in Resources */,
+				91F0C68317CD6F7E001E96DE /* app_icon_ios6.png in Resources */,
+				91F0C68517CD6FBE001E96DE /* app_icon_3g.png in Resources */,
+				91F0C68717CD6FF0001E96DE /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,14 +714,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		917C537117BFD5F0009A5F73 /* Cell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				917C537017BFD5F0009A5F73 /* Base */,
-			);
-			name = Cell.xib;
-			sourceTree = "<group>";
-		};
 		91F50386178889CC00A2BDCA /* route.csv */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -796,7 +796,8 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Tang Him (T42Y4HRJ8D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Tang Him (T42Y4HRJ8D)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -807,6 +808,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
+				PROVISIONING_PROFILE = "AEFDFBC3-0CFB-4ACD-B6FC-EBF19701E4E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AEFDFBC3-0CFB-4ACD-B6FC-EBF19701E4E8";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -817,6 +820,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -827,6 +831,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
+				PROVISIONING_PROFILE = "A98E5F71-08FA-44F9-A9E0-57FCBA22A678";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98E5F71-08FA-44F9-A9E0-57FCBA22A678";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -849,6 +855,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BU_ShuttleTests/BU_ShuttleTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -867,6 +874,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BU_Shuttle/BU_Shuttle-Prefix.pch";
 				INFOPLIST_FILE = "BU_ShuttleTests/BU_ShuttleTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

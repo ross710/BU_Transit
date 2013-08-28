@@ -82,6 +82,7 @@
     {
         // break the string down even further to latitude and longitude fields.
         NSString* currentPointString = [pointStrings objectAtIndex:idx];
+
         NSArray* latLonArr = [currentPointString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
         
         CLLocationDegrees latitude = [[latLonArr objectAtIndex:0] doubleValue];
