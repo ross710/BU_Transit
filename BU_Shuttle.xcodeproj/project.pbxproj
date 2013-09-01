@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9102974C17D32098000EA22B /* routeNight.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9102974B17D32098000EA22B /* routeNight.csv */; };
 		9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F75E17AC743100FB7C9D /* ListViewController.m */; };
 		9103F76217AC77B600FB7C9D /* BackEndWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9103F76117AC77B600FB7C9D /* BackEndWrapper.m */; };
 		9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9103F76517AC7FB700FB7C9D /* Stops.plist */; };
@@ -104,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9102974B17D32098000EA22B /* routeNight.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = routeNight.csv; sourceTree = "<group>"; };
 		9103F75D17AC743100FB7C9D /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		9103F75E17AC743100FB7C9D /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		9103F76017AC77B600FB7C9D /* BackEndWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndWrapper.h; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				91F50386178889CC00A2BDCA /* route.csv */,
+				9102974B17D32098000EA22B /* routeNight.csv */,
 				91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */,
 				91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */,
 				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
@@ -613,6 +616,7 @@
 				91F0C68317CD6F7E001E96DE /* app_icon_ios6.png in Resources */,
 				91F0C68517CD6FBE001E96DE /* app_icon_3g.png in Resources */,
 				91F0C68717CD6FF0001E96DE /* Default.png in Resources */,
+				9102974C17D32098000EA22B /* routeNight.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

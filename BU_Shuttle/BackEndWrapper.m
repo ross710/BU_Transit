@@ -10,9 +10,11 @@
 //  Plist loading/saving code mostly taken from http://ipgames.wordpress.com/tutorials/writeread-data-to-plist-file/
 
 #import "BackEndWrapper.h"
+#import "AppDelegate.h"
 #define URL_STOPS [NSURL URLWithString:@"http://api.transloc.com/1.2/stops.json?agencies=bu"]
 #define URL_VEHICLES [NSURL URLWithString:@"http://api.transloc.com/1.2/vehicles.json?agencies=bu"]
 #define URL_ARRIVAL_ESTIMATES [NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"]
+#define URL_ROUTES [NSURL URLWithString:@"http://api.transloc.com/1.2/routes.json?agencies=bu"]
 
 
 @interface BackEndWrapper()
@@ -33,6 +35,44 @@
 //    NSString *json = [self getJsonStringArrivalEstimates];
 //    return [self loadArrivalEstimatesIntoObjects:json];
 //}
+
+
+-(void) queueRoutes {
+    //    dispatch_async(dispatch_get_global_queue(0, 0),
+    //                   ^ {
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL_ROUTES cachePolicy:0 timeoutInterval:5];
+    [NSURLConnection
+     sendAsynchronousRequest:request
+     queue:[[NSOperationQueue alloc] init]
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error)
+     {
+         
+         if ([data length] >0 && error == nil)
+         {
+             
+             // DO YOUR WORK HERE
+             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+             [self performSelectorOnMainThread:@selector(checkIfNightTime:) withObject:json waitUntilDone:YES];
+             //             [self loadArrivalEstimatesIntoObjects:json];
+             
+         }
+         else if ([data length] == 0 && error == nil)
+         {
+             NSLog(@"Nothing was downloaded.");
+         }
+         else if (error != nil){
+             NSLog(@"Error = %@", error);
+         }
+         
+     }];
+    //    NSString *json = [self getJsonStringArrivalEstimates];
+    //    [self loadArrivalEstimatesIntoObjects:json];
+    //                   });
+    
+}
 
 -(void) queueArrivalEstimates {
 //    dispatch_async(dispatch_get_global_queue(0, 0),
@@ -114,6 +154,8 @@
         [self getPath];
         
         [self loadStops];
+        
+//        [self queueRoutes];
         //        [self loadArrivalEstimates];
     }
     return self;
@@ -146,13 +188,21 @@
         //load from json
         NSString * stopsJSON = [self getJsonStringStops];
         [self loadStopsFromJSON:stopsJSON];
+        
         NSLog(@"Stops loaded from JSON");
         
     } else {
         NSLog(@"Stops loaded from plist");
     }
+    
+    [self queueRoutes];
 
-    [self removeUnusedStops:NO];
+
+    
+    //        [self queueRoutes];
+
+    
+//    [self removeUnusedStops:YES];
 }
 
 
@@ -166,6 +216,7 @@
     
     [data setObject:dataObject forKey:@"stops"];
     [data writeToFile: path atomically:YES];
+    
 }
 
 -(void) loadStopsFromDisk {
@@ -262,11 +313,46 @@
     [self saveStops];
 }
 
+-(void) checkIfNightTime: (NSString*) json {
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSDictionary *full = [parser objectWithString:json];
+    
+    NSDictionary *data = [full objectForKey:@"data"];    
+    NSArray *oneThirtyTwo = [data objectForKey:@"132"];
+    
+    for (id object in oneThirtyTwo) {
+        NSDictionary *dict = (NSDictionary *) object;
+        NSString *route_id = [dict objectForKey:@"route_id"];
+        NSNumber *is_active = [dict objectForKey:@"is_active"];
+        
+        if ([route_id isEqualToString:@"4000946"]) {
+            if ([is_active isEqualToNumber:[NSNumber numberWithInt:1]]) {
+                NSLog(@"HERE");
+                [self removeUnusedStops:YES];
+
+                if ([self.delegate isKindOfClass:[AppDelegate class]]) {
+                    [self.delegate switchToNight];
+                }
+            } else {
+                NSLog(@"THERE");
+
+                [self removeUnusedStops:NO];
+                if ([self.delegate isKindOfClass:[AppDelegate class]]) {
+                    [self.delegate switchToDay];
+                }
+            }
+        }
+        
+    }
+
+}
+
 -(void) removeUnusedStops :(BOOL) isNightTime {
     [self loadStopsFromDisk];
     NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:stops];
     if (isNightTime) {
         for (id key in stops) {
+
             Stop *stop = [stops objectForKey:key];
             NSArray *routes = stop.routes;
             BOOL isPartOfRoute = NO;
@@ -309,6 +395,7 @@
     }
 
     stops = [NSMutableDictionary dictionaryWithDictionary:temp];
+    
 }
 
 -(NSString *) getJsonStringStops {

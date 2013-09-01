@@ -32,6 +32,7 @@
     wrapper = [[BackEndWrapper alloc] init];
     wrapper.delegate = self;
     
+    
     //init mapview and plot the stops
     mapView = [[MKMapView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     mapView.delegate = self;
@@ -39,7 +40,7 @@
     [self plotStops];
 
     //draw route lines
-    [self loadRoute];
+    [self loadRoute:NO];
     [mapView addOverlay:routeLine];
     
     //zoom to default location
@@ -57,16 +58,58 @@
     
     [self plotVehicles];
     
+//    [wrapper queueRoutes];
+
 
     return YES;
 }
 
+-(void) switchToDay {
+    [self refreshStops];
+    [self loadRoute:NO];
+//    NSArray *overlays = [mapView overlays];
+//    for ( in overlays)  {
+//        
+//        if ([overlayView isKindOfClass:[MKOverlayView class]]) {
+//            [overlayView setNeedsDisplayInMapRect:MKMapRectWorld];
+//        }
+//    }
+}
 
+-(void) switchToNight {
+    [self refreshStops];
+    [self loadRoute:YES];
 
+//    NSArray *overlays = [mapView overlays];
+//    for (MKOverlayView *overlayView in overlays)  {
+//        if ([overlayView isKindOfClass:[MKOverlayView
+//                                        class]]) {
+//            [overlayView setNeedsDisplayInMapRect:MKMapRectWorld];
+//        }
+//    }
+
+}
+
+-(void) refreshStops {
+
+    for (Stop_pin<MKAnnotation> *annotation in mapView.annotations) {
+        if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Stop_pin class]]) {
+            [mapView removeAnnotation:annotation];
+        }
+    }
+
+    [self plotStops];
+}
 //Taken from http://spitzkoff.com/craig/?p=136
--(void) loadRoute
+-(void) loadRoute : (BOOL) isNightTime
 {
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"route" ofType:@"csv"];
+    NSString* filePath;
+
+    if (isNightTime) {
+        filePath = [[NSBundle mainBundle] pathForResource:@"routeNight" ofType:@"csv"];
+    } else {
+        filePath = [[NSBundle mainBundle] pathForResource:@"route" ofType:@"csv"];
+    }
     NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray* pointStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -119,6 +162,7 @@
     
     // clear the memory allocated earlier for the points
     free(pointArr);
+
 }
 
 -(void) plotStops {
@@ -129,6 +173,7 @@
             [mapView addAnnotation:annotation];
         }
 }
+
 
 -(void) recieveVehicles:(NSMutableDictionary *)object {
     vehicles = object;
@@ -258,9 +303,9 @@
 }
 
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id )overlay
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay
 {
-    MKOverlayView* overlayView = nil;
+    MKOverlayView *overlayView = nil;
     
     if(overlay == self.routeLine)
     {
