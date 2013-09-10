@@ -18,6 +18,7 @@
 -(void) recieveVehicles: (NSMutableDictionary *) object;
 -(void) switchToNight;
 -(void) switchToDay;
+-(void) updateStops;
 @end
 
 @interface BackEndWrapper : NSObject
@@ -33,6 +34,7 @@
 -(NSMutableDictionary *) loadArrivalEstimates;
 -(id) init;
 
+-(void) swapTime;
 -(void) queueRoutes;
 -(void) queueArrivalEstimates;
 -(void) queueVehicles;

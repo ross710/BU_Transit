@@ -100,6 +100,8 @@
     HelpViewController *vc = [sb instantiateViewControllerWithIdentifier:@"HelpViewController"];
     UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:navView animated:YES completion:nil];
+    
+    
 }
 
 - (void)handleRefresh:(id)sender
@@ -280,6 +282,14 @@
     return distance;
 }
 
+
+-(void) updateStops {
+    if (wrapper.stops && [[wrapper.stops allKeys] count] > 0) {
+        stops = wrapper.stops;
+        stopsArray = [wrapper.stops allValues];
+        [self updateLocation];
+    }
+}
 ////returns two closest
 //-(NSArray *) closestStops {
 //    Stop *stop1, *stop2;
@@ -387,7 +397,7 @@
             [cell.inOrOutBound setTextColor:[UIColor redColor]];
             [cell.stopName setTextColor:[UIColor redColor]];
         } else {
-            [cell.inOrOutBound setText:@"(to Medical Campus)"];
+            [cell.inOrOutBound setText:@"(to East/Med Campus)"];
             [cell.inOrOutBound setTextColor:[UIColor blackColor]];
             [cell.stopName setTextColor:[UIColor blackColor]];
         }

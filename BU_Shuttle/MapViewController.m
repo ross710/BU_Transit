@@ -25,6 +25,8 @@
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic, weak) AppDelegate *appDelegate;
 
+
+@property (nonatomic) BOOL swap;
 @end
 
 @implementation MapViewController
@@ -32,6 +34,7 @@
 @synthesize timer;
 @synthesize appDelegate;
 @synthesize shouldResetView;
+@synthesize swap;
 
 - (void)viewDidAppear:(BOOL)animated {
 //    dispatch_async(dispatch_get_global_queue(0, 0),
@@ -86,7 +89,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    swap = NO;
     [self initEverything];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
@@ -95,7 +98,6 @@
     appDelegate.delegate = self;
 
 }
-
 
 - (IBAction)gotoListView:(id)sender {
 //    [[NSNotificationCenter defaultCenter]
@@ -144,6 +146,7 @@
     [mapView setRegion:viewRegion animated:YES];
     
     [self refreshVehicles];
+
 }
 
 
@@ -151,7 +154,15 @@
 //    dispatch_async(dispatch_get_global_queue(0, 0),
 //                   ^ {
 //    NSLog(@"REFRESHING");
-                    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) plotVehicles];
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    if (swap) {
+//        [appDelegate switchToDay];
+//        swap = NO;
+//    } else {
+//        [appDelegate switchToNight];
+//        swap = YES;
+//    }
+    [appDelegate plotVehicles];
 //                   });
 }
 @end

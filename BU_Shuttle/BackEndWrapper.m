@@ -22,6 +22,7 @@
 @property (nonatomic) NSMutableData *dataObject;
 @property (nonatomic) NSKeyedArchiver *archiver;
 @property (nonatomic) NSKeyedUnarchiver *unarchiver;
+@property (nonatomic) BOOL cool;
 @end
 
 
@@ -29,6 +30,7 @@
 @synthesize path, dataObject, archiver, unarchiver;
 @synthesize stops;
 @synthesize delegate;
+@synthesize cool;
 
 
 //-(NSMutableDictionary *) loadArrivalEstimates {
@@ -155,7 +157,10 @@
         
         [self loadStops];
         
-//        [self queueRoutes];
+        [self queueRoutes];
+        
+        cool = NO;
+        [NSTimer timerWithTimeInterval:3600 target:self selector:@selector(queueRoutes) userInfo:nil repeats:YES];
         //        [self loadArrivalEstimates];
     }
     return self;
@@ -195,7 +200,7 @@
         NSLog(@"Stops loaded from plist");
     }
     
-    [self queueRoutes];
+//    [self queueRoutes];
 
 
     
@@ -205,6 +210,22 @@
 //    [self removeUnusedStops:YES];
 }
 
+//-(void) swapTime {
+//    
+//    if (cool) {
+//        NSLog(@"COOL");
+//        [self removeUnusedStops:NO];
+//        cool = NO;
+//        
+//    } else {
+//        NSLog(@"UNCOOL");
+//
+//        [self removeUnusedStops:YES];
+//        cool = YES;
+//    }
+//    
+//    [self.delegate updateStops];
+//}
 
 -(void) saveStops {
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
@@ -327,18 +348,20 @@
         
         if ([route_id isEqualToString:@"4000946"]) {
             if ([is_active isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                NSLog(@"HERE");
                 [self removeUnusedStops:YES];
 
                 if ([self.delegate isKindOfClass:[AppDelegate class]]) {
                     [self.delegate switchToNight];
+                } else {
+                    [self.delegate updateStops];
                 }
             } else {
-                NSLog(@"THERE");
 
                 [self removeUnusedStops:NO];
                 if ([self.delegate isKindOfClass:[AppDelegate class]]) {
                     [self.delegate switchToDay];
+                } else {
+                    [self.delegate updateStops];
                 }
             }
         }

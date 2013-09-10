@@ -800,8 +800,8 @@
 		91719C37176CCDB200A25620 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Tang Him (T42Y4HRJ8D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Tang Him (T42Y4HRJ8D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -812,8 +812,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
-				PROVISIONING_PROFILE = "AEFDFBC3-0CFB-4ACD-B6FC-EBF19701E4E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AEFDFBC3-0CFB-4ACD-B6FC-EBF19701E4E8";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -823,8 +823,8 @@
 		91719C38176CCDB200A25620 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Tang Him (95867XNCMF)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ross/Dropbox/iOS_Apps/BU_Shuttle,
@@ -835,8 +835,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "BU Transit";
-				PROVISIONING_PROFILE = "A98E5F71-08FA-44F9-A9E0-57FCBA22A678";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98E5F71-08FA-44F9-A9E0-57FCBA22A678";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

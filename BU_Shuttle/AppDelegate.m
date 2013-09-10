@@ -64,8 +64,15 @@
     return YES;
 }
 
--(void) switchToDay {
+-(void) updateStops {
+    NSLog(@"UPDATE");
+
     [self refreshStops];
+}
+
+-(void) switchToDay {
+//    [wrapper swapTime];
+    [self updateStops];
     [self loadRoute:NO];
 //    NSArray *overlays = [mapView overlays];
 //    for ( in overlays)  {
@@ -77,7 +84,9 @@
 }
 
 -(void) switchToNight {
-    [self refreshStops];
+//    [wrapper swapTime];
+    [self updateStops];
+
     [self loadRoute:YES];
 
 //    NSArray *overlays = [mapView overlays];
@@ -93,7 +102,7 @@
 -(void) refreshStops {
 
     for (Stop_pin<MKAnnotation> *annotation in mapView.annotations) {
-        if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Stop_pin class]]) {
+        if ([annotation isKindOfClass:[Stop_pin class]]) {
             [mapView removeAnnotation:annotation];
         }
     }
@@ -167,11 +176,17 @@
 
 -(void) plotStops {
     NSMutableDictionary *stops = [wrapper stops];
-        for (id key in stops) {
-            Stop *stop = [stops objectForKey:key];
-            Stop_pin *annotation = [[Stop_pin alloc] initWithLong:[stop.location.lng doubleValue] :[stop.location.lat doubleValue] : [stop name] : [stop stop_id]];
-            [mapView addAnnotation:annotation];
-        }
+//    for (Stop_pin<MKAnnotation> *annotation in mapView.annotations) {
+//        if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Stop_pin class]]) {
+//            [mapView removeAnnotation:annotation];
+//        }
+//    }
+    
+    for (id key in stops) {
+        Stop *stop = [stops objectForKey:key];
+        Stop_pin *annotation = [[Stop_pin alloc] initWithLong:[stop.location.lng doubleValue] :[stop.location.lat doubleValue] : [stop name] : [stop stop_id]];
+        [mapView addAnnotation:annotation];
+    }
 }
 
 
