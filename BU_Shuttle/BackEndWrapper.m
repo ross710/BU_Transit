@@ -346,17 +346,36 @@
         NSString *route_id = [dict objectForKey:@"route_id"];
         NSNumber *is_active = [dict objectForKey:@"is_active"];
         
-        if ([route_id isEqualToString:@"4000946"]) {
-            if ([is_active isEqualToNumber:[NSNumber numberWithInt:1]]) {
+//        if ([route_id isEqualToString:@"4000946"]) {
+//            if ([is_active isEqualToNumber:[NSNumber numberWithInt:1]]) {
+//                [self removeUnusedStops:YES];
+//
+//                if ([self.delegate isKindOfClass:[AppDelegate class]]) {
+//                    [self.delegate switchToNight];
+//                } else {
+//                    [self.delegate updateStops];
+//                }
+//            } else {
+//
+//                [self removeUnusedStops:NO];
+//                if ([self.delegate isKindOfClass:[AppDelegate class]]) {
+//                    [self.delegate switchToDay];
+//                } else {
+//                    [self.delegate updateStops];
+//                }
+//            }
+//        }
+        
+        if ([route_id isEqualToString:@"4002858"]) {
+            if ([is_active isEqualToNumber:[NSNumber numberWithInt:0]]) {
                 [self removeUnusedStops:YES];
-
+                
                 if ([self.delegate isKindOfClass:[AppDelegate class]]) {
                     [self.delegate switchToNight];
                 } else {
                     [self.delegate updateStops];
                 }
-            } else {
-
+            } else if ([is_active isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 [self removeUnusedStops:NO];
                 if ([self.delegate isKindOfClass:[AppDelegate class]]) {
                     [self.delegate switchToDay];
@@ -510,7 +529,7 @@
     NSDictionary *full = [parser objectWithString:jsonString];
     
     NSDictionary *allTheVehicles = [full objectForKey:@"data"];
-    //    NSLog(@"ALL THE DATA %@", allTheVehicles);
+//       NSLog(@"ALL THE DATA %@", allTheVehicles);
     
     NSArray *oneThirtyTwo = [allTheVehicles objectForKey:@"132"];
     
@@ -518,7 +537,6 @@
     for (id object in oneThirtyTwo) {
         NSDictionary *vehicleDict = (NSDictionary *) object;
         //if ([[vehicleDict objectForKey:@"tracking_status"] isEqualToString:@"up"]) {
-        
         //check if already a vehicle
         BOOL found = false;
         if (vehicles == nil
@@ -533,7 +551,9 @@
                         tempVehicle.heading = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"heading"] integerValue]];
                     }
                     NSDictionary *loc = [vehicleDict objectForKey:@"location"];
-                    tempVehicle.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
+                    if (loc) {
+                        tempVehicle.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
+                    }
                     tempVehicle.tracking_status = [vehicleDict objectForKey:@"tracking_status"];
                     
                     tempVehicle.arrival_estimates = [vehicleDict objectForKey:@"arrival_estimates"];
@@ -542,16 +562,22 @@
             }
         }
         if (found == false) { //if not found, add
+            NSLog(@"%@", vehicleDict);
+
             Vehicle *vehicle = [[Vehicle alloc]init];
             if ([vehicleDict objectForKey:@"heading"] != [NSNull null]) {
                 vehicle.heading = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"heading"] integerValue]];
             }
             
             NSDictionary *loc = [vehicleDict objectForKey:@"location"];
-            vehicle.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
-            
+            if (loc != [NSNull null]) {
+                vehicle.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
+            }
             vehicle.tracking_status = [vehicleDict objectForKey:@"tracking_status"];
-            vehicle.arrival_estimates = [vehicleDict objectForKey:@"arrival_estimates"];
+            
+            if ([vehicleDict objectForKey:@"arrival_estimates"] != [NSNull null]) {
+                vehicle.arrival_estimates = [vehicleDict objectForKey:@"arrival_estimates"];
+            }
 
             vehicle.vehicle_id = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"vehicle_id"] integerValue]];
             

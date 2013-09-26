@@ -468,6 +468,11 @@
 //    if ([conversionInfo minute] < 1) {
 //        return @"Arriving"
 //    }
+    
+    NSInteger numMin = [conversionInfo minute];
+    if (numMin < -10) {
+        return @"???";
+    }
     return [NSString stringWithFormat:@"%d", [conversionInfo minute]];
 }
 

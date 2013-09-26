@@ -18,6 +18,8 @@
 		912764B217CA9268005106D9 /* App_store.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764B117CA9268005106D9 /* App_store.png */; };
 		912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */ = {isa = PBXBuildFile; fileRef = 912764F817CA97E2005106D9 /* app_icon_ios6.png */; };
 		9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */; };
+		913820EF17E75CEA00C00C78 /* Untitled-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 913820EE17E75CEA00C00C78 /* Untitled-2.png */; };
+		913820F117E75CFF00C00C78 /* IMG_0159 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 913820F017E75CFF00C00C78 /* IMG_0159 copy.png */; };
 		914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E017C119C0001A6078 /* icon_stop_dull.png */; };
 		914B40E317C119C0001A6078 /* icon_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E117C119C0001A6078 /* icon_stop.png */; };
 		914B40E617C12232001A6078 /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 914B40E517C12232001A6078 /* StopAnnotationView.m */; };
@@ -119,6 +121,8 @@
 		912764B117CA9268005106D9 /* App_store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_store.png; sourceTree = "<group>"; };
 		912764F817CA97E2005106D9 /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_ios6.png; sourceTree = "<group>"; };
 		9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow_small.png; sourceTree = "<group>"; };
+		913820EE17E75CEA00C00C78 /* Untitled-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-2.png"; sourceTree = "<group>"; };
+		913820F017E75CFF00C00C78 /* IMG_0159 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IMG_0159 copy.png"; sourceTree = "<group>"; };
 		914B40E017C119C0001A6078 /* icon_stop_dull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_dull.png; sourceTree = "<group>"; };
 		914B40E117C119C0001A6078 /* icon_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop.png; sourceTree = "<group>"; };
 		914B40E417C12232001A6078 /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 		91719BFB176CCDB200A25620 = {
 			isa = PBXGroup;
 			children = (
+				913820F017E75CFF00C00C78 /* IMG_0159 copy.png */,
+				913820EE17E75CEA00C00C78 /* Untitled-2.png */,
 				91F0C68617CD6FF0001E96DE /* Default.png */,
 				91F0C68417CD6FBE001E96DE /* app_icon_3g.png */,
 				91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */,
@@ -587,6 +593,7 @@
 				918DAA3017C0842300411463 /* icon_bus MedCampus_shadow.png in Resources */,
 				91E85F3917CB00DB004927EE /* Default~iphone.png in Resources */,
 				918DAA1F17C0474700411463 /* app_icon.png in Resources */,
+				913820EF17E75CEA00C00C78 /* Untitled-2.png in Resources */,
 				91E85F4417CB02FF004927EE /* app_icon_5_spotlight.png in Resources */,
 				9108AFEA17CA84020094F607 /* Help.png in Resources */,
 				9194D92917C3B0AA0073F961 /* GoogleMaps.bundle in Resources */,
@@ -595,6 +602,7 @@
 				91E85F3E17CB022F004927EE /* app_icon_3g.png in Resources */,
 				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
+				913820F117E75CFF00C00C78 /* IMG_0159 copy.png in Resources */,
 				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
 				912764B017CA9260005106D9 /* Default_4.png in Resources */,
 				91719C65176CCE0000A25620 /* RegenerateCredits in Resources */,
