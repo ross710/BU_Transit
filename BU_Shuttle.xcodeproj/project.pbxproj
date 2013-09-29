@@ -58,7 +58,6 @@
 		91719C75176CEA9700A25620 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719C74176CEA9700A25620 /* Vehicle.m */; };
 		917C537417BFD69D009A5F73 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537317BFD69D009A5F73 /* Cell.m */; };
 		917C537E17BFE986009A5F73 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C537D17BFE986009A5F73 /* RootViewController.m */; };
-		917C538117BFEC84009A5F73 /* PageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C538017BFEC84009A5F73 /* PageDataSource.m */; };
 		918DAA1F17C0474700411463 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA1E17C0474700411463 /* app_icon.png */; };
 		918DAA2217C04F7C00411463 /* ArrivalEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 918DAA2117C04F7C00411463 /* ArrivalEstimate.m */; };
 		918DAA2617C0771800411463 /* icon_bus copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 918DAA2517C0771800411463 /* icon_bus copy.png */; };
@@ -184,8 +183,6 @@
 		917C537317BFD69D009A5F73 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		917C537C17BFE986009A5F73 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		917C537D17BFE986009A5F73 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		917C537F17BFEC84009A5F73 /* PageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageDataSource.h; sourceTree = "<group>"; };
-		917C538017BFEC84009A5F73 /* PageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageDataSource.m; sourceTree = "<group>"; };
 		918DAA1E17C0474700411463 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		918DAA2017C04F7C00411463 /* ArrivalEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalEstimate.h; sourceTree = "<group>"; };
 		918DAA2117C04F7C00411463 /* ArrivalEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalEstimate.m; sourceTree = "<group>"; };
@@ -323,8 +320,6 @@
 				91719C3C176CCDF100A25620 /* JSON */,
 				91719C16176CCDB200A25620 /* AppDelegate.h */,
 				91719C17176CCDB200A25620 /* AppDelegate.m */,
-				917C537F17BFEC84009A5F73 /* PageDataSource.h */,
-				917C538017BFEC84009A5F73 /* PageDataSource.m */,
 				9108AFE217CA7C390094F607 /* HelpViewController.h */,
 				9108AFE317CA7C390094F607 /* HelpViewController.m */,
 				91719C66176CCE4100A25620 /* Classes */,
@@ -650,7 +645,6 @@
 				9103F75F17AC743100FB7C9D /* ListViewController.m in Sources */,
 				91719C5C176CCE0000A25620 /* SBJsonStreamParserAdapter.m in Sources */,
 				91719C59176CCE0000A25620 /* SBJsonParser.m in Sources */,
-				917C538117BFEC84009A5F73 /* PageDataSource.m in Sources */,
 				91719C5F176CCE0000A25620 /* SBJsonStreamWriter.m in Sources */,
 				91719C6C176CCE5000A25620 /* Stop.m in Sources */,
 				91719C5E176CCE0000A25620 /* SBJsonStreamTokeniser.m in Sources */,

@@ -562,7 +562,6 @@
             }
         }
         if (found == false) { //if not found, add
-            NSLog(@"%@", vehicleDict);
 
             Vehicle *vehicle = [[Vehicle alloc]init];
             if ([vehicleDict objectForKey:@"heading"] != [NSNull null]) {

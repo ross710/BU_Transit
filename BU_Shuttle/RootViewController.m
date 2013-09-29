@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "PageDataSource.h"
 #import "Stop_pin.h"
 
 @interface RootViewController ()
@@ -98,7 +97,6 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
-    //    ListViewController *controller = (ListViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listView"];
     UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listNav"];
     ListViewController *listView = [mainStoryboard instantiateViewControllerWithIdentifier:@"listView"];
     listView.delegate = self;
@@ -118,20 +116,6 @@
     for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
         gR.delegate = self;
     }
-    //    [mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
-    
-    
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(gotoListView)
-//                                                 name:@"gotoListView"
-//                                               object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(gotoMapView:)
-//                                                 name:@"gotoMapView"
-//                                               object:nil];
-
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,7 +144,6 @@
 //-(void) fixBlackScreen {
 //    if (![[self.viewControllers objectAtIndex:0] isKindOfClass:[MapViewController class]] && ![[self.viewControllers objectAtIndex:0] isKindOfClass:[ListViewController class]]) {
 //        [self gotoListView];
-//        NSLog(@"RESETTING   HDBISKJNJNS HJKW SKNKJ LWN:");
 //    }
 //}
 #pragma mark - UIPageViewControllerDataSource Methods

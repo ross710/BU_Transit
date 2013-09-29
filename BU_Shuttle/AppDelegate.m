@@ -66,37 +66,17 @@
 
 -(void) updateStops {
     NSLog(@"UPDATE");
-
     [self refreshStops];
 }
 
 -(void) switchToDay {
-//    [wrapper swapTime];
     [self updateStops];
     [self loadRoute:NO];
-//    NSArray *overlays = [mapView overlays];
-//    for ( in overlays)  {
-//        
-//        if ([overlayView isKindOfClass:[MKOverlayView class]]) {
-//            [overlayView setNeedsDisplayInMapRect:MKMapRectWorld];
-//        }
-//    }
 }
 
 -(void) switchToNight {
-//    [wrapper swapTime];
     [self updateStops];
-
     [self loadRoute:YES];
-
-//    NSArray *overlays = [mapView overlays];
-//    for (MKOverlayView *overlayView in overlays)  {
-//        if ([overlayView isKindOfClass:[MKOverlayView
-//                                        class]]) {
-//            [overlayView setNeedsDisplayInMapRect:MKMapRectWorld];
-//        }
-//    }
-
 }
 
 -(void) refreshStops {
@@ -176,11 +156,6 @@
 
 -(void) plotStops {
     NSMutableDictionary *stops = [wrapper stops];
-//    for (Stop_pin<MKAnnotation> *annotation in mapView.annotations) {
-//        if (![annotation isKindOfClass:[MKUserLocation class]] && [annotation isKindOfClass:[Stop_pin class]]) {
-//            [mapView removeAnnotation:annotation];
-//        }
-//    }
     
     for (id key in stops) {
         Stop *stop = [stops objectForKey:key];
@@ -232,22 +207,10 @@
             [mapView addAnnotation:annotation];
         }
     }
-//    [self performSelector:@selector(hideNetworkActivity) withObject:nil afterDelay:0.5];
-
-
-
-
 }
 
--(void) hideNetworkActivity {
-//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
 - (void)plotVehicles {
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
     [wrapper queueVehicles];
-    
-    
 }
 
 
@@ -328,7 +291,6 @@
         if(nil == self.routeLineView)
         {
             self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-//            self.routeLineView.fillColor = [UIColor redColor];
             self.routeLineView.strokeColor = [UIColor blueColor];
             self.routeLineView.alpha = 0.8;
             self.routeLineView.lineWidth = 3;
@@ -404,21 +366,16 @@
     MKAnnotationView *aV;
     
     for (aV in views) {
-        
-        
         if ([[aV annotation] isKindOfClass:[MKUserLocation class]])
         {
-//            [[aV superview] bringSubviewToFront:aV];
             aV.layer.zPosition = 2049;
             continue;
         } else if ([[aV annotation] isKindOfClass:[Vehicle_pin class]])
         {
-//            [[aV superview] bringSubviewToFront:aV];
             aV.layer.zPosition = 2047;
         }
         else
         {
-//            [[aV superview] sendSubviewToBack:aV];
             aV.layer.zPosition = 2048;
 
         }
@@ -440,37 +397,6 @@
         
         
         aV.frame = endFrame;
-
-//        if ([aV isKindOfClass:[Vehicle_pin class]]) {
-////            aV.layer.zPosition = 2000;
-//
-//            // Animate drop
-//            [UIView animateWithDuration:0.5
-//                                  delay:0.04*[views indexOfObject:aV]
-//                                options:UIViewAnimationOptionCurveEaseIn
-//                             animations:^{
-//                                 
-//                                 aV.frame = endFrame;
-//                                 
-//                                 // Animate squash
-//                             }completion:^(BOOL finished){
-//                                 if (finished) {
-//                                     [UIView animateWithDuration:0.05 animations:^{
-//                                         aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
-//                                         
-//                                     }completion:^(BOOL finished){
-//                                         if (finished) {
-//                                             [UIView animateWithDuration:0.1 animations:^{
-//                                                 aV.transform = CGAffineTransformIdentity;
-//                                             }];
-//                                         }
-//                                     }];
-//                                 }
-//                             }];
-//        } else {
-//            aV.frame = endFrame;
-//
-//        }
     }
 }
 
@@ -480,7 +406,6 @@
 
 -(void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     Stop_pin *pin = (Stop_pin*)[view annotation];
-//    CLLocation *location = [[CLLocation alloc] initWithLatitude:pin.coordinate.latitude longitude:pin.coordinate.longitude];
     [self.delegate showStreetView:pin];
 }
 - (void)applicationWillResignActive:(UIApplication *)application

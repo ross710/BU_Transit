@@ -88,9 +88,6 @@
 
 }
 
-//- (void)loadView {
-//
-//}
 
 - (void)didReceiveMemoryWarning
 {

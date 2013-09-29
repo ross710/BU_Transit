@@ -46,7 +46,6 @@
         busType.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
         busType.textAlignment = NSTextAlignmentLeft;
         
-//        inOrOutBound.text = @"0.1";
         
         [self addSubview:stopName];
         [self addSubview:timeAway];

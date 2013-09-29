@@ -150,30 +150,17 @@
 //    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
 }
 - (void)gotoMapView:(id)sender {
-//    [[NSNotificationCenter defaultCenter]
-//     postNotificationName:@"gotoMapView"
-//     object:nil];
     [self.delegate gotoMapView: nil];
 }
 
 
 -(void) updateArrivalEstimates {
-//    NSLog(@"UPDATING ARRIVAL ESTIMATES");
-//    dispatch_async(dispatch_get_global_queue(0, 0),
-//                   ^ {
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
     [wrapper queueArrivalEstimates];
-//                   });
-//    arrival_estimates = [wrapper loadArrivalEstimates];
-//    NSLog(@"NUM EST %@", ((ArrivalEstimate *)[arrival_estimates objectForKey:[NSNumber numberWithInt: 4117698]]).stop_id);
-//    [self.tableView reloadData];
 }
 
 -(void) recieveArrivalEstimates : (NSMutableDictionary *) object{
     arrival_estimates = object;
     [self.tableView reloadData];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.refreshControl endRefreshing];
 }
 
@@ -464,10 +451,6 @@
 
     NSCalendar *currCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *conversionInfo = [currCalendar components:unitFlags fromDate:date1 toDate:date2  options:0];
-
-//    if ([conversionInfo minute] < 1) {
-//        return @"Arriving"
-//    }
     
     NSInteger numMin = [conversionInfo minute];
     if (numMin < -10) {
