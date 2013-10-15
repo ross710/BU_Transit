@@ -198,7 +198,7 @@
     if (!alreadyInit) {
         for (id key in vehicles) {
             Vehicle *vehicle = [vehicles objectForKey:key];
-            //            Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.vehicle_id heading:vehicle.heading type:vehicle.type];
+        
             Vehicle_pin *annotation = [[Vehicle_pin alloc] initWithLong:[vehicle.location.lng doubleValue] Lat:[vehicle.location.lat doubleValue] vehicle_id:vehicle.vehicle_id heading:vehicle.heading type:vehicle.type];
             if ([vehicle.arrival_estimates count] > 0) {
                 NSDictionary *dict = [vehicle.arrival_estimates objectAtIndex:0];

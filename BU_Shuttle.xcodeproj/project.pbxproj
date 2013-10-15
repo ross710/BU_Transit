@@ -20,8 +20,6 @@
 		9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */; };
 		913820EF17E75CEA00C00C78 /* Untitled-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 913820EE17E75CEA00C00C78 /* Untitled-2.png */; };
 		913820F117E75CFF00C00C78 /* IMG_0159 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 913820F017E75CFF00C00C78 /* IMG_0159 copy.png */; };
-		914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E017C119C0001A6078 /* icon_stop_dull.png */; };
-		914B40E317C119C0001A6078 /* icon_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 914B40E117C119C0001A6078 /* icon_stop.png */; };
 		914B40E617C12232001A6078 /* StopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 914B40E517C12232001A6078 /* StopAnnotationView.m */; };
 		915D538917C178630049C974 /* Stop_pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 915D538817C178630049C974 /* Stop_pin.m */; };
 		91650A3417BF153400C620D8 /* icon_bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 91650A3317BF153400C620D8 /* icon_bus.png */; };
@@ -77,7 +75,6 @@
 		9194D93D17C3B1360073F961 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9194D93C17C3B1360073F961 /* QuartzCore.framework */; };
 		9194D93F17C3B1420073F961 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9194D93E17C3B1420073F961 /* SystemConfiguration.framework */; };
 		9194D94217C3B3BE0073F961 /* StreetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9194D94117C3B3BE0073F961 /* StreetViewController.m */; };
-		91B1A5B017C2E5900098BDB4 /* icon_bus_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */; };
 		91B1A5B117C2E5900098BDB4 /* icon_bus_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */; };
 		91E5DC1D177F526A00F5399F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E5DC1C177F526A00F5399F /* MapKit.framework */; };
 		91E5DC25177F609A00F5399F /* BusAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E5DC24177F609A00F5399F /* BusAnnotationView.m */; };
@@ -122,8 +119,6 @@
 		9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow_small.png; sourceTree = "<group>"; };
 		913820EE17E75CEA00C00C78 /* Untitled-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-2.png"; sourceTree = "<group>"; };
 		913820F017E75CFF00C00C78 /* IMG_0159 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IMG_0159 copy.png"; sourceTree = "<group>"; };
-		914B40E017C119C0001A6078 /* icon_stop_dull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop_dull.png; sourceTree = "<group>"; };
-		914B40E117C119C0001A6078 /* icon_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_stop.png; sourceTree = "<group>"; };
 		914B40E417C12232001A6078 /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
 		914B40E517C12232001A6078 /* StopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotationView.m; sourceTree = "<group>"; };
 		915D538717C178630049C974 /* Stop_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop_pin.h; sourceTree = "<group>"; };
@@ -204,7 +199,6 @@
 		9194D93E17C3B1420073F961 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9194D94017C3B3BE0073F961 /* StreetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetViewController.h; sourceTree = "<group>"; };
 		9194D94117C3B3BE0073F961 /* StreetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetViewController.m; sourceTree = "<group>"; };
-		91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_white.png; sourceTree = "<group>"; };
 		91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow.png; sourceTree = "<group>"; };
 		91E5DC1C177F526A00F5399F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		91E5DC23177F609A00F5399F /* BusAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusAnnotationView.h; sourceTree = "<group>"; };
@@ -489,10 +483,7 @@
 			children = (
 				91F50386178889CC00A2BDCA /* route.csv */,
 				9102974B17D32098000EA22B /* routeNight.csv */,
-				91B1A5AE17C2E5900098BDB4 /* icon_bus_white.png */,
 				91B1A5AF17C2E5900098BDB4 /* icon_bus_yellow.png */,
-				914B40E017C119C0001A6078 /* icon_stop_dull.png */,
-				914B40E117C119C0001A6078 /* icon_stop.png */,
 				9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */,
 				918DAA2517C0771800411463 /* icon_bus copy.png */,
 				918DAA2917C0798100411463 /* icon_bus MedCampus.png */,
@@ -593,9 +584,7 @@
 				9108AFEA17CA84020094F607 /* Help.png in Resources */,
 				9194D92917C3B0AA0073F961 /* GoogleMaps.bundle in Resources */,
 				91E85F3817CB00DB004927EE /* Default-568h@2x.png in Resources */,
-				914B40E217C119C0001A6078 /* icon_stop_dull.png in Resources */,
 				91E85F3E17CB022F004927EE /* app_icon_3g.png in Resources */,
-				914B40E317C119C0001A6078 /* icon_stop.png in Resources */,
 				918DAA2617C0771800411463 /* icon_bus copy.png in Resources */,
 				913820F117E75CFF00C00C78 /* IMG_0159 copy.png in Resources */,
 				9103F76317AC7FB700FB7C9D /* Stops.plist in Resources */,
@@ -605,7 +594,6 @@
 				91719C12176CCDB200A25620 /* InfoPlist.strings in Resources */,
 				91B1A5B117C2E5900098BDB4 /* icon_bus_yellow.png in Resources */,
 				9137DE5917CA729F0040376D /* icon_bus_yellow_small.png in Resources */,
-				91B1A5B017C2E5900098BDB4 /* icon_bus_white.png in Resources */,
 				91F50384178889CC00A2BDCA /* route.csv in Resources */,
 				91E85F4117CB02C1004927EE /* app_icon_4_spotlight.png in Resources */,
 				912764F917CA97E2005106D9 /* app_icon_ios6.png in Resources */,

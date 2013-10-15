@@ -37,11 +37,7 @@
 @synthesize swap;
 
 - (void)viewDidAppear:(BOOL)animated {
-//    dispatch_async(dispatch_get_global_queue(0, 0),
-//                   ^ {
-//                       [self refreshVehicles];
-    
-//                       [self resumeTimer];
+
                        if (shouldResetView) {
                            NSArray *selAn = [self.mapView selectedAnnotations];
                            if ([selAn count] > 0) {
@@ -53,10 +49,7 @@
                            shouldResetView = NO;
                            
                        }
-//                   });
 
-
-//    [self showStreetView];
 }
 
 -(void) showStreetView : (Stop_pin *) pin {
@@ -91,8 +84,7 @@
 	// Do any additional setup after loading the view.
     swap = NO;
     [self initEverything];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTimer) name:@"map_active" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"map_inactive" object:nil];
+
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.delegate = self;
@@ -100,9 +92,7 @@
 }
 
 - (IBAction)gotoListView:(id)sender {
-//    [[NSNotificationCenter defaultCenter]
-//     postNotificationName:@"gotoListView"
-//     object:self];
+
     NSLog(@"TRYING TO GO TO LIST VIEW");
     [self.delegate gotoListView];
 }
@@ -151,18 +141,7 @@
 
 
 -(void) refreshVehicles {
-//    dispatch_async(dispatch_get_global_queue(0, 0),
-//                   ^ {
-//    NSLog(@"REFRESHING");
-//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    if (swap) {
-//        [appDelegate switchToDay];
-//        swap = NO;
-//    } else {
-//        [appDelegate switchToNight];
-//        swap = YES;
-//    }
+
     [appDelegate plotVehicles];
-//                   });
 }
 @end

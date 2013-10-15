@@ -30,7 +30,7 @@
 - (NSString *)subtitle {
     return @"Touch for street view";
     return  nil;
-//    return [NSString stringWithFormat:@"Next_bus: %@", [vehicle.arrival_estimates objectAtIndex:0]  ];
+
 }
 
 

@@ -172,7 +172,7 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
 
-//    [locationManager startMonitoringSignificantLocationChanges];
+
     locationManager.delegate = self;
     geocoder = [[CLGeocoder alloc] init];
 
@@ -181,7 +181,6 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [locationManager stopUpdatingLocation];
 
-//    NSLog(@"Locations : %@",[locations lastObject]);
     myLocation = [locations lastObject];
     [self saveLocationData];
 }
@@ -197,12 +196,10 @@
     [self.tableView reloadData];
 }
 -(void) saveLocationData {
-//    NSLog(@"UPDATING LOCATION");
-//    myLocation = locationManager.location;
-    
+
     
     [geocoder reverseGeocodeLocation:myLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        //        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
+
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
             NSString *checkLength = [NSString stringWithFormat:@"%@ %@, %@, %@",
@@ -210,7 +207,7 @@
                                      placemark.thoroughfare,
                                      placemark.locality,
                                      placemark.administrativeArea];
-            //            NSLog(@"%d", [checkLength length]);
+
             if ([checkLength length] <= 17) {
                 [self setTitle:checkLength];
             } else if (placemark.subThoroughfare == NULL){

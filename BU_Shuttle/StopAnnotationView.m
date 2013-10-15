@@ -1,11 +1,4 @@
-//
-//  AWIconAnnotationView.m
-//  Easy Custom Map Icons
-//
-//  Created by Alek Åström on 2011-08-12.
-//  Copyright 2011 Apps & Wonders. No rights reserved.
-//
-
+//influence from http://mralek.se/post/9591337792/easy-custom-mkpinannotationview-with-pin-drop
 #import "StopAnnotationView.h"
 
 @implementation StopAnnotationView
@@ -18,7 +11,7 @@
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         {
-            // Compensate frame a bit so everything's aligned
+
             [self setCenterOffset:CGPointMake(0, 44)];
             [self setCalloutOffset:CGPointMake(-4.1, 20)];
 
@@ -55,9 +48,9 @@
 /** Override to make sure shadow image is always set
  */
 - (void)setImage:(UIImage *)image {
-    //    [super setImage:[UIImage imageNamed:@"pin_shadow.png"]];
+
     [super setImage:nil];
-    //    [super setImage:[UIImage imageNamed:@"icon_bus shadow.png"]];
+
 }
 
 

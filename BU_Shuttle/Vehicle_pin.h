@@ -15,7 +15,6 @@
 }
 
 @property (nonatomic, retain) NSNumber *vehicle_id;
-//@property (nonatomic, retain) NSNumber *vehicle_id;
 
 @property (nonatomic, retain) NSNumber *heading;
 @property (nonatomic, retain) NSNumber *isInboundToStuvii;
