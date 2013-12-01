@@ -17,6 +17,8 @@
 @property (nonatomic) NSArray *closestStops;
 @property (nonatomic) NSTimer *locationTimer;
 @property (nonatomic) NSTimer *arrivalEstimatesTimer;
+@property (atomic) BOOL delayWarning;
+
 @property (nonatomic) BackEndWrapper *wrapper;
 @end
 
@@ -25,6 +27,7 @@
 @synthesize stops, closestStops, stopsArray, arrival_estimates;
 @synthesize wrapper;
 @synthesize locationTimer, arrivalEstimatesTimer;
+@synthesize delayWarning;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +40,7 @@
 
 - (void)viewDidLoad
 {
-    
+    delayWarning = NO;
     
     [super viewDidLoad];
     [self initLocation];
@@ -63,8 +66,53 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self performSelector:@selector(checkIfRunning) withObject:self afterDelay:3.0];
+
 }
 
+-(void) checkIfRunning {
+//    arrival_estimates
+    NSArray *keysArray = [arrival_estimates allValues];
+    
+    if ([keysArray count] <= 0 && delayWarning == NO) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry Mate" message:@"Buses don't appear to be running at this time, but you can check the map to confirm" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        
+    }
+//    for (id key in arrival_estimates) {
+//        ArrivalEstimate *est = [arrival_estimates objectForKey:key];
+//        NSLog(@"subdict %@", est.arrival_at);
+////        if ([subDictionary objectForKey:@"type"] == @"title")
+////            [titles addObject:[subDictionary objectForKey:@"title"]];
+//        // etc.
+//        isRunning = YES;
+//    }
+//    
+//    if (!isRunning) {
+//
+//    }
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+//    Cell *cell = (Cell*)[self.tableView cellForRowAtIndexPath:indexPath];
+//    if ([[cell.timeAway text] isEqualToString:@"--"]) {
+//
+//    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    //dismiss for an hour
+    if (buttonIndex == 1)
+    {
+        NSLog(@"Dismiss for a while");
+        delayWarning = YES;
+        NSUInteger time = 20;
+        [self performSelector:@selector(releaseDelay) withObject:self afterDelay:time];
+    }
+}
+-(void) releaseDelay {
+    delayWarning = NO;
+}
 -(void) continueInit{
     
 
@@ -122,7 +170,7 @@
 //    [self updateLocation];
 //    [self updateArrivalEstimates];
 //    [self resumeTimer];
-    
+
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
