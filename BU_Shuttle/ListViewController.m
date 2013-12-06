@@ -470,6 +470,11 @@
             return [NSNumber numberWithBool:YES];
             break;
         }
+        case 4007516:
+        {
+            return [NSNumber numberWithBool:YES];
+            break;
+        }
         case 4008320:
         {
             return [NSNumber numberWithBool:YES];
