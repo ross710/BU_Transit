@@ -525,6 +525,11 @@
                     vehicle.type = @"Big bus";
                     break;
                 }
+                case 4007516:
+                {
+                    vehicle.type = @"Big bus";
+                    break;
+                }
                 case 4008320:
                 {
                     vehicle.type = @"Big bus";
