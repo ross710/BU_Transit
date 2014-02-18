@@ -544,6 +544,11 @@
 				TargetAttributes = {
 					91719C03176CCDB200A25620 = {
 						DevelopmentTeam = 95867XNCMF;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					91719C24176CCDB200A25620 = {
 						TestTargetID = 91719C03176CCDB200A25620;

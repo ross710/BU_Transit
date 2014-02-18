@@ -21,7 +21,7 @@
 @end
 
 
-@interface ListViewController : UITableViewController <BackEndWrapperDelegate, CLLocationManagerDelegate> {
+@interface ListViewController : UITableViewController <BackEndWrapperDelegate, CLLocationManagerDelegate, UIAlertViewDelegate> {
     CLLocationManager *locationManager;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;

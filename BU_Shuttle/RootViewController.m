@@ -31,60 +31,56 @@
     return self;
 }
 
-
+//http://stackoverflow.com/questions/13633059/uipageviewcontroller-how-do-i-correctly-jump-to-a-specific-page-without-messing
 -(void) gotoListView {
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-//                                                             bundle: nil];
-//    UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"listNav"];
-//    if (canTransition) {
-        [self setViewControllers:@[[vcArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:NULL];
-//    }
+    __weak UIPageViewController* pvcw = self;
+    [self setViewControllers:@[[vcArray objectAtIndex:0]]
+                  direction:UIPageViewControllerNavigationDirectionReverse
+                   animated:YES completion:^(BOOL finished) {
+                       UIPageViewController* pvcs = pvcw;
+                       if (!pvcs) return;
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           [pvcs setViewControllers:@[[vcArray objectAtIndex:0]]
+                                          direction:UIPageViewControllerNavigationDirectionReverse
+                                           animated:NO completion:nil];
+                       });
+                   }];
+//        [self setViewControllers:@[[vcArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:NULL];
 }
 
 
-//-(void) gotoMapView: (NSNotification *) notification {
-////    self.view = [self.dataSource pageViewController:self viewControllerAfterViewController:[self.viewControllers objectAtIndex:0]];
-//
-////    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-////                                                             bundle: nil];
-////    UINavigationController *controller = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapNav"];
-//    UINavigationController *navC = [vcArray objectAtIndex:1];
-//    MapViewController *mapV = [navC.viewControllers objectAtIndex:0];
-//    mapV.shouldResetView = YES;
-//    [self setViewControllers:@[navC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-//    
-//    
-//    NSDictionary *dict = [notification userInfo];
-//    NSNumber *stop_id = [dict objectForKey:@"stop_id"];
-//    if (stop_id) {
-//        MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
-//        for (Stop_pin<MKAnnotation> *currentAnnotation in mapView.annotations) {
-//            if ([currentAnnotation isKindOfClass:[Stop_pin class]] && [currentAnnotation.stop_id isEqualToNumber:stop_id]) {
-//                [mapView selectAnnotation:currentAnnotation animated:FALSE];
-//            }
-//        }
-//    }
-//
-//}
+
 
 
 -(void) gotoMapView:(NSNumber *)stop_id {
-//    if (canTransition) {
         UINavigationController *navC = [vcArray objectAtIndex:1];
         MapViewController *mapV = [navC.viewControllers objectAtIndex:0];
         mapV.shouldResetView = YES;
-        [self setViewControllers:@[navC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-        
-        if (stop_id) {
-            MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
-            for (Stop_pin<MKAnnotation> *currentAnnotation in mapView.annotations) {
-                if ([currentAnnotation isKindOfClass:[Stop_pin class]] && [currentAnnotation.stop_id isEqualToNumber:stop_id]) {
-                    [mapView selectAnnotation:currentAnnotation animated:FALSE];
-                    continue;
-                }
-            }
-        }
-//    }
+//        [self setViewControllers:@[navC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+//    
+    __weak UIPageViewController* pvcw = self;
+    [self setViewControllers:@[navC]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:YES completion:^(BOOL finished) {
+                        UIPageViewController* pvcs = pvcw;
+                        if (!pvcs) return;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [pvcs setViewControllers:@[navC]
+                                           direction:UIPageViewControllerNavigationDirectionForward
+                                            animated:NO completion:nil];
+                        });
+                    }];
+    
+    //for highlighting annotation
+//        if (stop_id) {
+//            MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
+//            for (Stop_pin<MKAnnotation> *currentAnnotation in mapView.annotations) {
+//                if ([currentAnnotation isKindOfClass:[Stop_pin class]] && [currentAnnotation.stop_id isEqualToNumber:stop_id]) {
+//                    [mapView selectAnnotation:currentAnnotation animated:FALSE];
+//                    continue;
+//                }
+//            }
+//        }
     
 }
 - (void)viewDidLoad

@@ -93,7 +93,7 @@
 
 - (IBAction)gotoListView:(id)sender {
 
-    NSLog(@"TRYING TO GO TO LIST VIEW");
+//    NSLog(@"TRYING TO GO TO LIST VIEW");
     [self.delegate gotoListView];
 }
 

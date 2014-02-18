@@ -19,11 +19,14 @@
 
 @interface AppDelegate ()
 @property (nonatomic, retain) NSMutableDictionary *vehicles;
+@property (nonatomic) NSUInteger stopID;
+@property (nonatomic) NSUInteger remindMinutes;
 
 @end
 @implementation AppDelegate
 @synthesize wrapper, mapView, routeLine, routeLineView;
 @synthesize vehicles;
+@synthesize stopID, remindMinutes;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -55,15 +58,127 @@
     }
     [mapView setRegion:viewRegion animated:NO];
     
-    
     [self plotVehicles];
     
 //    [wrapper queueRoutes];
 
+//    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    stopID = -1;
+    remindMinutes = -1;
+    
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:20];
+
+    
 
     return YES;
 }
 
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"%d, %d", stopID, remindMinutes);
+    if (stopID != -1) {
+        //get arrival estimates
+        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"] cachePolicy:0 timeoutInterval:5];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        
+        NSUInteger minutesLeft = [self getTimeDifferenceFromJSON:dictionary];
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate date];
+        
+        if (minutesLeft != -1) {
+            localNotification.alertBody = [NSString stringWithFormat:@"Bus arriving in: %d minutes", minutesLeft];
+        } else {
+            localNotification.alertBody = [NSString stringWithFormat:@"Sorry, bus alerts not available"];
+            
+        }
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        NSLog(@"Minutes %d", minutesLeft);
+//        minutesLeft = 2;
+        if (remindMinutes >= minutesLeft) {
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            [self resetReminder];
+//            [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+
+        }
+        
+        //fetch the latest content
+        completionHandler(UIBackgroundFetchResultNewData);
+    } else {
+//        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+        completionHandler(UIBackgroundFetchResultFailed);
+    }
+    
+}
+
+-(void) resetReminder {
+    remindMinutes = -1;
+    stopID = -1;
+}
+
+-(NSUInteger) minutesBetweenTwoDates: (NSDate *) date1 :(NSDate *) date2 {
+    unsigned int unitFlags = NSMinuteCalendarUnit;
+    
+    NSCalendar *currCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *conversionInfo = [currCalendar components:unitFlags fromDate:date1 toDate:date2  options:0];
+    
+    NSInteger numMin = [conversionInfo minute];
+    if (numMin < -10) {
+        return -1;
+    }
+    return [conversionInfo minute];
+}
+
+- (NSUInteger) getTimeDifferenceFromJSON: (NSDictionary *) fullDict {
+    NSArray *allTheArrivalEstimates = [fullDict objectForKey:@"data"];
+    
+    
+    for (id object in allTheArrivalEstimates) {
+        NSDictionary *dict = (NSDictionary *) object;
+        
+        if ([[dict objectForKey:@"stop_id"] integerValue] == stopID){
+            NSArray *arrivals = [dict objectForKey:@"arrivals"];
+            
+            if ([arrivals count] > 0) {
+                NSDictionary *arrivalDict = [arrivals objectAtIndex:0];
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+                
+                NSDate *arrival = [dateFormat dateFromString:[arrivalDict objectForKey:@"arrival_at"]];
+                
+                return [self minutesBetweenTwoDates:[NSDate date] :arrival];
+            }
+        }
+        
+    }
+    return -1;
+}
+     
+- (void) createBusNotification: (NSUInteger) stopID_ time: (NSUInteger) remindMinutes_{
+    stopID = stopID_;
+    remindMinutes = remindMinutes_;
+    
+    NSLog(@"%d, %d", stopID, remindMinutes);
+}
+
+
+//- (void) application: (UIApplication *)application performFetchWithCompletionHandler:
+//(void(^) (UIBackgroundFetchResult))completionHandler
+//{
+//    //fetch the latest content
+//    //Create a Configuration Object
+//    NSURLSessionConfiguration* sessionConfig =
+//    [NSURLSessionConfiguration defaultSessionConfiguration];
+//    sessionConfig.allowsCellularAccess = YES;
+//    //Create a Session
+//    NSURLSession *dataDownloadSession = [NSURLSession sessionWithConfiguration: sessionConfig];
+//    NSURL* fetchURL = [NSURL URLWithString:@"http://www.google.com"];
+//    [dataDownloadSession dataTaskWithHTTPGetRequest:fetchURL completionHandler:^
+//     (NSData* data, NSURLResponse* response, NSError* error)
+//     {
+//         NSLog(@"Fetch Completed");
+//         completionHandler(UIBackgroundFetchResultNewData);
+//     }];
+//}
 -(void) updateStops {
     NSLog(@"UPDATE");
     [self refreshStops];
@@ -427,6 +542,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     

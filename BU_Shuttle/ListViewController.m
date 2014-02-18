@@ -17,6 +17,10 @@
 @property (nonatomic) NSArray *closestStops;
 @property (nonatomic) NSTimer *locationTimer;
 @property (nonatomic) NSTimer *arrivalEstimatesTimer;
+
+@property (nonatomic) NSUInteger stopID;
+@property (nonatomic) NSUInteger remindMinutes;
+
 @property (atomic) BOOL delayWarning;
 
 @property (nonatomic) BackEndWrapper *wrapper;
@@ -28,6 +32,7 @@
 @synthesize wrapper;
 @synthesize locationTimer, arrivalEstimatesTimer;
 @synthesize delayWarning;
+@synthesize stopID, remindMinutes;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -75,8 +80,8 @@
     NSArray *keysArray = [arrival_estimates allValues];
     
     if ([keysArray count] <= 0 && delayWarning == NO) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry Mate" message:@"Buses don't appear to be running at this time, but you can check the map to confirm" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry Mate" message:@"Buses don't appear to be running at this time, but you can check the map to confirm" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
         
         
     }
@@ -101,14 +106,17 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    //dismiss for an hour
-    if (buttonIndex == 1)
-    {
-        NSLog(@"Dismiss for a while");
-        delayWarning = YES;
-        NSUInteger time = 20;
-        [self performSelector:@selector(releaseDelay) withObject:self afterDelay:time];
+    if (buttonIndex == 1){
+        [((AppDelegate*)[[UIApplication sharedApplication] delegate]) createBusNotification:stopID time:remindMinutes];
     }
+//    //dismiss for an hour
+//    if (buttonIndex == 1)
+//    {
+//        NSLog(@"Dismiss for a while");
+//        delayWarning = YES;
+//        NSUInteger time = 20;
+//        [self performSelector:@selector(releaseDelay) withObject:self afterDelay:time];
+//    }
 }
 -(void) releaseDelay {
     delayWarning = NO;
@@ -266,8 +274,7 @@
                                 placemark.subThoroughfare,
                                 placemark.thoroughfare]];
             }
-            //            NSLog(@"%@", placemark.thoroughfare);
-            //placemark.postalCode, placemark.locality,placemark.country
+
         } else {
             NSLog(@"%@", error.debugDescription);
         }
@@ -296,7 +303,6 @@
             || [smallestDistance doubleValue] > [distance doubleValue]) {
             smallestDistance = distance;
             closest = count;
-            //            NSLog(@"distance %@", distance);
         }
         count++;
     }
@@ -310,7 +316,6 @@
     //now convert to miles
     NSDecimalNumber *distance = [[NSDecimalNumber alloc] initWithDouble:[destination distanceFromLocation:myLocation] * 0.000621371192];
     
-//    NSLog (@"Distance %@", distance);
     return distance;
 }
 
@@ -366,8 +371,6 @@
     fourthIndex = [self closestStop:mut];
     stop4 = [mut objectAtIndex:fourthIndex];
     
-//    NSLog(@"NEW CLOSEST STOPS LOCATION");
-
     return [NSArray arrayWithObjects: stop1, stop2, stop3, stop4, nil];
 }
 
@@ -382,7 +385,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
@@ -419,9 +421,7 @@
                 [cell.busType setText:@""];
             }
         } else {
-//            if ([cell.timeAway.text isEqualToString:@"--"]) {
-                [cell.timeAway setText:@"--"];
-//            }
+            [cell.timeAway setText:@"--"];
             [cell.busType setText:@""];
         }
         if ([stop.isInboundToStuVii isEqualToNumber:[NSNumber numberWithBool:YES]]) {
@@ -512,13 +512,25 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   Stop *stop = [closestStops objectAtIndex:indexPath.row];
-    [self.delegate gotoMapView:stop.stop_id];
-//   NSDictionary *stopDict = [NSDictionary dictionaryWithObject:stop.stop_id forKey:@"stop_id"];
-//
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"gotoMapView"
-//                                  object:nil
-//                                userInfo:stopDict];
+//    Stop *stop = [closestStops objectAtIndex:indexPath.row];
+//    NSUInteger minutes = 2;
+//    stopID = [stop.stop_id integerValue];
+//    remindMinutes = minutes;
+//    NSString *msg = [NSString stringWithFormat:
+//                     @"Should I tell you when a bus is %d minutes away from %@? Any previous reminders will be canceled.",
+//                     minutes, [stop name]];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Alert when bus arrives?"
+//                                                    message: msg
+//                                                   delegate: nil
+//                                          cancelButtonTitle:@"Cancel"
+//                                          otherButtonTitles:@"Schedule",nil];
+//    alert.delegate = self;
+//    [alert show];
+
+//    [self.delegate gotoMapView:stop.stop_id];
+    
+    
+
 }
 
 
