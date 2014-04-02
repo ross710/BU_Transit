@@ -11,11 +11,12 @@
 @implementation Vehicle_pin
 @synthesize coordinate, vehicle_id, heading, type, isInboundToStuvii;
 
-- (id)initWithLong:(CGFloat)lon Lat:(CGFloat)lat vehicle_id:(NSNumber *)vehicle_id_ heading:(NSNumber *)heading_ type:(NSString *) type_ {
+- (id)initWithLong:(CGFloat)lon Lat:(CGFloat)lat vehicle_id:(NSNumber *)vehicle_id_ vehicle_num:(NSNumber *)vehicle_num_ heading:(NSNumber *)heading_ type:(NSString *) type_ {
     self = [super init];
     if (self) {
         coordinate = CLLocationCoordinate2DMake(lat, lon);
         self.vehicle_id = vehicle_id_;
+        self.vehicle_num = vehicle_num_;
         self.heading = heading_;
         self.type = type_;
         self.isInboundToStuvii = [NSNumber numberWithBool:NO];
@@ -36,7 +37,7 @@
 }
 
 - (NSString *)subtitle {
-    return [NSString stringWithFormat:@"ID: %@", self.vehicle_id];
+    return [NSString stringWithFormat:@"#%@", self.vehicle_num];
 }
 
 

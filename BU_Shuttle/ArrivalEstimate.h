@@ -11,6 +11,8 @@
 @interface ArrivalEstimate : NSObject
 @property (nonatomic, copy) NSDate *arrival_at;
 @property (nonatomic, copy) NSNumber *vehicle_id;
+@property (nonatomic, copy) NSNumber *vehicle_num;
+
 @property (nonatomic, copy) NSNumber *stop_id;
 
 @end

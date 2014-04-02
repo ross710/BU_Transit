@@ -421,7 +421,7 @@
         if ([arrivals count] > 0) {
             NSDictionary *arrivalDict = [arrivals objectAtIndex:0];
             est.vehicle_id = [NSNumber numberWithInteger:[[arrivalDict objectForKey:@"vehicle_id"] integerValue]];
-            
+
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
             
@@ -491,7 +491,8 @@
             }
 
             vehicle.vehicle_id = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"vehicle_id"] integerValue]];
-            
+            vehicle.vehicle_num = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"call_name"] integerValue]];
+
             vehicle.call_name = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"call_name"] integerValue]];
 
             switch ([vehicle.vehicle_id integerValue]) {

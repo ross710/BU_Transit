@@ -85,38 +85,12 @@
         
         
     }
-//    for (id key in arrival_estimates) {
-//        ArrivalEstimate *est = [arrival_estimates objectForKey:key];
-//        NSLog(@"subdict %@", est.arrival_at);
-////        if ([subDictionary objectForKey:@"type"] == @"title")
-////            [titles addObject:[subDictionary objectForKey:@"title"]];
-//        // etc.
-//        isRunning = YES;
-//    }
-//    
-//    if (!isRunning) {
-//
-//    }
-//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-//    Cell *cell = (Cell*)[self.tableView cellForRowAtIndexPath:indexPath];
-//    if ([[cell.timeAway text] isEqualToString:@"--"]) {
-//
-//    }
+
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1){
-        [((AppDelegate*)[[UIApplication sharedApplication] delegate]) createBusNotification:stopID time:remindMinutes];
-    }
-//    //dismiss for an hour
-//    if (buttonIndex == 1)
-//    {
-//        NSLog(@"Dismiss for a while");
-//        delayWarning = YES;
-//        NSUInteger time = 20;
-//        [self performSelector:@selector(releaseDelay) withObject:self afterDelay:time];
-//    }
+
 }
 -(void) releaseDelay {
     delayWarning = NO;
@@ -133,6 +107,8 @@
         UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map >" style:UIBarButtonItemStylePlain target:self action:@selector(gotoMapView:)];
         self.navigationItem.rightBarButtonItem = mapButton;
         
+        UIBarButtonItem *twitterButton = [[UIBarButtonItem alloc] initWithTitle:@"< Tweets" style:UIBarButtonItemStylePlain target:self action:@selector(gotoTwitterView)];
+        self.navigationItem.leftBarButtonItem = twitterButton;
         
 
         
@@ -182,31 +158,19 @@
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
-//    [self pauseTimer];
 }
 
--(void) pauseTimer {
-//    [locationTimer invalidate];
-//    locationTimer = nil;
-//    [arrivalEstimatesTimer invalidate];
-//    arrivalEstimatesTimer = nil;
-}
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [self pauseTimer];
-}
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    [self resumeTimer];
-}
--(void) resumeTimer {
-//    [self updateLocation];
-//    [self updateArrivalEstimates];
-//    locationTimer = [NSTimer scheduledTimerWithTimeInterval: 10.0 target: self selector: @selector(updateLocation) userInfo: nil repeats: YES];
-//    arrivalEstimatesTimer = [NSTimer scheduledTimerWithTimeInterval: 6.0 target: self selector: @selector(updateArrivalEstimates) userInfo: nil repeats: YES];
-}
+
+
 - (void)gotoMapView:(id)sender {
     [self.delegate gotoMapView: nil];
+}
+
+
+- (void)gotoTwitterView{
+    [self.delegate gotoTwitterView];
 }
 
 
@@ -350,10 +314,7 @@
     
     
     NSInteger firstIndex, secondIndex, thirdIndex, fourthIndex;
-//    firstIndex = 0;
-//    secondIndex = 0;
-//    thirdIndex = 0;
-//    fourthIndex = 0;
+
     firstIndex = [self closestStop:mut];
     stop1 = [stopsArray objectAtIndex:firstIndex];
 
@@ -512,22 +473,11 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    Stop *stop = [closestStops objectAtIndex:indexPath.row];
-//    NSUInteger minutes = 2;
-//    stopID = [stop.stop_id integerValue];
-//    remindMinutes = minutes;
-//    NSString *msg = [NSString stringWithFormat:
-//                     @"Should I tell you when a bus is %d minutes away from %@? Any previous reminders will be canceled.",
-//                     minutes, [stop name]];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Alert when bus arrives?"
-//                                                    message: msg
-//                                                   delegate: nil
-//                                          cancelButtonTitle:@"Cancel"
-//                                          otherButtonTitles:@"Schedule",nil];
-//    alert.delegate = self;
-//    [alert show];
 
-//    [self.delegate gotoMapView:stop.stop_id];
+    Stop *stop = [closestStops objectAtIndex:indexPath.row];
+    ArrivalEstimate *est = [arrival_estimates objectForKey:stop.stop_id];
+
+    [self.delegate gotoMapView:est.vehicle_id];
     
     
 

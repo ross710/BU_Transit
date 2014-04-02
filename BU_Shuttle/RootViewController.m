@@ -33,31 +33,58 @@
 
 //http://stackoverflow.com/questions/13633059/uipageviewcontroller-how-do-i-correctly-jump-to-a-specific-page-without-messing
 -(void) gotoListView {
-    __weak UIPageViewController* pvcw = self;
-    [self setViewControllers:@[[vcArray objectAtIndex:0]]
+    __weak RootViewController* pvcw = self;
+    [self setViewControllers:@[[vcArray objectAtIndex:1]]
                   direction:UIPageViewControllerNavigationDirectionReverse
                    animated:YES completion:^(BOOL finished) {
-                       UIPageViewController* pvcs = pvcw;
+                       RootViewController* pvcs = pvcw;
                        if (!pvcs) return;
                        dispatch_async(dispatch_get_main_queue(), ^{
-                           [pvcs setViewControllers:@[[vcArray objectAtIndex:0]]
+                           [pvcs setViewControllers:@[[pvcs.vcArray objectAtIndex:1]]
                                           direction:UIPageViewControllerNavigationDirectionReverse
                                            animated:NO completion:nil];
                        });
                    }];
-//        [self setViewControllers:@[[vcArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:NULL];
+
+}
+
+-(void) gotoTwitterView {
+    __weak RootViewController* pvcw = self;
+    [self setViewControllers:@[[vcArray objectAtIndex:0]]
+                   direction:UIPageViewControllerNavigationDirectionReverse
+                    animated:YES completion:^(BOOL finished) {
+                        RootViewController* pvcs = pvcw;
+                        if (!pvcs) return;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [pvcs setViewControllers:@[[pvcs.vcArray objectAtIndex:0]]
+                                           direction:UIPageViewControllerNavigationDirectionReverse
+                                            animated:NO completion:nil];
+                        });
+                    }];
+}
+
+-(void) gotoListViewfromTwitter {
+    __weak RootViewController* pvcw = self;
+    [self setViewControllers:@[[vcArray objectAtIndex:1]]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:YES completion:^(BOOL finished) {
+                        RootViewController* pvcs = pvcw;
+                        if (!pvcs) return;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [pvcs setViewControllers:@[[pvcs.vcArray objectAtIndex:1]]
+                                           direction:UIPageViewControllerNavigationDirectionForward
+                                            animated:NO completion:nil];
+                        });
+                    }];
 }
 
 
 
-
-
--(void) gotoMapView:(NSNumber *)stop_id {
-        UINavigationController *navC = [vcArray objectAtIndex:1];
+-(void) gotoMapView:(NSNumber *)vehicle_id {
+        UINavigationController *navC = [vcArray objectAtIndex:2];
         MapViewController *mapV = [navC.viewControllers objectAtIndex:0];
         mapV.shouldResetView = YES;
-//        [self setViewControllers:@[navC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-//    
+
     __weak UIPageViewController* pvcw = self;
     [self setViewControllers:@[navC]
                    direction:UIPageViewControllerNavigationDirectionForward
@@ -72,15 +99,16 @@
                     }];
     
     //for highlighting annotation
-//        if (stop_id) {
-//            MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
-//            for (Stop_pin<MKAnnotation> *currentAnnotation in mapView.annotations) {
-//                if ([currentAnnotation isKindOfClass:[Stop_pin class]] && [currentAnnotation.stop_id isEqualToNumber:stop_id]) {
-//                    [mapView selectAnnotation:currentAnnotation animated:FALSE];
-//                    continue;
-//                }
-//            }
-//        }
+        if (vehicle_id) {
+            MKMapView *mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
+            for (Vehicle_pin<MKAnnotation> *annotation in mapView.annotations) {
+                if ([annotation isKindOfClass:[Vehicle_pin class]] && [annotation.vehicle_id isEqualToNumber:vehicle_id]) {
+                    [mapView selectAnnotation:annotation animated:FALSE];
+                    continue;
+                }
+            }
+
+        }
     
 }
 - (void)viewDidLoad
@@ -103,7 +131,12 @@
     mapView.delegate = self;
     [controller2 setViewControllers:@[mapView]];
     
-    vcArray = [NSArray arrayWithObjects:controller, controller2, nil];
+    UINavigationController *controller3 = (UINavigationController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"twitterNav"];
+    TwitterViewController *twitterView = [mainStoryboard instantiateViewControllerWithIdentifier:@"twitterView"];
+    twitterView.delegate = self;
+    [controller3 setViewControllers:@[twitterView]];
+    
+    vcArray = [NSArray arrayWithObjects:controller3, controller, controller2, nil];
     
     [self setViewControllers:@[controller] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished){}];
     
@@ -121,27 +154,15 @@
 }
 
 -(void) pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
-//    canTransition = NO;
-//    [[[[[vcArray objectAtIndex:0] viewControllers] objectAtIndex:0] navigationItem] rightBarButtonItem].enabled = NO;
-//
-//    [[[[[vcArray objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem] leftBarButtonItem].enabled = NO;
+
 
 }
 
 -(void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-//    [[[[[vcArray objectAtIndex:0] viewControllers] objectAtIndex:0] navigationItem] rightBarButtonItem].enabled = YES;
-//    
-//    [[[[[vcArray objectAtIndex:1] viewControllers] objectAtIndex:0] navigationItem] leftBarButtonItem].enabled = YES;
-//    if (completed) {
-//        canTransition = YES;
-//    }
+
 }
 
-//-(void) fixBlackScreen {
-//    if (![[self.viewControllers objectAtIndex:0] isKindOfClass:[MapViewController class]] && ![[self.viewControllers objectAtIndex:0] isKindOfClass:[ListViewController class]]) {
-//        [self gotoListView];
-//    }
-//}
+
 #pragma mark - UIPageViewControllerDataSource Methods
 
 // Returns the view controller before the given view controller. (required)
@@ -149,14 +170,12 @@
       viewControllerBeforeViewController:(UIViewController *)viewController
 {
     
-    UIViewController *ctrl = ((UINavigationController*) viewController).visibleViewController;
-    if([ctrl isKindOfClass:[MapViewController class]]){
-        return [vcArray objectAtIndex:1];
-    }  else if (ctrl == nil) {
-        return [vcArray objectAtIndex:1];
-    } else {
+    NSUInteger currentIndex = [vcArray indexOfObject:viewController];
+    if(currentIndex == 0)
         return nil;
-    }
+    
+    return [vcArray objectAtIndex:currentIndex -1];
+
 }
 
 
@@ -165,14 +184,12 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController
 {
-    UIViewController *ctrl = ((UINavigationController*) viewController).visibleViewController;
-    if([ctrl isKindOfClass:[ListViewController class]]){
-        return [vcArray objectAtIndex:1];
-    } else if (ctrl == nil) {
-        return [vcArray objectAtIndex:1];
-    } else {
+    NSUInteger currentIndex = [vcArray indexOfObject:viewController];
+    if(currentIndex == vcArray.count - 1)
         return nil;
-    }
+    
+    return [vcArray objectAtIndex:currentIndex + 1];
+
 }
 
 

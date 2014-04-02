@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
 #import "ListViewController.h"
+#import "TwitterViewController.h"
 
-@interface RootViewController : UIPageViewController <UIPageViewControllerDataSource, MapViewDelegate, ListViewDelegate, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
+@interface RootViewController : UIPageViewController <UIPageViewControllerDataSource, MapViewDelegate, ListViewDelegate, TwitterViewDelegate, UIPageViewControllerDelegate, UIGestureRecognizerDelegate>
 
 
 @end

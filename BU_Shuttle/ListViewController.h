@@ -16,8 +16,9 @@
 @protocol ListViewDelegate <NSObject>
 
 @required
--(void) gotoMapView: (NSNumber *) stop_id;
-
+//-(void) gotoMapView: (NSNumber *) stop_id;
+-(void) gotoMapView:(NSNumber *)vehicle_id;
+-(void) gotoTwitterView;
 @end
 
 

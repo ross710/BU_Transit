@@ -9,13 +9,14 @@
 #import "ArrivalEstimate.h"
 
 @implementation ArrivalEstimate
-@synthesize arrival_at,stop_id,vehicle_id;
+@synthesize arrival_at,stop_id,vehicle_id,vehicle_num;
 
 -(id) init {
     if (self = [super init]) {
         arrival_at = [[NSDate alloc] init];
         vehicle_id = [[NSNumber alloc]init];
         stop_id = [[NSNumber alloc] init];
+        vehicle_num = [[NSNumber alloc] init];
     }
     return self;
 }

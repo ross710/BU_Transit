@@ -71,7 +71,6 @@
 
 
 -(void) viewDidAppear:(BOOL)animated {
-//       [self navigationItem].hidesBackButton = NO;
     GMSMarker *marker = [GMSMarker markerWithPosition:location.coordinate];
     panoView_ = [[GMSPanoramaView alloc] initWithFrame:CGRectZero];
     [panoView_ moveNearCoordinate:location.coordinate];
@@ -80,7 +79,6 @@
     CGFloat heading = [self calculateUserAngle:panoView_.panorama.coordinate :marker.position];
 
     GMSPanoramaCamera *camera = [GMSPanoramaCamera cameraWithHeading:heading pitch:0 zoom:0];
-//    NSLog(@"HEADING %f", heading);
 
     [panoView_ animateToCamera:camera animationDuration:0];
 

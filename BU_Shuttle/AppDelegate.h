@@ -12,6 +12,7 @@
 #import "Stop_pin.h"
 #import "BackEndWrapper.h"
 
+
 @protocol StreetViewSegueDelegate <NSObject>
 @required
 -(void) showStreetView : (Stop_pin *) pin;
@@ -27,6 +28,7 @@
 
 
 - (void)plotVehicles;
-- (void) createBusNotification: (NSUInteger) stopID_ time: (NSUInteger) remindMinutes_;
++(NSArray *) loadBUTwitter;
+//- (void) createBusNotification: (NSUInteger) stopID_ time: (NSUInteger) remindMinutes_;
 
 @end

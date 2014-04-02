@@ -21,6 +21,8 @@
 @property (nonatomic, copy) NSDecimalNumber *speed;
 @property (nonatomic, copy) NSString *tracking_status; //check
 @property (nonatomic, copy) NSNumber *vehicle_id;
+@property (nonatomic, copy) NSNumber *vehicle_num;
+
 @property (nonatomic, copy) NSString *type;
 
 @end

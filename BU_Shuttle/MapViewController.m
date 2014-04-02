@@ -62,18 +62,7 @@
     [self.navigationController presentViewController:navView animated:YES completion:nil];
 }
 
--(void) viewDidDisappear:(BOOL)animated {
-//    [self pauseTimer];
-}
 
--(void) resumeTimer {
-//    timer = [NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(refreshVehicles) userInfo: nil repeats: YES];
-}
--(void) pauseTimer {
-//    NSLog(@"TIMER PAUSED");
-//    [timer invalidate];
-//    timer = nil;
-}
 -(void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     appDelegate.delegate = nil;
@@ -93,7 +82,6 @@
 
 - (IBAction)gotoListView:(id)sender {
 
-//    NSLog(@"TRYING TO GO TO LIST VIEW");
     [self.delegate gotoListView];
 }
 

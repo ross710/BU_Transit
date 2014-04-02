@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) NSNumber *vehicle_id;
+@property (nonatomic, retain) NSNumber *vehicle_num;
 
 @property (nonatomic, retain) NSNumber *heading;
 @property (nonatomic, retain) NSNumber *isInboundToStuvii;
@@ -23,6 +24,6 @@
 
 
 
-- (id)initWithLong:(CGFloat)lon Lat:(CGFloat)lat vehicle_id:(NSNumber *)vehicle_id_ heading:(NSNumber *)heading_ type:(NSString *) type_;
+- (id)initWithLong:(CGFloat)lon Lat:(CGFloat)lat vehicle_id:(NSNumber *)vehicle_id_ vehicle_num:(NSNumber *)vehicle_num_ heading:(NSNumber *)heading_ type:(NSString *) type_;
 
 @end
