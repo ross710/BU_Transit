@@ -59,6 +59,11 @@
                 self.tweets = tweetsArray;
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
+                
+                if ([tweets count] <= 0) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"It looks like there are no tweets from @BUShuttle today" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
             }];
             
             
@@ -105,7 +110,7 @@
     NSString *d1 = [df stringFromDate:fromDate];
     NSString *d2 = [df stringFromDate:toDate];
     return [d1 isEqualToString:d2];
-
+    
 }
 
 - (void)viewDidLoad
@@ -182,9 +187,9 @@
                 return [tweets count];
             }
             break;
-//        case 1:
-//            return 1;
-//            break;
+            //        case 1:
+            //            return 1;
+            //            break;
         default:
             break;
     }
@@ -197,9 +202,9 @@
         case 0:
             return @"@BUShuttle Tweets";
             break;
-//        case 1:
-//            return @"Settings";
-//            break;
+            //        case 1:
+            //            return @"Settings";
+            //            break;
         default:
             break;
     }
@@ -207,7 +212,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && [tweets count] > 0) {
         NSString *text = [tweets objectAtIndex:[indexPath row]];
         
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
@@ -224,9 +229,9 @@
 
 //http://www.cimgf.com/2009/09/23/uitableviewcell-dynamic-height/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-
-
+    
+    
+    
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -250,24 +255,25 @@
             [[cell contentView] addSubview:label];
             
         }
-        NSString *text = [tweets objectAtIndex:[indexPath row]];
-        if ([tweets count] == 0) {
-//            text = @"No recent tweets from @BUShuttle";
+        if ([tweets count] > 0) {
+            NSString *text = [tweets objectAtIndex:[indexPath row]];
+            if ([tweets count] == 0) {
+                //            text = @"No recent tweets from @BUShuttle";
+            }
+            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+            
+            CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+            
+            if (!label)
+                label = (UILabel*)[cell viewWithTag:1];
+            
+            [label setText:text];
+            [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+            
         }
-        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
         
-        CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-        
-        if (!label)
-            label = (UILabel*)[cell viewWithTag:1];
-        
-        [label setText:text];
-        [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
-        
-
-
         return cell;
-
+        
     } else {
         static NSString *CellIdentifier2 = @"Cell2";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
@@ -278,7 +284,7 @@
             }
         }
         return cell;
-
+        
     }
     
 }
