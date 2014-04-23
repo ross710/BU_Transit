@@ -11,6 +11,8 @@
 
 #import "BackEndWrapper.h"
 #import "AppDelegate.h"
+#import "UNIRest.h"
+
 #define URL_STOPS [NSURL URLWithString:@"http://api.transloc.com/1.2/stops.json?agencies=bu"]
 #define URL_VEHICLES [NSURL URLWithString:@"http://api.transloc.com/1.2/vehicles.json?agencies=bu"]
 #define URL_ARRIVAL_ESTIMATES [NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"]
@@ -26,6 +28,9 @@
 @end
 
 
+
+
+
 @implementation BackEndWrapper
 @synthesize path, dataObject, archiver, unarchiver;
 @synthesize stops;
@@ -37,99 +42,111 @@
 
 
 -(void) queueRoutes {
-
+    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+    NSDictionary* parameters = @{};
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_ROUTES cachePolicy:0 timeoutInterval:5];
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[[NSOperationQueue alloc] init]
-     completionHandler:^(NSURLResponse *response,
-                         NSData *data,
-                         NSError *error)
-     {
-         
-         if ([data length] >0 && error == nil)
-         {
-             
-             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             [self performSelectorOnMainThread:@selector(checkIfNightTime:) withObject:json waitUntilDone:YES];
-
-             
-         }
-         else if ([data length] == 0 && error == nil)
-         {
-             NSLog(@"Nothing was downloaded.");
-         }
-         else if (error != nil){
-             NSLog(@"Error = %@", error);
-         }
-         
-     }];
-
+    [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/routes.json?agencies=bu"];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
+        // This is the asyncronous callback block
+//        NSInteger* code = [response code];
+//        NSDictionary* responseHeaders = [response headers];
+//        UNIJsonNode* body = [response body];
+        NSData* data = [response rawBody];
+        
+        if ([data length] >0 && error == nil)
+        {
+            
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [self performSelectorOnMainThread:@selector(checkIfNightTime:) withObject:json waitUntilDone:YES];
+            
+            
+        }
+        else if ([data length] == 0 && error == nil)
+        {
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil){
+            NSLog(@"Error = %@", error);
+        }
+    }];
     
 }
 
 -(void) queueArrivalEstimates {
-
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_ARRIVAL_ESTIMATES cachePolicy:0 timeoutInterval:5];
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[[NSOperationQueue alloc] init]
-     completionHandler:^(NSURLResponse *response,
-                         NSData *data,
-                         NSError *error)
-     {
-         
-         if ([data length] >0 && error == nil)
-         {
-             
-             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             [self performSelectorOnMainThread:@selector(loadArrivalEstimatesIntoObjects:) withObject:json waitUntilDone:YES];
-             
-         }
-         else if ([data length] == 0 && error == nil)
-         {
-             NSLog(@"Nothing was downloaded.");
-         }
-         else if (error != nil){
-             NSLog(@"Error = %@", error);
-         }
-         
-     }];
+    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+    NSDictionary* parameters = @{};
+    
+    [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/arrival-estimates.json?agencies=bu"];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
+        // This is the asyncronous callback block
+        //        NSInteger* code = [response code];
+        //        NSDictionary* responseHeaders = [response headers];
+        //        UNIJsonNode* body = [response body];
+        NSData* data = [response rawBody];
+        
+        if ([data length] >0 && error == nil)
+        {
+            
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [self performSelectorOnMainThread:@selector(loadArrivalEstimatesIntoObjects:) withObject:json waitUntilDone:YES];
+
+            
+            
+        }
+        else if ([data length] == 0 && error == nil)
+        {
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil){
+            NSLog(@"Error = %@", error);
+        }
+    }];
 
     
 }
 
 -(void) queueVehicles {
 
+    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+    NSDictionary* parameters = @{};
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_VEHICLES cachePolicy:0 timeoutInterval:5];
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[[NSOperationQueue alloc] init]
-     completionHandler:^(NSURLResponse *response,
-                         NSData *data,
-                         NSError *error)
-     {
-         
-         if ([data length] >0 && error == nil)
-         {
-             
-             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             [self performSelectorOnMainThread:@selector(loadVehiclesIntoObjects:) withObject:json waitUntilDone:YES];
 
-             
-         }
-         else if ([data length] == 0 && error == nil)
-         {
-             NSLog(@"Nothing was downloaded.");
-         }
-         else if (error != nil){
-             NSLog(@"Error = %@", error);
-         }
-         
-     }];
+//    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+//    NSDictionary* parameters = @{};
+    
+    [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
+        NSData* data = [response rawBody];
+    
+        if ([data length] >0 && error == nil)
+        {
+            
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [self performSelectorOnMainThread:@selector(loadVehiclesIntoObjects:) withObject:json waitUntilDone:YES];
+            
+            
+            
+        }
+        else if ([data length] == 0 && error == nil)
+        {
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil){
+            NSLog(@"Error = %@", error);
+        }
+    }];
+    
+    
 
 }
 
@@ -367,13 +384,21 @@
 }
 
 -(NSString *) getJsonStringStops {
-    NSError* error = nil;
+//    NSError* error = nil;
+//    
+//    NSURLRequest* request = [NSURLRequest requestWithURL:URL_STOPS cachePolicy:0 timeoutInterval:5];
+//    NSURLResponse* response=nil;
+//    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_STOPS cachePolicy:0 timeoutInterval:5];
-    NSURLResponse* response=nil;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
+    NSDictionary* parameters = @{};
     
+    UNIHTTPJsonResponse* response = [[UNIRest get:^(UNISimpleRequest* request) {
+        [request setUrl:@"https://transloc-api-1-2.p.mashape.com/stops.json?agencies=bu"];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJson];
+    return [[NSString alloc] initWithData:[response rawBody] encoding:NSUTF8StringEncoding];
 }
 
 -(NSString *) getJsonStringVehicles {
