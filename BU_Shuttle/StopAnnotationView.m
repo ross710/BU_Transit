@@ -14,21 +14,11 @@
 
             [self setCenterOffset:CGPointMake(0, 44)];
             [self setCalloutOffset:CGPointMake(-4.1, 20)];
-
-            
-            
             iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 24 , 24)];
         } else {
-//            [self setCenterOffset:CGPointMake(0, 44)];
             [self setCalloutOffset:CGPointMake(-4.1, 20)];
-            
-            
-            
             iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 24 , 24)];
         }
-
-        
-        
         [self addSubview:iconView];
     }
     

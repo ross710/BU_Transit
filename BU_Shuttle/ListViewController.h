@@ -30,5 +30,4 @@
 
 }
 @property (weak, nonatomic) id<ListViewDelegate> delegate;
--(void) checkIfRunning;
 @end

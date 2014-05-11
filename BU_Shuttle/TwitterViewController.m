@@ -75,26 +75,6 @@
     }];
 }
 
-
-////http://stackoverflow.com/questions/4739483/number-of-days-between-two-nsdates
-//- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-//{
-//    NSDate *fromDate;
-//    NSDate *toDate;
-//
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//
-//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
-//                 interval:NULL forDate:fromDateTime];
-//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
-//                 interval:NULL forDate:toDateTime];
-//
-//    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
-//                                               fromDate:fromDate toDate:toDate options:0];
-//
-//    return [difference day];
-//}
-
 -(BOOL) isLessThanHours: (NSInteger) hours date: (NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     if ([toDateTime timeIntervalSinceDate:fromDateTime] < 3600*hours)
     {
@@ -187,9 +167,6 @@
                 return [tweets count];
             }
             break;
-            //        case 1:
-            //            return 1;
-            //            break;
         default:
             break;
     }
@@ -202,9 +179,6 @@
         case 0:
             return @"@BUShuttle Tweets";
             break;
-            //        case 1:
-            //            return @"Settings";
-            //            break;
         default:
             break;
     }

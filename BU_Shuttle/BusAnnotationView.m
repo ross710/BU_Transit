@@ -9,13 +9,7 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     
     if (self) {
-    
-
-        
-        
         iconView = [[UIImageView alloc] initWithFrame:CGRectMake(-8 , 0, 32 , 32)];
-
-        
         [self addSubview:iconView];
     }
     
@@ -45,8 +39,6 @@
         
     }
     [iconView setImage:icon];
-//    [iconView setAlpha:0.8];
-
 }
 
 /** Override to make sure shadow image is always set

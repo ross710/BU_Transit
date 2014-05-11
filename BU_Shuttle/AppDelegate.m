@@ -20,16 +20,12 @@
 
 @interface AppDelegate ()
 @property (nonatomic, retain) NSMutableDictionary *vehicles;
-//@property (nonatomic) NSUInteger stopID;
-//@property (nonatomic) NSUInteger remindMinutes;
 @property (nonatomic) NSDate *lastDate;
 
 @end
 @implementation AppDelegate
 @synthesize wrapper, mapView, routeLine, routeLineView;
 @synthesize vehicles;
-//@synthesize stopID, remindMinutes;
-
 
 +(NSArray *) loadBUTwitter{
     STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@"MfKtvacL7cocr0fkpwIogg" consumerSecret:@"h8xR56SqeABsxM0LnuU36QVaTmFKjLUbUN6qeM6ytW0"];
@@ -51,8 +47,6 @@
                     NSArray *statusAndDate = [NSArray arrayWithObjects:text, dateStr, nil];
                     [tweets addObject:statusAndDate];
                 }
-                
-
             }
         } errorBlock:^(NSError *error) {
             NSLog(@"-- error: %@", error);
@@ -60,9 +54,7 @@
     } errorBlock:^(NSError *error) {
         NSLog(@"-- error %@", error);
     }];
-    
     return [NSArray arrayWithArray:tweets];
-
 }
 
 //http://stackoverflow.com/questions/4739483/number-of-days-between-two-nsdates
@@ -79,7 +71,9 @@
                  interval:NULL forDate:toDateTime];
     
     NSDateComponents *difference = [calendar components:NSDayCalendarUnit
-                                               fromDate:fromDate toDate:toDate options:0];
+                                               fromDate:fromDate
+                                                 toDate:toDate
+                                                options:0];
     
     return [difference day];
 }
@@ -116,62 +110,51 @@
     [mapView setRegion:viewRegion animated:NO];
     
     [self plotVehicles];
-    
-//    [wrapper queueRoutes];
-
-//    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-//    stopID = -1;
-//    remindMinutes = -1;
-    
-//    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:20];
-
-    
-
     return YES;
 }
 
--(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-//    NSLog(@"%d, %d", stopID, remindMinutes);
-//    if (stopID != -1) {
-//        //get arrival estimates
-//        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"] cachePolicy:0 timeoutInterval:5];
-//        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-//        
-//        NSUInteger minutesLeft = [self getTimeDifferenceFromJSON:dictionary];
-//        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//        localNotification.fireDate = [NSDate date];
-//        
-//        if (minutesLeft != -1) {
-//            localNotification.alertBody = [NSString stringWithFormat:@"Bus arriving in: %d minutes", minutesLeft];
-//        } else {
-//            localNotification.alertBody = [NSString stringWithFormat:@"Sorry, bus alerts not available"];
-//            
-//        }
-//        localNotification.soundName = UILocalNotificationDefaultSoundName;
-//        NSLog(@"Minutes %d", minutesLeft);
-////        minutesLeft = 2;
-//        if (remindMinutes >= minutesLeft) {
-//            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//            [self resetReminder];
-////            [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
-//
-//        }
-//        
-//        //fetch the latest content
-//        completionHandler(UIBackgroundFetchResultNewData);
-//    } else {
-////        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
-//        completionHandler(UIBackgroundFetchResultFailed);
-//    }
-    
-}
+//Test for future code
+//-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+////    NSLog(@"%d, %d", stopID, remindMinutes);
+////    if (stopID != -1) {
+////        //get arrival estimates
+////        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.transloc.com/1.2/arrival-estimates.json?agencies=bu"] cachePolicy:0 timeoutInterval:5];
+////        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+////        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+////        
+////        NSUInteger minutesLeft = [self getTimeDifferenceFromJSON:dictionary];
+////        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+////        localNotification.fireDate = [NSDate date];
+////        
+////        if (minutesLeft != -1) {
+////            localNotification.alertBody = [NSString stringWithFormat:@"Bus arriving in: %d minutes", minutesLeft];
+////        } else {
+////            localNotification.alertBody = [NSString stringWithFormat:@"Sorry, bus alerts not available"];
+////            
+////        }
+////        localNotification.soundName = UILocalNotificationDefaultSoundName;
+////        NSLog(@"Minutes %d", minutesLeft);
+//////        minutesLeft = 2;
+////        if (remindMinutes >= minutesLeft) {
+////            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+////            [self resetReminder];
+//////            [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+////
+////        }
+////        
+////        //fetch the latest content
+////        completionHandler(UIBackgroundFetchResultNewData);
+////    } else {
+//////        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+////        completionHandler(UIBackgroundFetchResultFailed);
+////    }
+//    
+//}
 
 
 
 
 -(void) updateStops {
-    NSLog(@"UPDATE");
     [self refreshStops];
 }
 
@@ -195,7 +178,9 @@
 
     [self plotStops];
 }
-//Taken from http://spitzkoff.com/craig/?p=136
+
+
+//Overlay code Taken from http://spitzkoff.com/craig/?p=136
 -(void) loadRoute : (BOOL) isNightTime
 {
     NSString* filePath;
@@ -271,7 +256,7 @@
 }
 
 
--(void) recieveVehicles:(NSMutableDictionary *)object {
+-(void) receiveVehicles:(NSMutableDictionary *)object {
     vehicles = object;
     BOOL alreadyInit = NO;
     for (Vehicle_pin<MKAnnotation> *annotation in mapView.annotations) {
@@ -422,7 +407,8 @@
         // Check in queue if there is an annotation view we already can use, else create a new one
         BusAnnotationView *annotationView = (BusAnnotationView *)[aMapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
         if (!annotationView) {
-            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation
+                                                           reuseIdentifier:annotationIdentifier];
             annotationView.canShowCallout = YES;
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
         }
@@ -433,7 +419,8 @@
         // Check in queue if there is an annotation view we already can use, else create a new one
         StopAnnotationView *annotationView = (StopAnnotationView *)[aMapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
         if (!annotationView) {
-            annotationView = [[StopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+            annotationView = [[StopAnnotationView alloc] initWithAnnotation:annotation
+                                                            reuseIdentifier:annotationIdentifier];
             annotationView.canShowCallout = YES;
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoLight];
         }
@@ -446,6 +433,7 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     view.layer.zPosition = 2049;
 }
+
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     if ([[view annotation] isKindOfClass:[MKUserLocation class]])
     {
@@ -468,6 +456,7 @@
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"map_inactive" object:nil];
 }
+
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV;
     
@@ -500,20 +489,16 @@
                               aV.frame.origin.y - self.mapView.frame.size.height,
                               aV.frame.size.width,
                               aV.frame.size.height);
-        
-        
         aV.frame = endFrame;
     }
 }
 
--(void) streetViewHandler {
-    
-}
-
+//when you touch an annotation, open street view
 -(void) mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     Stop_pin *pin = (Stop_pin*)[view annotation];
     [self.delegate showStreetView:pin];
 }
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -536,9 +521,6 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber=0;
 
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

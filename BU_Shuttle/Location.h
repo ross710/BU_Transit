@@ -15,6 +15,4 @@
 
 -(id) init;
 -(id) init: (NSDecimalNumber*) lat_ : (NSDecimalNumber*) lng_;
-//-(NSNumber *) calculateDistance: (Location *) myLocation;
-
 @end

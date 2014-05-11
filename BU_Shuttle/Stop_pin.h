@@ -17,9 +17,6 @@
 @property (nonatomic, retain) NSString *stop_name;
 @property (nonatomic, retain) NSNumber *stop_id;
 
-//@property (nonatomic, retain) Vehicle *vehicle;
-
-
 
 -(id)initWithLong:(CGFloat)lon : (CGFloat)lat : (NSString *) stop_name_ : (NSNumber*) stop_id_;
 

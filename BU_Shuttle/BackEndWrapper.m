@@ -24,7 +24,6 @@
 @property (nonatomic) NSMutableData *dataObject;
 @property (nonatomic) NSKeyedArchiver *archiver;
 @property (nonatomic) NSKeyedUnarchiver *unarchiver;
-@property (nonatomic) BOOL cool;
 @end
 
 
@@ -35,12 +34,11 @@
 @synthesize path, dataObject, archiver, unarchiver;
 @synthesize stops;
 @synthesize delegate;
-@synthesize cool;
 
 
 
 
-
+//ask for routes json
 -(void) queueRoutes {
     NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
     NSDictionary* parameters = @{};
@@ -50,10 +48,6 @@
         [request setHeaders:headers];
         [request setParameters:parameters];
     }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
-        // This is the asyncronous callback block
-//        NSInteger* code = [response code];
-//        NSDictionary* responseHeaders = [response headers];
-//        UNIJsonNode* body = [response body];
         NSData* data = [response rawBody];
         
         if ([data length] >0 && error == nil)
@@ -75,8 +69,8 @@
     
 }
 
+//ask for arrival estimates json
 -(void) queueArrivalEstimates {
-    
     NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
     NSDictionary* parameters = @{};
     
@@ -85,20 +79,15 @@
         [request setHeaders:headers];
         [request setParameters:parameters];
     }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
-        // This is the asyncronous callback block
-        //        NSInteger* code = [response code];
-        //        NSDictionary* responseHeaders = [response headers];
-        //        UNIJsonNode* body = [response body];
         NSData* data = [response rawBody];
         
         if ([data length] >0 && error == nil)
         {
-            
-            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [self performSelectorOnMainThread:@selector(loadArrivalEstimatesIntoObjects:) withObject:json waitUntilDone:YES];
-
-            
-            
+            NSString *json = [[NSString alloc] initWithData:data
+                                                   encoding:NSUTF8StringEncoding];
+            [self performSelectorOnMainThread:@selector(loadArrivalEstimatesIntoObjects:)
+                                   withObject:json
+                                waitUntilDone:YES];
         }
         else if ([data length] == 0 && error == nil)
         {
@@ -112,55 +101,45 @@
     
 }
 
+//ask for vehicle json
 -(void) queueVehicles {
 
     NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
     NSDictionary* parameters = @{};
-    
-
-//    NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
-//    NSDictionary* parameters = @{};
-    
     [[UNIRest get:^(UNISimpleRequest* request) {
         [request setUrl:@"https://transloc-api-1-2.p.mashape.com/vehicles.json?agencies=bu"];
         [request setHeaders:headers];
         [request setParameters:parameters];
     }] asJsonAsync:^(UNIHTTPJsonResponse* response, NSError *error) {
         NSData* data = [response rawBody];
-    
+        
         if ([data length] >0 && error == nil)
         {
-            
-            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [self performSelectorOnMainThread:@selector(loadVehiclesIntoObjects:) withObject:json waitUntilDone:YES];
-            
-            
-            
+            NSString *json = [[NSString alloc] initWithData:data
+                                                   encoding:NSUTF8StringEncoding];
+            [self performSelectorOnMainThread:@selector(loadVehiclesIntoObjects:)
+                                   withObject:json
+                                waitUntilDone:YES];
         }
         else if ([data length] == 0 && error == nil)
         {
-            NSLog(@"Nothing was downloaded.");
+            NSLog(@"Vehicle data returned nothing.");
         }
         else if (error != nil){
             NSLog(@"Error = %@", error);
         }
     }];
-    
-    
-
 }
 
 
 -(id) init {
     if (self = [super init]) {
+        //get initial data
         [self getPath];
-        
         [self loadStops];
-        
         [self queueRoutes];
         
-        cool = NO;
-        [NSTimer timerWithTimeInterval:3600 target:self selector:@selector(queueRoutes) userInfo:nil repeats:YES];
+//        [NSTimer timerWithTimeInterval:3600 target:self selector:@selector(queueRoutes) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -173,7 +152,6 @@
     path = [documentsDirectory stringByAppendingPathComponent:@"Stops.plist"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
     if (![fileManager fileExistsAtPath: path])
     {
         NSString *bundle = [[NSBundle mainBundle] pathForResource:@"Stops" ofType:@"plist"];
@@ -198,10 +176,9 @@
 
 }
 
-
+//save stops in plist file
 -(void) saveStops {
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
     dataObject = [[NSMutableData alloc] init];
     archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:dataObject];
     [archiver encodeObject:stops forKey:@"stops"];
@@ -237,7 +214,7 @@
         stop.routes = [NSArray arrayWithArray:[stopDict objectForKey:@"routes"]];
         NSInteger stop_id = [stop.stop_id integerValue];
         
-
+        //hard code stops to know which direction they are going
         switch (stop_id) {
             case 4068466: //ST. Mary's
                 stop.isInboundToStuVii = NO;
@@ -384,12 +361,6 @@
 }
 
 -(NSString *) getJsonStringStops {
-//    NSError* error = nil;
-//    
-//    NSURLRequest* request = [NSURLRequest requestWithURL:URL_STOPS cachePolicy:0 timeoutInterval:5];
-//    NSURLResponse* response=nil;
-//    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
     NSDictionary* headers = @{@"X-Mashape-Authorization": @"TiLRMRlEidBm0KT2ra9y2K6F43diqKsc"};
     NSDictionary* parameters = @{};
     
@@ -401,31 +372,7 @@
     return [[NSString alloc] initWithData:[response rawBody] encoding:NSUTF8StringEncoding];
 }
 
--(NSString *) getJsonStringVehicles {
-    
-    NSError* error = nil;
-
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_VEHICLES cachePolicy:0 timeoutInterval:5];
-    NSURLResponse* response=nil;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSLog(@"VEHICLES REFRESHING");
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
-
--(NSString *) getJsonStringArrivalEstimates {
-    NSError* error = nil;
-    
-    NSURLRequest* request = [NSURLRequest requestWithURL:URL_ARRIVAL_ESTIMATES cachePolicy:0 timeoutInterval:5];
-    NSURLResponse* response=nil;
-    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSLog(@"ARRIVAL ESTIMATES REFRESHING");
-
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
-
-
-
-
+//convert json into arrival estimate objects
 -(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSDictionary *bigDict = [parser objectWithString:jsonString];
@@ -434,7 +381,7 @@
     arrival_estimates = [[NSMutableDictionary alloc] init];
     NSArray *allTheArrivalEstimates = [bigDict objectForKey:@"data"];
     
-
+    
     for (id object in allTheArrivalEstimates) {
         NSDictionary *dict = (NSDictionary *) object;
 
@@ -450,17 +397,14 @@
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
             
-
             est.arrival_at = [dateFormat dateFromString:[arrivalDict objectForKey:@"arrival_at"]];
         }
-        
         [arrival_estimates setObject:est forKey:est.stop_id];
-
     }
-    
-    [self.delegate recieveArrivalEstimates:arrival_estimates];
+    [self.delegate receiveArrivalEstimates:arrival_estimates];
 }
 
+//convert json into vehicles
 -(void) loadVehiclesIntoObjects: (NSString *) jsonString {
     
     SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -492,12 +436,11 @@
                         tempVehicle.location = [[Location alloc] init:[loc objectForKey:@"lat"] :[loc objectForKey:@"lng"]];
                     }
                     tempVehicle.tracking_status = [vehicleDict objectForKey:@"tracking_status"];
-                    
                     tempVehicle.arrival_estimates = [vehicleDict objectForKey:@"arrival_estimates"];
-
                 }
             }
         }
+        
         if (found == false) { //if not found, add
 
             Vehicle *vehicle = [[Vehicle alloc]init];
@@ -520,6 +463,7 @@
 
             vehicle.call_name = [NSNumber numberWithInteger:[[vehicleDict objectForKey:@"call_name"] integerValue]];
 
+            //hard code if small or big bus
             switch ([vehicle.vehicle_id integerValue]) {
                 case 4007492:
                 {
@@ -572,14 +516,10 @@
                     break;
                 }
             }
-
             [vehicles setObject:vehicle forKey:vehicle.vehicle_id];
-
         }
     }
-
-
-    [self.delegate recieveVehicles:vehicles];
+    [self.delegate receiveVehicles:vehicles];
 }
 
 

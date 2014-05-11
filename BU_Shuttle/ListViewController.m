@@ -49,10 +49,9 @@
     
     [super viewDidLoad];
     [self initLocation];
-    wrapper = [[BackEndWrapper alloc] init];
-
-    wrapper.delegate = self;
     
+    wrapper = [[BackEndWrapper alloc] init];
+    wrapper.delegate = self;
     
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStylePlain target:self action:@selector(showHelpView)];
     [[self navigationItem] setLeftBarButtonItem:button];
@@ -64,29 +63,8 @@
         [self performSelector:@selector(continueInit) withObject:nil afterDelay:0.5];
 
     }
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self performSelector:@selector(checkIfRunning) withObject:self afterDelay:3.0];
-
 }
 
--(void) checkIfRunning {
-//    arrival_estimates
-    NSArray *keysArray = [arrival_estimates allValues];
-    
-    if ([keysArray count] <= 0 && delayWarning == NO) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry Mate" message:@"Buses don't appear to be running at this time, but you can check the map to confirm" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alert show];
-        
-        
-    }
-
-}
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -168,7 +146,6 @@
     [self.delegate gotoMapView: nil];
 }
 
-
 - (void)gotoTwitterView{
     [self.delegate gotoTwitterView];
 }
@@ -178,13 +155,11 @@
     [wrapper queueArrivalEstimates];
 }
 
--(void) recieveArrivalEstimates : (NSMutableDictionary *) object{
+-(void) receiveArrivalEstimates : (NSMutableDictionary *) object{
     arrival_estimates = object;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
-
-
 
 -(void) initLocation {
     locationManager = [[CLLocationManager alloc] init];

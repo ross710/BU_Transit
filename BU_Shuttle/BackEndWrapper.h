@@ -14,8 +14,8 @@
 
 @protocol BackEndWrapperDelegate <NSObject>
 @optional
--(void) recieveArrivalEstimates: (NSMutableDictionary *) object;
--(void) recieveVehicles: (NSMutableDictionary *) object;
+-(void) receiveArrivalEstimates: (NSMutableDictionary *) object;
+-(void) receiveVehicles: (NSMutableDictionary *) object;
 -(void) switchToNight;
 -(void) switchToDay;
 -(void) updateStops;
@@ -24,17 +24,12 @@
 @interface BackEndWrapper : NSObject
 @property (nonatomic, strong) NSMutableDictionary *stops;
 @property (nonatomic, strong) NSMutableDictionary *vehicles;
-//@property (nonatomic) NSMutableDictionary *arrival_estimates;
-
 @property (nonatomic, weak) id <BackEndWrapperDelegate> delegate;
 
 
 
 
--(NSMutableDictionary *) loadArrivalEstimates;
 -(id) init;
-
--(void) swapTime;
 -(void) queueRoutes;
 -(void) queueArrivalEstimates;
 -(void) queueVehicles;
@@ -42,10 +37,6 @@
 -(void) saveStops;
 -(void) loadStops;
 -(void) loadStopsFromJSON: (NSString *) jsonString;
--(NSMutableDictionary *) getVehicles;
--(NSString *) getJsonStringStops;
--(NSString *) getJsonStringVehicles;
--(NSString *) getJsonStringArrivalEstimates;
 -(void) loadArrivalEstimatesIntoObjects: (NSString *) jsonString;
 -(void) loadVehiclesIntoObjects: (NSString *) jsonString;
 @end

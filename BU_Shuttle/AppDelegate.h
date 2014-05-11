@@ -29,6 +29,4 @@
 
 - (void)plotVehicles;
 +(NSArray *) loadBUTwitter;
-//- (void) createBusNotification: (NSUInteger) stopID_ time: (NSUInteger) remindMinutes_;
-
 @end

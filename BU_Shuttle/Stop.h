@@ -21,11 +21,7 @@
 @property (nonatomic, copy) NSNumber *stop_id;
 @property (nonatomic, copy) NSArray *routes;
 @property (nonatomic, copy) NSString *name;
-
-
 @property (nonatomic, copy) NSString *route;
-
-
 @property (nonatomic, copy) NSNumber *isInboundToStuVii;
 
 

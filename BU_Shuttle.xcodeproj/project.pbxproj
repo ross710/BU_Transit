@@ -204,8 +204,8 @@
 		9131B76318B67EFE00976763 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		9131B76418B67EFE00976763 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		9137DE5817CA729F0040376D /* icon_bus_yellow_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bus_yellow_small.png; sourceTree = "<group>"; };
-		913820EE17E75CEA00C00C78 /* Untitled-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-2.png"; sourceTree = "<group>"; };
-		913820F017E75CFF00C00C78 /* IMG_0159 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IMG_0159 copy.png"; sourceTree = "<group>"; };
+		913820EE17E75CEA00C00C78 /* Untitled-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-2.png"; path = "../Untitled-2.png"; sourceTree = "<group>"; };
+		913820F017E75CFF00C00C78 /* IMG_0159 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IMG_0159 copy.png"; path = "../IMG_0159 copy.png"; sourceTree = "<group>"; };
 		914B40E417C12232001A6078 /* StopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotationView.h; sourceTree = "<group>"; };
 		914B40E517C12232001A6078 /* StopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotationView.m; sourceTree = "<group>"; };
 		915D538717C178630049C974 /* Stop_pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop_pin.h; sourceTree = "<group>"; };
@@ -299,9 +299,9 @@
 		91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_4_spotlight.png; sourceTree = "<group>"; };
 		91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g_spotlight.png; sourceTree = "<group>"; };
 		91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_5_spotlight.png; sourceTree = "<group>"; };
-		91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_ios6.png; sourceTree = "<group>"; };
-		91F0C68417CD6FBE001E96DE /* app_icon_3g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_3g.png; sourceTree = "<group>"; };
-		91F0C68617CD6FF0001E96DE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_ios6.png; path = ../app_icon_ios6.png; sourceTree = "<group>"; };
+		91F0C68417CD6FBE001E96DE /* app_icon_3g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_3g.png; path = ../app_icon_3g.png; sourceTree = "<group>"; };
+		91F0C68617CD6FF0001E96DE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		91F50385178889CC00A2BDCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/route.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -440,11 +440,6 @@
 		91719BFB176CCDB200A25620 = {
 			isa = PBXGroup;
 			children = (
-				913820F017E75CFF00C00C78 /* IMG_0159 copy.png */,
-				913820EE17E75CEA00C00C78 /* Untitled-2.png */,
-				91F0C68617CD6FF0001E96DE /* Default.png */,
-				91F0C68417CD6FBE001E96DE /* app_icon_3g.png */,
-				91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */,
 				91719C0D176CCDB200A25620 /* BU_Shuttle */,
 				91719C2C176CCDB200A25620 /* BU_ShuttleTests */,
 				91719C06176CCDB200A25620 /* Frameworks */,
@@ -496,21 +491,23 @@
 				911B25981907FADD0029E523 /* Unirest */,
 				9131B73B18B67B8900976763 /* STTwitter */,
 				918DAA1D17C046E500411463 /* Images */,
-				91E85F4517CB0486004927EE /* Map Stuff */,
+				91E85F4517CB0486004927EE /* Map data */,
 				91719C3C176CCDF100A25620 /* JSON */,
 				91719C16176CCDB200A25620 /* AppDelegate.h */,
 				91719C17176CCDB200A25620 /* AppDelegate.m */,
-				9108AFE217CA7C390094F607 /* HelpViewController.h */,
-				9108AFE317CA7C390094F607 /* HelpViewController.m */,
 				91719C66176CCE4100A25620 /* Classes */,
 				91719C19176CCDB200A25620 /* Main.storyboard */,
+				917C537817BFE7C5009A5F73 /* List View */,
 				917C537C17BFE986009A5F73 /* RootViewController.h */,
 				917C537D17BFE986009A5F73 /* RootViewController.m */,
-				917C537817BFE7C5009A5F73 /* List View */,
 				91719C1C176CCDB200A25620 /* MapViewController.h */,
 				91719C1D176CCDB200A25620 /* MapViewController.m */,
+				9131B76318B67EFE00976763 /* TwitterViewController.h */,
+				9131B76418B67EFE00976763 /* TwitterViewController.m */,
 				9194D94017C3B3BE0073F961 /* StreetViewController.h */,
 				9194D94117C3B3BE0073F961 /* StreetViewController.m */,
+				9108AFE217CA7C390094F607 /* HelpViewController.h */,
+				9108AFE317CA7C390094F607 /* HelpViewController.m */,
 				91719C1F176CCDB200A25620 /* Images.xcassets */,
 				91719C0E176CCDB200A25620 /* Supporting Files */,
 			);
@@ -637,8 +634,6 @@
 		917C537817BFE7C5009A5F73 /* List View */ = {
 			isa = PBXGroup;
 			children = (
-				9131B76318B67EFE00976763 /* TwitterViewController.h */,
-				9131B76418B67EFE00976763 /* TwitterViewController.m */,
 				9103F75D17AC743100FB7C9D /* ListViewController.h */,
 				9103F75E17AC743100FB7C9D /* ListViewController.m */,
 				917C537217BFD69D009A5F73 /* Cell.h */,
@@ -650,6 +645,11 @@
 		918DAA1D17C046E500411463 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				913820F017E75CFF00C00C78 /* IMG_0159 copy.png */,
+				913820EE17E75CEA00C00C78 /* Untitled-2.png */,
+				91F0C68617CD6FF0001E96DE /* Default.png */,
+				91F0C68417CD6FBE001E96DE /* app_icon_3g.png */,
+				91F0C68217CD6F7E001E96DE /* app_icon_ios6.png */,
 				91E85F4317CB02FF004927EE /* app_icon_5_spotlight.png */,
 				91E85F3F17CB02C1004927EE /* app_icon_4_spotlight.png */,
 				91E85F4017CB02C1004927EE /* app_icon_3g_spotlight.png */,
@@ -666,7 +666,7 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		91E85F4517CB0486004927EE /* Map Stuff */ = {
+		91E85F4517CB0486004927EE /* Map data */ = {
 			isa = PBXGroup;
 			children = (
 				91F50386178889CC00A2BDCA /* route.csv */,
@@ -680,7 +680,7 @@
 				9108AFE917CA84020094F607 /* Help.png */,
 				9103F76517AC7FB700FB7C9D /* Stops.plist */,
 			);
-			name = "Map Stuff";
+			name = "Map data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
