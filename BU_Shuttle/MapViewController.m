@@ -93,6 +93,7 @@
 
 
 
+
 -(void) initEverything {
     mapView = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).mapView;
     [self.view addSubview:mapView];
@@ -124,12 +125,12 @@
     [mapView setRegion:viewRegion animated:YES];
     
     [self refreshVehicles];
-
 }
 
 
 -(void) refreshVehicles {
-
     [appDelegate plotVehicles];
 }
+
+
 @end

@@ -242,7 +242,6 @@
     
     // clear the memory allocated earlier for the points
     free(pointArr);
-
 }
 
 -(void) plotStops {
